@@ -29,7 +29,7 @@
     "@nestjs/swagger": "6.1.2",
     "@nestjs/testing": "9.1.2",
     "@wiscro/common": "*",
-    "class-validator": "0.13.2",
+    "class-validator": "0.14.0",
     "jsdom": "20.0.0",
     "mongoose": "6.6.3",
     "reflect-metadata": "0.1.13",
