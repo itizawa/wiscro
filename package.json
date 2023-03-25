@@ -16,11 +16,13 @@
     "admin": "yarn workspace @wiscro/admin",
     "back": "yarn workspace @wiscro/back",
     "common": "yarn workspace @wiscro/common",
+    "server": "yarn workspace @wiscro/server",
 
     "dev:front": "yarn workspace @wiscro/front dev",
     "dev:admin": "yarn workspace @wiscro/admin dev",
     "dev:back": "yarn workspace @wiscro/back start:dev",
     "dev:common": "yarn workspace @wiscro/common build:watch",
+    "dev:server": "yarn workspace @wiscro/server dev",
     "build": "run-p build:*",
     "build:front": "yarn workspace @wiscro/front build",
     "build:admin": "yarn workspace @wiscro/admin build",
