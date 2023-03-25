@@ -2,11 +2,7 @@ import pino from 'pino';
 
 type ErrorStatus = 'debug' | 'info' | 'error';
 
-const pinoLogger = pino({
-  transport: {
-    target: 'pino-pretty',
-  },
-});
+const pinoLogger = pino();
 
 export const logger = (message: Record<string, any> | string, status?: ErrorStatus) => {
   switch (status) {

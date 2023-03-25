@@ -17,7 +17,7 @@ import { logger } from './utils/logger';
 /*****************************
  * Main Process              *
  *****************************/
-export class WebevApp {
+export class WiscroApp {
   app: express.Express;
   port: number;
   httpServer: httpServer;
@@ -92,5 +92,5 @@ export class WebevApp {
   }
 }
 
-const app = new WebevApp();
+const app = new WiscroApp();
 app.init();
