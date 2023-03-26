@@ -7,11 +7,17 @@ import { usePages } from '../hooks/Page';
 import { restClient } from '../libs/restClient';
 
 export const getStaticProps: GetStaticProps<{ pages: Page[] }> = async () => {
-  const pages = await restClient.apiGet<{ pages: Page[] }>('/api/pages').then((result) => result.data.pages);
+  try {
+    const pages = await restClient.apiGet<{ pages: Page[] }>('/api/pages').then((result) => result.data.pages);
 
-  return {
-    props: { pages },
-  };
+    return {
+      props: { pages },
+    };
+  } catch (error) {
+    return {
+      props: { pages: [] },
+    };
+  }
 };
 
 type Props = InferGetStaticPropsType<typeof getStaticProps>;
