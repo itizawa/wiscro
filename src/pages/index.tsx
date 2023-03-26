@@ -1,8 +1,8 @@
 import { Spacer, Text } from '@nextui-org/react';
-import { Page } from '@wiscro/common';
 import type { GetStaticProps, InferGetStaticPropsType, NextPage } from 'next';
 import Head from 'next/head';
 import { OgpCard } from '../components/domains/Ogp/OgpCard';
+import { Page } from '../domains/Page';
 import { usePages } from '../hooks/Page';
 import { restClient } from '../libs/restClient';
 
