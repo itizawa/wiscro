@@ -1,12 +1,21 @@
 import { Spacer, Text } from '@nextui-org/react';
-import type { NextPage } from 'next';
+import { Page } from '@wiscro/common';
+import type { GetStaticProps, InferGetStaticPropsType, NextPage } from 'next';
 import Head from 'next/head';
 import { OgpCard } from '../components/domains/Ogp/OgpCard';
-import { usePages } from '../hooks/Page';
+import { restClient } from '../libs/restClient';
 
-const Home: NextPage = () => {
-  const { data: pages } = usePages();
+export const getStaticProps: GetStaticProps<{ pages: Page[] }> = async () => {
+  const pages = await restClient.apiGet<{ pages: Page[] }>('/api/pages').then((result) => result.data.pages);
 
+  return {
+    props: { pages },
+  };
+};
+
+type Props = InferGetStaticPropsType<typeof getStaticProps>;
+
+const NextPage: NextPage<Props> = ({ pages }) => {
   return (
     <div>
       <Head>
@@ -29,4 +38,4 @@ const Home: NextPage = () => {
   );
 };
 
-export default Home;
+export default NextPage;
