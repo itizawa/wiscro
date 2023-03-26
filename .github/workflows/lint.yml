@@ -3,7 +3,7 @@ name: lint
 on:
   push:
     branches-ignore:
-      - release/**
+      - main
 
 jobs:
   build:
@@ -63,8 +63,4 @@ jobs:
 
       - name: yarn build front
         run: |
-          yarn build:front
-
-      - name: yarn build admin
-        run: |
-          yarn build:admin
+          yarn build
