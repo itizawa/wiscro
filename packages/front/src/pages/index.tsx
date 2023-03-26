@@ -4,10 +4,13 @@ import Head from 'next/head';
 import { useState } from 'react';
 import { OgpCard } from '../components/domains/Ogp/OgpCard';
 import { useOgp } from '../hooks/Ogp';
+import { usePages } from '../hooks/Page';
 
 const Home: NextPage = () => {
   const [url, setUrl] = useState('');
   const { data: ogp } = useOgp(url);
+  const { data: pages } = usePages();
+  console.log(pages);
 
   return (
     <div>
