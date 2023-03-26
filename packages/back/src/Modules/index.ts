@@ -1,1 +1,0 @@
-export { OgpModule } from './OgpModule';
