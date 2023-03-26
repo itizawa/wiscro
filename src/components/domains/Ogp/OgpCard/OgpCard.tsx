@@ -1,6 +1,6 @@
 import { Card, Grid, Image, Text } from '@nextui-org/react';
 import { FC } from 'react';
-import { Page } from '../../../../domains/Page';
+import { Page } from '~/domains/Page';
 
 type Props = {
   page: Page;
