@@ -14,21 +14,17 @@
 
     "front": "yarn workspace @wiscro/front",
     "admin": "yarn workspace @wiscro/admin",
-    "back": "yarn workspace @wiscro/back",
     "common": "yarn workspace @wiscro/common",
 
     "dev:front": "yarn workspace @wiscro/front dev",
     "dev:admin": "yarn workspace @wiscro/admin dev",
-    "dev:back": "yarn workspace @wiscro/back start:dev",
     "dev:common": "yarn workspace @wiscro/common build:watch",
     "build": "run-p build:*",
     "build:front": "yarn workspace @wiscro/front build",
     "build:admin": "yarn workspace @wiscro/admin build",
-    "build:back": "yarn workspace @wiscro/back build",
     "prebuild:front": "yarn workspace @wiscro/common build",
     "start:front": "yarn workspace @wiscro/front start",
     "start:admin": "yarn workspace @wiscro/admin start",
-    "start:back": "yarn workspace @wiscro/back start",
     "lint": "eslint \"./**/*.{js,jsx,ts,tsx}\""
   },
   "devDependencies": {
