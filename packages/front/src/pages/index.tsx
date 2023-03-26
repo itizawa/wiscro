@@ -3,6 +3,7 @@ import { Page } from '@wiscro/common';
 import type { GetStaticProps, InferGetStaticPropsType, NextPage } from 'next';
 import Head from 'next/head';
 import { OgpCard } from '../components/domains/Ogp/OgpCard';
+import { usePages } from '../hooks/Page';
 import { restClient } from '../libs/restClient';
 
 export const getStaticProps: GetStaticProps<{ pages: Page[] }> = async () => {
@@ -15,7 +16,9 @@ export const getStaticProps: GetStaticProps<{ pages: Page[] }> = async () => {
 
 type Props = InferGetStaticPropsType<typeof getStaticProps>;
 
-const NextPage: NextPage<Props> = ({ pages }) => {
+const NextPage: NextPage<Props> = ({ pages: pagesFromServer }) => {
+  const { data: pages } = usePages(pagesFromServer);
+
   return (
     <div>
       <Head>
