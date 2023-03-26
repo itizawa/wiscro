@@ -1,16 +1,11 @@
-import { Input, Spacer, Text } from '@nextui-org/react';
+import { Spacer, Text } from '@nextui-org/react';
 import type { NextPage } from 'next';
 import Head from 'next/head';
-import { useState } from 'react';
 import { OgpCard } from '../components/domains/Ogp/OgpCard';
-import { useOgp } from '../hooks/Ogp';
 import { usePages } from '../hooks/Page';
 
 const Home: NextPage = () => {
-  const [url, setUrl] = useState('');
-  const { data: ogp } = useOgp(url);
   const { data: pages } = usePages();
-  console.log(pages);
 
   return (
     <div>
@@ -20,13 +15,15 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main style={{ width: '500px', margin: '0 auto' }}>
-        <Spacer y={5} />
-        <Text h2>Welcome to Wiscro !</Text>
-        <Spacer y={3} />
-        <Input onChange={(e) => setUrl(e.target.value)} placeholder="type url..." bordered fullWidth />
+      <main style={{ maxWidth: '500px', margin: '0 auto', padding: '0px 16px' }}>
         <Spacer y={1} />
-        {ogp && <OgpCard ogp={ogp} />}
+        <Text h2>Welcome to Wiscro !</Text>
+        <Spacer y={1} />
+        <div style={{ rowGap: '16px', display: 'flex', flexDirection: 'column' }}>
+          {pages?.map((page) => (
+            <OgpCard key={page._id} page={page} />
+          ))}
+        </div>
       </main>
     </div>
   );

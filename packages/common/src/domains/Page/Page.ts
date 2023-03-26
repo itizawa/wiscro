@@ -1,4 +1,5 @@
 export class Page {
+  _id: string;
   url: string;
   title: string;
   description: string;
@@ -8,6 +9,7 @@ export class Page {
   siteName?: string;
   lineUser: string;
   constructor(init: Page) {
+    this._id = init._id;
     this.url = init.url;
     this.title = init.title;
     this.description = init.description;
