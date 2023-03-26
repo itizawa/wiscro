@@ -1,5 +1,5 @@
-import { Page } from '@wiscro/common';
 import useSWR, { SWRResponse } from 'swr';
+import { Page } from '../../../domains/Page';
 import { restClient } from '../../../libs/restClient';
 
 /**

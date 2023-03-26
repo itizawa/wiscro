@@ -1,5 +1,5 @@
-import { Ogp } from '@wiscro/common';
 import useSWR, { SWRResponse } from 'swr';
+import { Ogp } from '../../domains/shared';
 import { restClient } from '../../libs/restClient';
 
 /**

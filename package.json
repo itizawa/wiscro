@@ -6,26 +6,14 @@
   "author": "itizawa <itizawa.pen@gmail.com>",
   "license": "MIT",
   "private": true,
-  "workspaces": [
-    "packages/*"
-  ],
   "scripts": {
-    "dev": "run-p dev:*",
-    "front": "yarn workspace @wiscro/front",
-    "admin": "yarn workspace @wiscro/admin",
-    "common": "yarn workspace @wiscro/common",
-    "dev:front": "yarn workspace @wiscro/front dev",
-    "dev:admin": "yarn workspace @wiscro/admin dev",
-    "dev:common": "yarn workspace @wiscro/common build:watch",
-    "build": "run-p build:*",
-    "build:front": "yarn workspace @wiscro/front build",
-    "build:admin": "yarn workspace @wiscro/admin build",
-    "prebuild:front": "yarn workspace @wiscro/common build",
-    "start:front": "yarn workspace @wiscro/front start",
-    "start:admin": "yarn workspace @wiscro/admin start",
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
     "lint": "eslint \"./**/*.{js,jsx,ts,tsx}\""
   },
   "devDependencies": {
+    "@types/node": "18.15.10",
     "@types/react": "18.0.28",
     "@types/react-dom": "18.0.11",
     "@typescript-eslint/eslint-plugin": "5.38.1",
