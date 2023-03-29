@@ -26,7 +26,7 @@ export const LiffProvider: FC<PropsWithChildren> = ({ children }) => {
     if (!_liff?.init) return;
     _liff
       .init({
-        liffId: '1660803596-8xRX9z9P',
+        liffId: process.env.NEXT_PUBLIC_LIFF_ID ?? '',
         withLoginOnExternalBrowser: true,
       })
       .then(() => {
