@@ -23,10 +23,11 @@ export const LiffProvider: FC<PropsWithChildren> = ({ children }) => {
 
   // init Liff
   useEffect(() => {
-    if (!_liff) return;
+    if (!_liff?.init) return;
     _liff
       .init({
         liffId: '1660803596-8xRX9z9P',
+        withLoginOnExternalBrowser: true,
       })
       .then(() => {
         setLiff(_liff);
