@@ -3,6 +3,7 @@ import type { AppProps } from 'next/app';
 import { ThemeProvider as NextThemesProvider } from 'next-themes';
 import { SWRConfig } from 'swr';
 import { lightTheme, darkTheme } from '../styles';
+import { LiffProvider } from '~/components/providers/LiffProvider';
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
@@ -17,7 +18,9 @@ function MyApp({ Component, pageProps }: AppProps) {
         }}
       >
         <NextUIProvider>
-          <Component {...pageProps} />
+          <LiffProvider>
+            <Component {...pageProps} />
+          </LiffProvider>
         </NextUIProvider>
       </NextThemesProvider>
     </SWRConfig>
