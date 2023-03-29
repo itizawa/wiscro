@@ -5,6 +5,7 @@ import { OgpCard } from '../components/domains/Ogp/OgpCard';
 import { Page } from '../domains/Page';
 import { usePages } from '../hooks/Page';
 import { restClient } from '../libs/restClient';
+import { useLiff } from '~/components/providers/LiffProvider/LiffProvider';
 
 export const getStaticProps: GetStaticProps<{ pages: Page[] }> = async () => {
   try {
@@ -25,6 +26,10 @@ type Props = InferGetStaticPropsType<typeof getStaticProps>;
 const NextPage: NextPage<Props> = ({ pages: pagesFromServer }) => {
   const { data: pages } = usePages(pagesFromServer);
 
+  const { liff } = useLiff();
+  const idToken = liff?.getDecodedIDToken();
+  console.log(idToken); // print decoded idToken object
+
   return (
     <div>
       <Head>
@@ -35,6 +40,7 @@ const NextPage: NextPage<Props> = ({ pages: pagesFromServer }) => {
 
       <main style={{ maxWidth: '500px', margin: '0 auto', padding: '0px 16px' }}>
         <Spacer y={1} />
+        {JSON.stringify(idToken)}
         <Text h2>Welcome to Wiscro !</Text>
         <Spacer y={1} />
         <div style={{ rowGap: '16px', display: 'flex', flexDirection: 'column' }}>
