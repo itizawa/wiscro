@@ -6,7 +6,7 @@ function MyApp({ Component, pageProps }: AppProps) {
   return (
     // TODO: display toaster
     <SWRConfig value={{ onError: () => void 0 }}>
-      <NextThemesProvider defaultTheme="dark" attribute="class">
+      <NextThemesProvider defaultTheme="light" attribute="class">
         <Component {...pageProps} />
       </NextThemesProvider>
     </SWRConfig>
