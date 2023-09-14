@@ -1,14 +1,13 @@
-import type { AppProps } from 'next/app';
-import { ThemeProvider as NextThemesProvider } from 'next-themes';
 import { SWRConfig } from 'swr';
+
+import 'bootstrap/dist/css/bootstrap.min.css';
+import { AppProps } from 'next/app';
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
     // TODO: display toaster
     <SWRConfig value={{ onError: () => void 0 }}>
-      <NextThemesProvider defaultTheme="light" attribute="class">
-        <Component {...pageProps} />
-      </NextThemesProvider>
+      <Component {...pageProps} />
     </SWRConfig>
   );
 }
