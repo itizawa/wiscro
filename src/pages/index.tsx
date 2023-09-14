@@ -23,8 +23,8 @@ const NextPage: NextPage<Props> = ({ pages: pagesFromServer }) => {
   const { data: pages } = usePages(pagesFromServer);
 
   return (
-    <main>
-      <nav className="navbar bg-body-tertiary">
+    <main className="bg-body-tertiary">
+      <nav className="navbar bg-dark color-white">
         <div className="container-fluid">
           <a className="navbar-brand" href="#">
             Navbar
