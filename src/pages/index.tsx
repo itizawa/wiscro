@@ -23,8 +23,8 @@ const NextPage: NextPage<Props> = ({ pages: pagesFromServer }) => {
   const { data: pages } = usePages(pagesFromServer);
 
   return (
-    <main className="bg-body-tertiary">
-      <nav className="navbar bg-dark color-white">
+    <>
+      <nav className="navbar bg-white color-white">
         <div className="container-fluid">
           <a className="navbar-brand" href="#">
             Navbar
@@ -32,7 +32,7 @@ const NextPage: NextPage<Props> = ({ pages: pagesFromServer }) => {
         </div>
       </nav>
       <div>{JSON.stringify(pages)}</div>
-    </main>
+    </>
   );
 };
 

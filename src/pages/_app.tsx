@@ -1,13 +1,15 @@
 import { SWRConfig } from 'swr';
 
-import 'bootstrap/dist/css/bootstrap.min.css';
+import '../styles/override-bootstrap.scss';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 function MyApp({ Component, pageProps }: any) {
   return (
     // TODO: display toaster
     <SWRConfig value={{ onError: () => void 0 }}>
-      <Component {...pageProps} />
+      <main className="bg-base">
+        <Component {...pageProps} />
+      </main>
     </SWRConfig>
   );
 }
