@@ -11,7 +11,7 @@ export const useDescriptionInput = () => {
 
   const helperText = useMemo(() => {
     if (value.length > 3000) {
-      return '文字数が長すぎます';
+      return '文字数は3000文字を超えることはできません';
     }
 
     return '';

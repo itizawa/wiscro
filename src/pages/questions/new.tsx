@@ -1,14 +1,14 @@
+import { Box } from '@mui/material';
 import type { NextPage } from 'next';
-
-import { CreateQuestionCard } from '~/components/domains/Question/CreateQuestionCard';
+import { CreateQuestionPaper } from '~/components/domains/Question/CreateQuestionPaper';
 
 const NextPage: NextPage = () => {
   return (
-    <div className="py-3">
-      <div style={{ display: 'flex', justifyContent: 'center' }}>
-        <CreateQuestionCard />
-      </div>
-    </div>
+    <Box py={2}>
+      <Box style={{ display: 'flex', justifyContent: 'center' }}>
+        <CreateQuestionPaper />
+      </Box>
+    </Box>
   );
 };
 
