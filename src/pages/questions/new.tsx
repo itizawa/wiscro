@@ -4,7 +4,7 @@ import { CreateQuestionPaper } from '~/components/domains/Question/CreateQuestio
 
 const NextPage: NextPage = () => {
   return (
-    <Box py={2}>
+    <Box py={5}>
       <Box style={{ display: 'flex', justifyContent: 'center' }}>
         <CreateQuestionPaper />
       </Box>
