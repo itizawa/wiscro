@@ -1,5 +1,6 @@
 import { SWRConfig } from 'swr';
 import Link from 'next/link';
+import Head from 'next/head';
 
 import '../styles/override-bootstrap.scss';
 import { URLS } from '~/constants/urls';
@@ -9,6 +10,9 @@ function MyApp({ Component, pageProps }: any) {
   return (
     // TODO: display toaster
     <SWRConfig value={{ onError: () => void 0 }}>
+      <Head>
+        <title>Wiscro</title>
+      </Head>
       <main className="bg-base">
         <nav className="navbar bg-white py-2">
           <div className="container d-flex space-between align-items-center justify-content-between">

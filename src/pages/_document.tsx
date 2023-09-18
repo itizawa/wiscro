@@ -14,7 +14,6 @@ class DocumentPage extends Document {
     return (
       <Html lang="en">
         <Head>
-          <title>Wiscro</title>
           <meta name="description" content="Wiscro is wisdom crowd" />
           <link rel="icon" href="/favicon.ico" />
         </Head>
