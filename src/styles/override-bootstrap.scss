@@ -4,6 +4,9 @@
 // 1. Include functions first (so you can manipulate colors, SVGs, calc, etc)
 @import "../node_modules/bootstrap/scss/functions";
 
+// 2, カスタマイズした変数を読み込む
+$spacer: 16px;
+
 // 3. Include remainder of required Bootstrap stylesheets
 @import "../node_modules/bootstrap/scss/variables";
 @import "../node_modules/bootstrap/scss/variables-dark";
@@ -21,7 +24,7 @@ $theme-colors: (
   "indigo":     $indigo,
   "accent":     #FAD02C,
   "black":      #333,
-  "base":      #edf2f7,
+  "base":      #edf2f7
 );
 
 @import "../node_modules/bootstrap/scss/_maps";
@@ -30,9 +33,8 @@ $theme-colors: (
 @import "../node_modules/bootstrap/scss/root";
 @import "../node_modules/bootstrap/scss/reboot";
 @import "../node_modules/bootstrap/scss/type";
+@import "../node_modules/bootstrap/scss/buttons";
 @import "../node_modules/bootstrap/scss/images";
 @import "../node_modules/bootstrap/scss/containers";
 @import "../node_modules/bootstrap/scss/grid";
 @import "../node_modules/bootstrap/scss/bootstrap-utilities";
-
-// 5. Add additional custom code here

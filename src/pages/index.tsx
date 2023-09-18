@@ -24,13 +24,6 @@ const NextPage: NextPage<Props> = ({ pages: pagesFromServer }) => {
 
   return (
     <>
-      <nav className="navbar bg-white color-white">
-        <div className="container-fluid">
-          <a className="navbar-brand" href="#">
-            Navbar
-          </a>
-        </div>
-      </nav>
       <div>{JSON.stringify(pages)}</div>
     </>
   );
