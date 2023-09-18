@@ -13,7 +13,7 @@ function MyApp({ Component, pageProps }: any) {
       <Head>
         <title>Wiscro</title>
       </Head>
-      <main className="bg-base">
+      <main className="bg-base min-vh-100">
         <nav className="navbar bg-white py-2">
           <div className="container d-flex space-between align-items-center justify-content-between">
             <Link className="navbar-brand text-decoration-none text-black" href={URLS.TOP}>
@@ -26,7 +26,9 @@ function MyApp({ Component, pageProps }: any) {
             </Link>
           </div>
         </nav>
-        <Component {...pageProps} />
+        <div className="container">
+          <Component {...pageProps} />
+        </div>
       </main>
     </SWRConfig>
   );
