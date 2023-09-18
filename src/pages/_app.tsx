@@ -1,8 +1,14 @@
 import { SWRConfig } from 'swr';
-import Link from 'next/link';
 import Head from 'next/head';
+import '../styles/global.scss';
 
-import '../styles/override-bootstrap.scss';
+import '@fontsource/roboto/300.css';
+import '@fontsource/roboto/400.css';
+import '@fontsource/roboto/500.css';
+import '@fontsource/roboto/700.css';
+
+import { AppBar, Box, Button, Toolbar } from '@mui/material';
+import Link from 'next/link';
 import { URLS } from '~/constants/urls';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -13,23 +19,25 @@ function MyApp({ Component, pageProps }: any) {
       <Head>
         <title>Wiscro</title>
       </Head>
-      <main className="bg-base min-vh-100">
-        <nav className="navbar bg-white py-2">
-          <div className="container d-flex space-between align-items-center justify-content-between">
-            <Link className="navbar-brand text-decoration-none text-black" href={URLS.TOP}>
-              Wiscro
-            </Link>
-            <Link href={URLS.QUESTION_NEW}>
-              <button type="button" className="btn btn-md btn-primary text-white">
-                作成
-              </button>
-            </Link>
-          </div>
-        </nav>
+      <Box sx={{ minHeight: '100vh' }}>
+        <Box sx={{ flexGrow: 1 }}>
+          <AppBar position="static">
+            <Toolbar>
+              <Link className="navbar-brand text-decoration-none text-black" href={URLS.TOP}>
+                Wiscro
+              </Link>
+              <Link href={URLS.QUESTION_NEW}>
+                <Button type="button" className="btn btn-md btn-primary text-white">
+                  作成
+                </Button>
+              </Link>
+            </Toolbar>
+          </AppBar>
+        </Box>
         <div className="container">
           <Component {...pageProps} />
         </div>
-      </main>
+      </Box>
     </SWRConfig>
   );
 }
