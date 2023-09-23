@@ -17,6 +17,9 @@ export const WiscroNavbar = () => {
           <Button as={Link} color="primary" href={URLS.QUESTION_NEW} variant="flat">
             作成
           </Button>
+          <Button as={Link} color="primary" href={URLS.LOGIN_TO_BACKEND} variant="flat">
+            ログイン
+          </Button>
         </NavbarItem>
       </NavbarContent>
     </Navbar>
