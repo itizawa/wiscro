@@ -1,11 +1,6 @@
 import urlJoin from 'url-join';
 
 class RestClient {
-  static baseHeaders = {
-    'Content-Type': 'application/json',
-    'X-Requested-With': 'XMLHttpRequest',
-    'Access-Control-Allow-Credentials': true,
-  };
   async handler<T>(
     path: string,
     method: 'GET' | 'POST' | 'PATCH' | 'DELETE',
