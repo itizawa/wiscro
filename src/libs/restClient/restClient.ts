@@ -22,11 +22,14 @@ class RestClient {
 
     const headers: HeadersInit = {
       'Content-Type': 'application/json',
+      'X-Requested-With': 'XMLHttpRequest',
+      'Access-Control-Allow-Credentials': 'true',
     };
 
     const init: RequestInit = {
       method,
       headers,
+      credentials: 'include',
     };
 
     if (options?.body) {
