@@ -41,6 +41,7 @@ module.exports = {
     'import/ignore': ['node_modules'],
   },
   rules: {
+    '@typescript-eslint/no-unused-vars': ['error', { varsIgnorePattern: '^_', argsIgnorePattern: '^_' }],
     'react-hooks/rules-of-hooks': 'error',
     'react-hooks/exhaustive-deps': 'error',
     '@typescript-eslint/ban-types': [
@@ -57,7 +58,6 @@ module.exports = {
     'import/order': ['error'],
     'no-unused-vars': 'off',
     'react/display-name': 'off',
-    '@typescript-eslint/no-unused-vars': ['error'],
     'prettier/prettier': [
       'error',
       {

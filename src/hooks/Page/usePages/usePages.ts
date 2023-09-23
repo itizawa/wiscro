@@ -11,7 +11,7 @@ export const usePages = (initialValue: Page[]): SWRResponse<Page[]> => {
     `/api/pages`,
     (endpoint: string) =>
       restClient.apiGet<{ pages: Page[] }>(endpoint).then((result) => {
-        return result.data.pages.map((page) => new Page(page));
+        return result.pages.map((page) => new Page(page));
       }),
     {
       fallbackData: initialValue,

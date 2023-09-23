@@ -1,1 +1,0 @@
-export { OgpCard } from './OgpCard';

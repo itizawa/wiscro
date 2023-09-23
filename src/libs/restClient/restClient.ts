@@ -1,35 +1,72 @@
-import axiosBase, { AxiosInstance, AxiosResponse } from 'axios';
+import urlJoin from 'url-join';
 
 class RestClient {
-  axios: AxiosInstance;
+  static baseHeaders = {
+    'Content-Type': 'application/json',
+    'X-Requested-With': 'XMLHttpRequest',
+    'Access-Control-Allow-Credentials': true,
+  };
+  async handler<T>(
+    path: string,
+    method: 'GET' | 'POST' | 'PATCH' | 'DELETE',
+    options?: {
+      body?: object;
+      queryParams?: object;
+      fileDownload?: {
+        isFileDownload: boolean;
+        fileName?: string;
+      };
+    },
+  ): Promise<T> {
+    const url = urlJoin(process.env.NEXT_PUBLIC_SERVER_URL || 'http://localhost:8080/', path);
 
-  constructor() {
-    this.axios = axiosBase.create({
-      baseURL: process.env.NEXT_PUBLIC_SERVER_URL,
-      headers: {
-        'Content-Type': 'application/json',
-        'X-Requested-With': 'XMLHttpRequest',
-        'Access-Control-Allow-Credentials': true,
-      },
-      withCredentials: true,
-      responseType: 'json',
+    const headers: HeadersInit = {
+      'Content-Type': 'application/json',
+      'X-Requested-With': 'XMLHttpRequest',
+      'Access-Control-Allow-Credentials': 'true',
+    };
+
+    const init: RequestInit = {
+      method,
+      headers,
+      credentials: 'include',
+    };
+
+    if (options?.body) {
+      // NOTE: DATE型の値をJSONに変換すると文字列になってしまうため、JSON.stringifyではなくsuperjson.stringifyを使っている
+      init.body = options?.body ? JSON.stringify(options.body) : undefined;
+    }
+
+    const response = await fetch(url, init).catch((error) => {
+      console.error(error);
+      throw new Error(error);
     });
+    const data = await response.json();
+
+    if (response.ok) {
+      return data;
+    }
+
+    console.error('response.ok:', response.ok);
+    console.error('esponse.status:', response.status);
+    console.error('esponse.statusText:', response.statusText);
+    throw new Error(response.statusText);
   }
 
-  async apiGet<T>(url: string, query = {}): Promise<AxiosResponse<T>> {
-    return await this.axios.get<T>(`${url}`, { ...query });
+  async apiGet<T>(url: string, query?: object): Promise<T> {
+    return await this.handler(url, 'GET', query);
   }
 
-  async apiPost<T>(url: string, body = {}): Promise<AxiosResponse<T>> {
-    return await this.axios.post<T>(`${url}`, body);
+  async apiPost<T>(url: string, body?: object): Promise<T> {
+    return await this.handler(url, 'POST', { body });
   }
 
-  async apiPut<T>(url: string, body = {}): Promise<AxiosResponse<T>> {
-    return await this.axios.put<T>(`${url}`, body);
+  async apiPatch<T>(url: string, body?: object): Promise<T> {
+    return await this.handler(url, 'PATCH', { body });
   }
 
-  async apiDelete<T>(url: string, body = {}): Promise<AxiosResponse<T>> {
-    return await this.axios.delete<T>(`${url}`, { data: body });
+  async apiDelete<T>(url: string, body?: object): Promise<T> {
+    return await this.handler(url, 'DELETE', { body });
   }
 }
 
