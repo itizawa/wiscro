@@ -1,1 +1,0 @@
-export { CreateQuestionPaper } from './CreateQuestionPaper';

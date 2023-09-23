@@ -6,7 +6,7 @@ import { URLS } from '~/constants/urls';
 
 export const WiscroNavbar = () => {
   return (
-    <Navbar shouldHideOnScroll isBordered>
+    <Navbar shouldHideOnScroll isBordered isBlurred={false}>
       <NavbarBrand>
         <Link href="/" color="foreground">
           Wiscro

@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="ja" className="light">
+    <html lang="ja" className="light min-h-[100vh] bg-slate-50">
       <body>
         <WiscroNavbar />
         <Providers>{children}</Providers>
