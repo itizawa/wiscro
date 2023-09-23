@@ -1,4 +1,5 @@
 import { QuestionCard } from '~/components/domains/Question/QuestionCard';
+import { Question } from '~/domains/Question';
 import { restClient } from '~/libs/restClient';
 
 export async function generateStaticParams() {
@@ -7,12 +8,11 @@ export async function generateStaticParams() {
 }
 
 export default async function Page({ params }: { params: { id: string } }) {
-  const res = await restClient.apiGet(`/api/questions/${params.id}`, { cache: 'force-cache' });
-  const data = await res.json();
+  const { question } = await restClient.apiGet<{ question: Question }>(`/api/questions/${params.id}`);
 
   return (
     <div className="flex justify-center pt-[24px] px-3">
-      <QuestionCard question={data.question} />
+      <QuestionCard question={question} />
     </div>
   );
 }
