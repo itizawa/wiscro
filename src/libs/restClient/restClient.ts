@@ -1,35 +1,24 @@
-import axiosBase, { AxiosInstance, AxiosResponse } from 'axios';
-
 class RestClient {
-  axios: AxiosInstance;
+  static baseHeaders = {
+    'Content-Type': 'application/json',
+    'X-Requested-With': 'XMLHttpRequest',
+    'Access-Control-Allow-Credentials': true,
+  };
 
-  constructor() {
-    this.axios = axiosBase.create({
-      baseURL: process.env.NEXT_PUBLIC_SERVER_URL,
-      headers: {
-        'Content-Type': 'application/json',
-        'X-Requested-With': 'XMLHttpRequest',
-        'Access-Control-Allow-Credentials': true,
-      },
-      withCredentials: true,
-      responseType: 'json',
-    });
+  async apiGet(url: string, init?: RequestInit | undefined): Promise<Response> {
+    return await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}${url}`, { ...RestClient.baseHeaders, ...init });
   }
 
-  async apiGet<T>(url: string, query = {}): Promise<AxiosResponse<T>> {
-    return await this.axios.get<T>(`${url}`, { ...query });
+  async apiPost(url: string, body?: BodyInit | null): Promise<Response> {
+    return await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}${url}`, { ...RestClient.baseHeaders, method: 'POST', body });
   }
 
-  async apiPost<T>(url: string, body = {}): Promise<AxiosResponse<T>> {
-    return await this.axios.post<T>(`${url}`, body);
+  async apiPatch(url: string, body?: BodyInit | null): Promise<Response> {
+    return await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}${url}`, { ...RestClient.baseHeaders, method: 'PATCH', body });
   }
 
-  async apiPut<T>(url: string, body = {}): Promise<AxiosResponse<T>> {
-    return await this.axios.put<T>(`${url}`, body);
-  }
-
-  async apiDelete<T>(url: string, body = {}): Promise<AxiosResponse<T>> {
-    return await this.axios.delete<T>(`${url}`, { data: body });
+  async apiDelete(url: string, body?: BodyInit | null): Promise<Response> {
+    return await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}${url}`, { ...RestClient.baseHeaders, method: 'DELETE', body });
   }
 }
 

@@ -1,4 +1,5 @@
 import { QuestionCard } from '~/components/domains/Question/QuestionCard';
+import { restClient } from '~/libs/restClient';
 
 export async function generateStaticParams() {
   // TODO: 新着の質問は予め静的サイト生成しておく
@@ -6,7 +7,7 @@ export async function generateStaticParams() {
 }
 
 export default async function Page({ params }: { params: { id: string } }) {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/api/questions/${params.id}`, { cache: 'force-cache' });
+  const res = await restClient.apiGet(`/api/questions/${params.id}`, { cache: 'force-cache' });
   const data = await res.json();
 
   return (
