@@ -1,1 +1,1 @@
-export { Question } from './Question';
+export type { Question } from './Question';

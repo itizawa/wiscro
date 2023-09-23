@@ -30,8 +30,8 @@ export const CreateQuestionCard: FC = () => {
   const handleSubmit = useCallback(async () => {
     setIsLoading(true);
     await postQuestion({ title, description })
-      .then((question) => {
-        router.push(URLS.QUESTION_DETAIL(question._id));
+      .then((data) => {
+        router.push(URLS.QUESTION_DETAIL(data.question._id));
       })
       .finally(() => setIsLoading(false));
   }, [postQuestion, title, description, router]);

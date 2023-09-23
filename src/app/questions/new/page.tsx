@@ -1,9 +1,12 @@
 import { CreateQuestionCard } from '~/components/domains/Question/CreateQuestionCard';
+import { LoginRequiredWrapper } from '~/components/layouts/LoginRequiredWrapper';
 
-export default function Page() {
+export default async function Page() {
   return (
-    <div className="flex justify-center pt-[24px]">
-      <CreateQuestionCard />
-    </div>
+    <LoginRequiredWrapper>
+      <div className="flex justify-center pt-[24px]">
+        <CreateQuestionCard />
+      </div>
+    </LoginRequiredWrapper>
   );
 }
