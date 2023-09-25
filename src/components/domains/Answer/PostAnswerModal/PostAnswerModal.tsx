@@ -1,10 +1,11 @@
 'use client';
 
-import { FC } from 'react';
+import { FC, useCallback, useState } from 'react';
 import { Button, Input, Modal, ModalBody, ModalContent, ModalFooter, ModalHeader } from '@nextui-org/react';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 import { Question } from '~/domains/Question';
 import { isValidUrl } from '~/utils/isValidUrl/isValidUrl';
+import { usePostAnswer } from '~/hooks/Answer/usePostAnswer';
 
 type Props = {
   isOpen: boolean;
@@ -17,13 +18,28 @@ interface IFormInput {
 }
 
 export const PostAnswerModal: FC<Props> = ({ isOpen, onOpenChange, question }) => {
+  const [isLoading, setIsLoading] = useState(false);
   const { control, watch, handleSubmit } = useForm({
     defaultValues: {
       url: '',
     },
   });
+  const { postAnswer } = usePostAnswer();
 
-  const onSubmit: SubmitHandler<IFormInput> = (data) => console.log(data, 27);
+  const onSubmit: SubmitHandler<IFormInput> = useCallback(
+    async (data) => {
+      if (isLoading) return;
+      setIsLoading(true);
+      postAnswer(data.url)
+        .catch((error) => {
+          console.error(error);
+        })
+        .finally(() => {
+          setIsLoading(false);
+        });
+    },
+    [isLoading, postAnswer],
+  );
 
   return (
     <Modal isOpen={isOpen} onOpenChange={onOpenChange} placement="center" hideCloseButton>
@@ -49,7 +65,7 @@ export const PostAnswerModal: FC<Props> = ({ isOpen, onOpenChange, question }) =
             />
           </ModalBody>
           <ModalFooter>
-            <Button color="primary" onClick={handleSubmit(onSubmit)} isDisabled={!isValidUrl(watch('url'))}>
+            <Button color="primary" onClick={handleSubmit(onSubmit)} isDisabled={!isValidUrl(watch('url'))} isLoading={isLoading}>
               回答する
             </Button>
           </ModalFooter>
