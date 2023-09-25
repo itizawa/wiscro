@@ -1,8 +1,9 @@
 'use client';
 
 import { FC } from 'react';
-import { Avatar, AvatarIcon, Button, Card } from '@nextui-org/react';
+import { Avatar, AvatarIcon, Button, Card, useDisclosure } from '@nextui-org/react';
 import { format } from 'date-fns';
+import { PostAnswerModal } from '../../Answer/PostAnswerModal';
 import { Question } from '~/domains/Question';
 import { useCurrentUser } from '~/hooks/user/useCurrentUser';
 
@@ -12,6 +13,7 @@ type Props = {
 
 export const QuestionCard: FC<Props> = ({ question }) => {
   const { data: currentUser } = useCurrentUser();
+  const { isOpen: isOpenPostAnswerModal, onOpen, onOpenChange } = useDisclosure();
 
   return (
     <Card className="w-[100%] max-w-[500px] p-[40px] flex flex-col" shadow="sm">
@@ -26,10 +28,11 @@ export const QuestionCard: FC<Props> = ({ question }) => {
           この質問に回答してみませんか?
         </p>
         <p className="mt-[4px] text-sm text-slate-400">URLを貼り付けるだけで回答ができます</p>
-        <Button className="mt-[16px]" color="primary">
+        <Button className="mt-[16px]" color="primary" onClick={onOpen}>
           回答する
         </Button>
       </div>
+      <PostAnswerModal isOpen={isOpenPostAnswerModal} onOpenChange={onOpenChange} question={question} />
     </Card>
   );
 };
