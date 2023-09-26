@@ -32,13 +32,17 @@ export const PostAnswerModal: FC<Props> = ({ isOpen, onOpenChange, question }) =
       setIsLoading(true);
       postAnswer(data.url)
         .catch((error) => {
+          // TODO: 本来はコンソールに出すのではなく、ユーザーにエラーを通知する
           console.error(error);
+        })
+        .then(() => {
+          onOpenChange();
         })
         .finally(() => {
           setIsLoading(false);
         });
     },
-    [isLoading, postAnswer],
+    [isLoading, onOpenChange, postAnswer],
   );
 
   return (
