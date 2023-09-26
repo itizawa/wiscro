@@ -1,4 +1,4 @@
-export interface Question {
+export interface Answer {
   _id: string;
   url: string;
   createdUserId: string;
