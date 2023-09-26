@@ -30,7 +30,7 @@ export const PostAnswerModal: FC<Props> = ({ isOpen, onOpenChange, question }) =
     async (data) => {
       if (isLoading) return;
       setIsLoading(true);
-      postAnswer(data.url)
+      postAnswer({ url: data.url, questionId: question._id })
         .catch((error) => {
           // TODO: 本来はコンソールに出すのではなく、ユーザーにエラーを通知する
           console.error(error);
@@ -42,7 +42,7 @@ export const PostAnswerModal: FC<Props> = ({ isOpen, onOpenChange, question }) =
           setIsLoading(false);
         });
     },
-    [isLoading, onOpenChange, postAnswer],
+    [isLoading, onOpenChange, postAnswer, question._id],
   );
 
   return (
