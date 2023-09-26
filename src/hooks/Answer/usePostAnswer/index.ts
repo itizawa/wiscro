@@ -1,0 +1,1 @@
+export { usePostAnswer } from './usePostAnswer';
