@@ -6,6 +6,7 @@ import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 import { Question } from '~/domains/Question';
 import { isValidUrl } from '~/utils/isValidUrl/isValidUrl';
 import { usePostAnswer } from '~/hooks/Answer/usePostAnswer';
+import { useMutateAnswersByQuestionId } from '~/hooks/Answer/useAnswersByQuestionId/useAnswersByQuestionId';
 
 type Props = {
   isOpen: boolean;
@@ -19,12 +20,17 @@ interface IFormInput {
 
 export const PostAnswerModal: FC<Props> = ({ isOpen, onOpenChange, question }) => {
   const [isLoading, setIsLoading] = useState(false);
-  const { control, watch, handleSubmit } = useForm({
+  const { control, watch, handleSubmit, reset } = useForm({
     defaultValues: {
       url: '',
     },
   });
+  const { mutateAnswersByQuestionId } = useMutateAnswersByQuestionId();
   const { postAnswer } = usePostAnswer();
+  const handleOpenChange = useCallback(() => {
+    reset();
+    onOpenChange();
+  }, [onOpenChange, reset]);
 
   const onSubmit: SubmitHandler<IFormInput> = useCallback(
     async (data) => {
@@ -36,17 +42,18 @@ export const PostAnswerModal: FC<Props> = ({ isOpen, onOpenChange, question }) =
           console.error(error);
         })
         .then(() => {
-          onOpenChange();
+          mutateAnswersByQuestionId(question._id);
+          handleOpenChange();
         })
         .finally(() => {
           setIsLoading(false);
         });
     },
-    [isLoading, onOpenChange, postAnswer, question._id],
+    [handleOpenChange, isLoading, mutateAnswersByQuestionId, postAnswer, question._id],
   );
 
   return (
-    <Modal isOpen={isOpen} onOpenChange={onOpenChange} placement="center" hideCloseButton>
+    <Modal isOpen={isOpen} onOpenChange={handleOpenChange} placement="center" hideCloseButton>
       <ModalContent>
         <form onSubmit={handleSubmit(onSubmit)}>
           <ModalHeader className="flex flex-col gap-1">回答する</ModalHeader>
