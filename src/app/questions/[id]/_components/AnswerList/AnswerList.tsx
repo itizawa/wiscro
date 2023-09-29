@@ -1,6 +1,7 @@
 'use client';
 
 import { FC } from 'react';
+import { AnswerCard } from '~/components/domains/Answer/AnswerCard';
 import { Answer } from '~/domains/Answer';
 import { useAnswersByQuestionId } from '~/hooks/Answer/useAnswersByQuestionId';
 
@@ -18,7 +19,7 @@ export const AnswerList: FC<Props> = ({ questionId, answers: _answers }) => {
   return (
     <div>
       {answers.map((answer) => {
-        return <p key={answer._id}>{answer.url}</p>;
+        return <AnswerCard key={answer._id} answer={answer} />;
       })}
     </div>
   );
