@@ -11,7 +11,7 @@ export const WiscroNavbar = () => {
   return (
     <Navbar shouldHideOnScroll isBordered isBlurred={false}>
       <NavbarBrand>
-        <Link href="/" color="foreground">
+        <Link href="/" color="foreground" className="font-bold">
           Wiscro
         </Link>
       </NavbarBrand>
