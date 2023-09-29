@@ -12,7 +12,14 @@ export const AnswerCard: FC<Props> = ({ answer }) => {
     <Card className="p-0">
       <CardHeader className="p-0">
         <a href={answer.url} target="blank" rel="noopener noreferrer">
-          <Image width="100%" height="auto" src={answer.image || IMAGE.NO_IMAGE} fallbackSrc={IMAGE.NO_IMAGE} />
+          <Image
+            className="aspect-[40/21]"
+            alt={`${answer.title}のOGP画像`}
+            width="400px"
+            height="auto"
+            src={answer.image || IMAGE.NO_IMAGE}
+            fallbackSrc={IMAGE.NO_IMAGE}
+          />
         </a>
       </CardHeader>
       <CardBody>
