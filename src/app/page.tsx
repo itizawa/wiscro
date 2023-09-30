@@ -1,16 +1,6 @@
 // app/page.tsx
-import { TopQuestionCard } from './_components/TopQuestionCard';
-import { Question } from '~/domains/Question';
-import { restClient } from '~/libs/restClient';
+import { TopQuestionCardList } from './_components/TopQuestionCardList';
 
 export default async function Page() {
-  const { questions } = await restClient.apiGet<{ questions: Question[] }>('/api/questions', { cache: 'no-cache' });
-
-  return (
-    <div className="flex justify-center items-center flex-col gap-[24px] pt-[24px] pb-[80px] px-3">
-      {questions.map((question) => (
-        <TopQuestionCard key={question._id} question={question} />
-      ))}
-    </div>
-  );
+  return <TopQuestionCardList />;
 }
