@@ -1,18 +1,7 @@
 import urlJoin from 'url-join';
 
 class RestClient {
-  async handler<T>(
-    path: string,
-    method: 'GET' | 'POST' | 'PATCH' | 'DELETE',
-    options?: {
-      body?: object;
-      queryParams?: object;
-      fileDownload?: {
-        isFileDownload: boolean;
-        fileName?: string;
-      };
-    },
-  ): Promise<T> {
+  async handler<T>(path: string, method: 'GET' | 'POST' | 'PATCH' | 'DELETE', options?: RequestInit): Promise<T> {
     const url = urlJoin(process.env.NEXT_PUBLIC_SERVER_URL || 'http://localhost:8080/', path);
 
     const headers: HeadersInit = {
@@ -48,20 +37,20 @@ class RestClient {
     throw new Error(response.statusText);
   }
 
-  async apiGet<T>(url: string, query?: object): Promise<T> {
-    return await this.handler(url, 'GET', query);
+  async apiGet<T>(url: string, option?: RequestInit): Promise<T> {
+    return await this.handler(url, 'GET', option);
   }
 
-  async apiPost<T>(url: string, body?: object): Promise<T> {
-    return await this.handler(url, 'POST', { body });
+  async apiPost<T>(url: string, option?: RequestInit): Promise<T> {
+    return await this.handler(url, 'POST', option);
   }
 
-  async apiPatch<T>(url: string, body?: object): Promise<T> {
-    return await this.handler(url, 'PATCH', { body });
+  async apiPatch<T>(url: string, option?: RequestInit): Promise<T> {
+    return await this.handler(url, 'PATCH', option);
   }
 
-  async apiDelete<T>(url: string, body?: object): Promise<T> {
-    return await this.handler(url, 'DELETE', { body });
+  async apiDelete<T>(url: string, option?: RequestInit): Promise<T> {
+    return await this.handler(url, 'DELETE', option);
   }
 }
 
