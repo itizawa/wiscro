@@ -54,25 +54,27 @@ export const TopQuestionCard: FC<Props> = ({ question }) => {
       </h4>
       <p className="text-slate-600 text-sm mb-[16px]">投稿日：{format(new Date(question.createdAt), 'yyyy/MM/dd HH:mm')}</p>
       <p>{question.description}</p>
-      <div className="flex justify-between items-center mt-[24px] pt-[16px] border-t-2">
+      <div className="flex justify-between items-center mt-[24px] pt-[16px] border-t-2 gap-[8px] pb-[16px]">
         <Avatar size="sm" icon={<AvatarIcon />} src={currentUser?.profileUrl} isBordered />
-        <Controller
-          name="url"
-          control={control}
-          rules={{
-            validate: (value) => isValidUrl(value),
-          }}
-          render={({ field, fieldState }) => (
-            <Input
-              {...field}
-              size="sm"
-              className="w-75"
-              label="回答のURL"
-              isInvalid={fieldState.isDirty && !isValidUrl(field.value)}
-              errorMessage={fieldState.isDirty && !isValidUrl(field.value) && 'URLの形式が正しくありません'}
-            />
-          )}
-        />
+        <div className="flex-1">
+          <Controller
+            name="url"
+            control={control}
+            rules={{
+              validate: (value) => isValidUrl(value),
+            }}
+            render={({ field, fieldState }) => (
+              <Input
+                {...field}
+                size="sm"
+                className="h-[32px]"
+                placeholder="回答のURL"
+                isInvalid={fieldState.isDirty && !isValidUrl(field.value)}
+                errorMessage={fieldState.isDirty && !isValidUrl(field.value) && 'URLの形式が正しくありません'}
+              />
+            )}
+          />
+        </div>
         <Button
           size="sm"
           className=""
