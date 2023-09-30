@@ -17,7 +17,7 @@ export const AnswerList: FC<Props> = ({ questionId, answers: _answers }) => {
   });
 
   return (
-    <div>
+    <div className="w-[100%] max-w-[400px] flex flex-col gap-[16px]">
       {answers.map((answer) => {
         return <AnswerCard key={answer._id} answer={answer} />;
       })}
