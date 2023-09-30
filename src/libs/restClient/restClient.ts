@@ -2,7 +2,7 @@ import urlJoin from 'url-join';
 
 class RestClient {
   async handler<T>(path: string, method: 'GET' | 'POST' | 'PATCH' | 'DELETE', options?: RequestInit): Promise<T> {
-    const url = urlJoin(process.env.NEXT_PUBLIC_SERVER_URL || 'http://localhost:8080/', path);
+    const url = urlJoin(process.env.NEXT_PUBLIC_SERVER_URL || 'https://api.wiscro.app/', path);
 
     const headers: HeadersInit = {
       'Content-Type': 'application/json',
