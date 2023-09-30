@@ -11,15 +11,11 @@ class RestClient {
     };
 
     const init: RequestInit = {
+      ...options,
       method,
       headers,
       credentials: 'include',
     };
-
-    if (options?.body) {
-      // NOTE: DATE型の値をJSONに変換すると文字列になってしまうため、JSON.stringifyではなくsuperjson.stringifyを使っている
-      init.body = options?.body ? JSON.stringify(options.body) : undefined;
-    }
 
     const response = await fetch(url, init).catch((error) => {
       console.error(error);
