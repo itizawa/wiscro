@@ -1,19 +1,8 @@
 import urlJoin from 'url-join';
 
 class RestClient {
-  async handler<T>(
-    path: string,
-    method: 'GET' | 'POST' | 'PATCH' | 'DELETE',
-    options?: {
-      body?: object;
-      queryParams?: object;
-      fileDownload?: {
-        isFileDownload: boolean;
-        fileName?: string;
-      };
-    },
-  ): Promise<T> {
-    const url = urlJoin(process.env.NEXT_PUBLIC_SERVER_URL || 'http://localhost:8080/', path);
+  async handler<T>(path: string, method: 'GET' | 'POST' | 'PATCH' | 'DELETE', options?: RequestInit): Promise<T> {
+    const url = urlJoin(process.env.NEXT_PUBLIC_SERVER_URL || 'https://api.wiscro.app/', path);
 
     const headers: HeadersInit = {
       'Content-Type': 'application/json',
@@ -22,15 +11,11 @@ class RestClient {
     };
 
     const init: RequestInit = {
+      ...options,
       method,
       headers,
       credentials: 'include',
     };
-
-    if (options?.body) {
-      // NOTE: DATE型の値をJSONに変換すると文字列になってしまうため、JSON.stringifyではなくsuperjson.stringifyを使っている
-      init.body = options?.body ? JSON.stringify(options.body) : undefined;
-    }
 
     const response = await fetch(url, init).catch((error) => {
       console.error(error);
@@ -48,20 +33,20 @@ class RestClient {
     throw new Error(response.statusText);
   }
 
-  async apiGet<T>(url: string, query?: object): Promise<T> {
-    return await this.handler(url, 'GET', query);
+  async apiGet<T>(url: string, option?: RequestInit): Promise<T> {
+    return await this.handler(url, 'GET', option);
   }
 
-  async apiPost<T>(url: string, body?: object): Promise<T> {
-    return await this.handler(url, 'POST', { body });
+  async apiPost<T>(url: string, option?: RequestInit): Promise<T> {
+    return await this.handler(url, 'POST', option);
   }
 
-  async apiPatch<T>(url: string, body?: object): Promise<T> {
-    return await this.handler(url, 'PATCH', { body });
+  async apiPatch<T>(url: string, option?: RequestInit): Promise<T> {
+    return await this.handler(url, 'PATCH', option);
   }
 
-  async apiDelete<T>(url: string, body?: object): Promise<T> {
-    return await this.handler(url, 'DELETE', { body });
+  async apiDelete<T>(url: string, option?: RequestInit): Promise<T> {
+    return await this.handler(url, 'DELETE', option);
   }
 }
 

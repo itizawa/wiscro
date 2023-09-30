@@ -1,11 +1,6 @@
 // app/page.tsx
-import { Button } from '@nextui-org/button';
+import { TopQuestionCardList } from './_components/TopQuestionCardList';
 
-export default function Page() {
-  return (
-    <div>
-      <h1>Hello world!</h1>
-      <Button>Click me</Button>
-    </div>
-  );
+export default async function Page() {
+  return <TopQuestionCardList />;
 }
