@@ -4,7 +4,6 @@ import { FC, useCallback, useState } from 'react';
 import { Button, Input, Modal, ModalBody, ModalContent, ModalFooter, ModalHeader, Textarea } from '@nextui-org/react';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 import { useRouter } from 'next/navigation';
-import { isValidUrl } from '~/utils/isValidUrl/isValidUrl';
 import { usePostQuestion } from '~/hooks/Question/usePostQuestion';
 import { URLS } from '~/constants/urls';
 
@@ -41,6 +40,7 @@ export const PostQuestionModal: FC<Props> = ({ isOpen, onOpenChange }) => {
       setIsLoading(true);
       postQuestion({ title: data.title, description: data.description })
         .then((data) => {
+          handleOpenChange();
           router.push(URLS.QUESTION_DETAIL(data.question._id));
         })
         .catch((error) => {
@@ -49,7 +49,7 @@ export const PostQuestionModal: FC<Props> = ({ isOpen, onOpenChange }) => {
         })
         .finally(() => setIsLoading(false));
     },
-    [isLoading, postQuestion, router],
+    [handleOpenChange, isLoading, postQuestion, router],
   );
 
   return (
@@ -61,9 +61,6 @@ export const PostQuestionModal: FC<Props> = ({ isOpen, onOpenChange }) => {
             <Controller
               name="title"
               control={control}
-              rules={{
-                validate: (value) => isValidUrl(value),
-              }}
               render={({ field, fieldState }) => (
                 <Input
                   {...field}
@@ -76,9 +73,6 @@ export const PostQuestionModal: FC<Props> = ({ isOpen, onOpenChange }) => {
             <Controller
               name="description"
               control={control}
-              rules={{
-                validate: (value) => isValidUrl(value),
-              }}
               render={({ field, fieldState }) => (
                 <Textarea
                   {...field}
