@@ -25,7 +25,7 @@ export const TopQuestionCard: FC<Props> = ({ question }) => {
   const { data: currentUser } = useCurrentUser();
   const { postAnswer } = usePostAnswer();
 
-  const { control, watch, handleSubmit } = useForm({
+  const { control, watch, handleSubmit, reset } = useForm({
     defaultValues: {
       url: '',
     },
@@ -36,6 +36,9 @@ export const TopQuestionCard: FC<Props> = ({ question }) => {
       if (isLoading) return;
       setIsLoading(true);
       postAnswer({ url: data.url, questionId: question._id })
+        .then(() => {
+          reset();
+        })
         .catch((error) => {
           // TODO: 本来はコンソールに出すのではなく、ユーザーにエラーを通知する
           console.error(error);
@@ -44,11 +47,11 @@ export const TopQuestionCard: FC<Props> = ({ question }) => {
           setIsLoading(false);
         });
     },
-    [isLoading, postAnswer, question._id],
+    [isLoading, postAnswer, question._id, reset],
   );
 
   return (
-    <Card className="w-[100%] max-w-[500px] p-[16px] flex flex-col" shadow="sm">
+    <Card className="w-[100%] max-w-[400px] p-[16px] flex flex-col" shadow="sm">
       <h4 className="font-bold text-lg mb-[8px]">
         <Link href={URLS.QUESTION_DETAIL(question._id)}>{question.title}</Link>
       </h4>
