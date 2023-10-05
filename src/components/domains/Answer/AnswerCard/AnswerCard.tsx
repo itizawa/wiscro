@@ -13,7 +13,7 @@ export const AnswerCard: FC<Props> = ({ answer }) => {
       <CardHeader className="p-0">
         <a href={answer.url} target="blank" rel="noopener noreferrer">
           <Image
-            className="aspect-[40/21]"
+            className="aspect-[40/21] rounded-none"
             alt={`${answer.title}のOGP画像`}
             width="400px"
             height="auto"

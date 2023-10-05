@@ -7,7 +7,6 @@ import { useQuestions } from '~/hooks/Question/useQuestions';
 
 export const TopQuestionCardList: FC = () => {
   const { data: questions = [], isLoading: isLoadingQuestions } = useQuestions();
-  console.log(questions);
 
   return (
     <div className="flex justify-center items-center flex-col gap-[24px] pt-[24px] pb-[80px] px-3">
