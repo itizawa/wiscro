@@ -1,6 +1,7 @@
 import { Card, CardBody, CardHeader, Image } from '@nextui-org/react';
 import { format } from 'date-fns';
 import { FC } from 'react';
+import styles from './AnswerCard.module.css';
 import { IMAGE } from '~/constants/images';
 import { Answer } from '~/domains/Answer';
 
@@ -11,7 +12,7 @@ export const AnswerCard: FC<Props> = ({ answer }) => {
   return (
     <Card className="p-0">
       <CardHeader className="p-0">
-        <a href={answer.url} target="blank" rel="noopener noreferrer">
+        <a href={answer.url} target="blank" rel="noopener noreferrer" className={styles.imageWrapper}>
           <Image
             className="aspect-[40/21] rounded-none"
             alt={`${answer.title}のOGP画像`}
