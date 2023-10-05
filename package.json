@@ -16,8 +16,8 @@
     "@types/node": "18.17.19",
     "@types/react": "18.2.22",
     "@types/react-dom": "18.2.7",
-    "@typescript-eslint/eslint-plugin": "6.7.2",
-    "@typescript-eslint/parser": "6.7.2",
+    "@typescript-eslint/eslint-plugin": "6.7.3",
+    "@typescript-eslint/parser": "6.7.3",
     "autoprefixer": "^10.4.16",
     "eslint": "8.50.0",
     "eslint-config-prettier": "9.0.0",
@@ -47,7 +47,7 @@
     "react-dom": "18.2.0",
     "react-hook-form": "^7.46.2",
     "sass": "^1.67.0",
-    "swr": "2.2.2",
+    "swr": "2.2.4",
     "url-join": "^5.0.0"
   }
 }
