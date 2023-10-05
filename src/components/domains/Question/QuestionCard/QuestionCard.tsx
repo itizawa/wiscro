@@ -1,10 +1,10 @@
 'use client';
 
 import { FC } from 'react';
-import { Avatar, AvatarIcon, Button, Card, useDisclosure } from '@nextui-org/react';
+import { Avatar, AvatarIcon, Card } from '@nextui-org/react';
 import { format } from 'date-fns';
-import { PostAnswerModal } from '../../Answer/PostAnswerModal';
 import { LoginButton } from '../../User/LoginButton';
+import { PostAnswerButton } from '../../Answer/PostAnswerButton';
 import { Question } from '~/domains/Question';
 import { useCurrentUser } from '~/hooks/user/useCurrentUser';
 
@@ -14,7 +14,6 @@ type Props = {
 
 export const QuestionCard: FC<Props> = ({ question }) => {
   const { data: currentUser } = useCurrentUser();
-  const { isOpen: isOpenPostAnswerModal, onOpen, onOpenChange } = useDisclosure();
 
   return (
     <Card className="w-[100%] max-w-[400px] p-[16px] flex flex-col" shadow="sm">
@@ -30,16 +29,15 @@ export const QuestionCard: FC<Props> = ({ question }) => {
         </p>
         <p className="mt-[4px] text-sm text-slate-400">URLを貼り付けるだけで回答ができます</p>
         {currentUser ? (
-          <Button className="mt-[16px]" color="primary" onClick={onOpen}>
-            回答する
-          </Button>
+          <div className="mt-[16px]">
+            <PostAnswerButton question={question} />
+          </div>
         ) : (
           <div className="mt-[16px]">
             <LoginButton />
           </div>
         )}
       </div>
-      <PostAnswerModal isOpen={isOpenPostAnswerModal} onOpenChange={onOpenChange} question={question} />
     </Card>
   );
 };
