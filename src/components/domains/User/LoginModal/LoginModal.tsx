@@ -17,9 +17,9 @@ export const LoginModal: FC<Props> = ({ isOpen, onOpenChange }) => {
   return (
     <Modal isOpen={isOpen} onOpenChange={handleOpenChange} placement="center" hideCloseButton>
       <ModalContent>
-        <ModalHeader>ログイン</ModalHeader>
+        <ModalHeader>ようこそ Wiscro へ！</ModalHeader>
         <ModalBody>
-          <p>ログインして質問を作成したり回答したりしましょう</p>
+          <p>質問を作成したり回答したりしましょう</p>
         </ModalBody>
         <ModalFooter>
           <Button as={Link} color="primary" href={URLS.LOGIN_TO_BACKEND} variant="flat">

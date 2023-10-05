@@ -4,6 +4,7 @@ import { FC } from 'react';
 import { Avatar, AvatarIcon, Button, Card, useDisclosure } from '@nextui-org/react';
 import { format } from 'date-fns';
 import { PostAnswerModal } from '../../Answer/PostAnswerModal';
+import { LoginButton } from '../../User/LoginButton';
 import { Question } from '~/domains/Question';
 import { useCurrentUser } from '~/hooks/user/useCurrentUser';
 
@@ -28,9 +29,15 @@ export const QuestionCard: FC<Props> = ({ question }) => {
           この質問に回答してみませんか?
         </p>
         <p className="mt-[4px] text-sm text-slate-400">URLを貼り付けるだけで回答ができます</p>
-        <Button className="mt-[16px]" color="primary" onClick={onOpen}>
-          回答する
-        </Button>
+        {currentUser ? (
+          <Button className="mt-[16px]" color="primary" onClick={onOpen}>
+            回答する
+          </Button>
+        ) : (
+          <div className="mt-[16px]">
+            <LoginButton />
+          </div>
+        )}
       </div>
       <PostAnswerModal isOpen={isOpenPostAnswerModal} onOpenChange={onOpenChange} question={question} />
     </Card>
