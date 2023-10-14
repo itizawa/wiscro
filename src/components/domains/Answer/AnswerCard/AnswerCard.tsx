@@ -27,11 +27,11 @@ export const AnswerCard: FC<Props> = ({ answer }) => {
       </CardHeader>
       <CardBody>
         <p className="font-bold mb-[4px]">{answer.title}</p>
-        <p className="text-slate-600 text-sm mb-[8px]">回答日：{format(new Date(answer.createdAt), 'yyyy/MM/dd HH:mm')}</p>
-        <p className={`mb-[4px] ${isShowMore ? '' : 'line-clamp-3'}`}>{answer.body}</p>
-        <p className="cursor-pointer text-sky-400" onClick={() => setIsShowMore((prev) => !prev)}>
+        <p className="text-slate-600 text-xs mb-[8px]">回答日：{format(new Date(answer.createdAt), 'yyyy/MM/dd HH:mm')}</p>
+        <p className={`mb-[4px] text-sm ${isShowMore ? '' : 'line-clamp-3'}`}>{answer.body}</p>
+        <span className="cursor-pointer text-sky-400 w-fit" onClick={() => setIsShowMore((prev) => !prev)}>
           {isShowMore ? '折りたたむ' : 'もっと見る'}
-        </p>
+        </span>
       </CardBody>
     </Card>
   );
