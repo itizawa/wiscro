@@ -8,6 +8,7 @@ export interface Answer {
   favicon?: string;
   image?: string;
   body?: string;
+  summary?: string;
   siteName?: string;
   createdAt: string;
   updatedAt: string;
