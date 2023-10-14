@@ -1,0 +1,1 @@
+export { TopQuestionCard } from './TopQuestionCard';
