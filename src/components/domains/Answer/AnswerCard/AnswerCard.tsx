@@ -1,4 +1,4 @@
-import { Card, CardBody, CardHeader, Image } from '@nextui-org/react';
+import { Card, CardBody, CardHeader, Image, Skeleton } from '@nextui-org/react';
 import { format } from 'date-fns';
 import { FC, useState } from 'react';
 import styles from './AnswerCard.module.css';
@@ -26,12 +26,28 @@ export const AnswerCard: FC<Props> = ({ answer }) => {
         </a>
       </CardHeader>
       <CardBody>
-        <p className="font-bold mb-[4px]">{answer.title}</p>
+        <p className="font-bold mb-[4px]">{answer.isFetching ? '読み込み中です...' : answer.title}</p>
         <p className="text-slate-600 text-xs mb-[8px]">回答日：{format(new Date(answer.createdAt), 'yyyy/MM/dd HH:mm')}</p>
-        <p className={`mb-[4px] text-sm ${isShowMore ? '' : 'line-clamp-3'}`}>{answer.body}</p>
-        <span className="cursor-pointer text-sky-400 w-fit" onClick={() => setIsShowMore((prev) => !prev)}>
-          {isShowMore ? '折りたたむ' : 'もっと見る'}
-        </span>
+        {answer.isFetching ? (
+          <>
+            <Skeleton className="rounded-lg mb-[4px]">
+              <div className="h-4 rounded-lg bg-secondary"></div>
+            </Skeleton>
+            <Skeleton className="rounded-lg mb-[2px]">
+              <div className="h-4 rounded-lg bg-secondary"></div>
+            </Skeleton>
+            <Skeleton className="rounded-lg mb-[2px]">
+              <div className="h-4 rounded-lg bg-secondary"></div>
+            </Skeleton>
+          </>
+        ) : (
+          <>
+            <p className={`mb-[4px] text-sm ${isShowMore ? '' : 'line-clamp-3'}`}>{answer.body}</p>
+            <span className="cursor-pointer text-sky-400 w-fit" onClick={() => setIsShowMore((prev) => !prev)}>
+              {isShowMore ? '折りたたむ' : 'もっと見る'}
+            </span>
+          </>
+        )}
       </CardBody>
     </Card>
   );
