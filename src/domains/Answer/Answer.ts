@@ -11,4 +11,5 @@ export interface Answer {
   siteName?: string;
   createdAt: string;
   updatedAt: string;
+  isFetching: boolean;
 }
