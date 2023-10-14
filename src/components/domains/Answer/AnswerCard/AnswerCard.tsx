@@ -33,10 +33,10 @@ export const AnswerCard: FC<Props> = ({ answer }) => {
             <Skeleton className="rounded-lg mb-[4px]">
               <div className="h-4 rounded-lg bg-secondary"></div>
             </Skeleton>
-            <Skeleton className="rounded-lg mb-[2px]">
+            <Skeleton className="rounded-lg mb-[4px]">
               <div className="h-4 rounded-lg bg-secondary"></div>
             </Skeleton>
-            <Skeleton className="rounded-lg mb-[2px]">
+            <Skeleton className="rounded-lg mb-[4px]">
               <div className="h-4 rounded-lg bg-secondary"></div>
             </Skeleton>
           </>
