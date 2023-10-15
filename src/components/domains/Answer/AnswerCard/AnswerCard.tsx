@@ -1,4 +1,4 @@
-import { Card, CardBody, CardHeader, Image, Skeleton } from '@nextui-org/react';
+import { Card, CardBody, CardHeader, Image, Skeleton, Tab, Tabs } from '@nextui-org/react';
 import { format } from 'date-fns';
 import { FC, useState } from 'react';
 import styles from './AnswerCard.module.css';
@@ -42,10 +42,29 @@ export const AnswerCard: FC<Props> = ({ answer }) => {
           </>
         ) : (
           <>
-            <p className={`mb-[4px] text-sm ${isShowMore ? '' : 'line-clamp-3'}`}>{answer.summary || answer.body}</p>
-            <span className="cursor-pointer text-sky-400 w-fit" onClick={() => setIsShowMore((prev) => !prev)}>
-              {isShowMore ? '折りたたむ' : 'もっと見る'}
-            </span>
+            {answer.body && answer.summary ? (
+              <Tabs color="primary" variant="bordered" size="md">
+                <Tab key="body" title="本文">
+                  <p className={`mb-[4px] text-sm ${isShowMore ? '' : 'line-clamp-3'}`}>{answer.body}</p>
+                  <span className="cursor-pointer text-sky-400 w-fit" onClick={() => setIsShowMore((prev) => !prev)}>
+                    {isShowMore ? '折りたたむ' : 'もっと見る'}
+                  </span>
+                </Tab>
+                <Tab key="summary" title="サマリー">
+                  <p className={`mb-[4px] text-sm ${isShowMore ? '' : 'line-clamp-3'}`}>{answer.summary}</p>
+                  <span className="cursor-pointer text-sky-400 w-fit" onClick={() => setIsShowMore((prev) => !prev)}>
+                    {isShowMore ? '折りたたむ' : 'もっと見る'}
+                  </span>
+                </Tab>
+              </Tabs>
+            ) : (
+              <>
+                <p className={`mb-[4px] text-sm ${isShowMore ? '' : 'line-clamp-3'}`}>{answer.body}</p>
+                <span className="cursor-pointer text-sky-400 w-fit" onClick={() => setIsShowMore((prev) => !prev)}>
+                  {isShowMore ? '折りたたむ' : 'もっと見る'}
+                </span>
+              </>
+            )}
           </>
         )}
       </CardBody>
