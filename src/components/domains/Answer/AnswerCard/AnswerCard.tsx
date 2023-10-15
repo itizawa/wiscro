@@ -59,10 +59,14 @@ export const AnswerCard: FC<Props> = ({ answer }) => {
               </Tabs>
             ) : (
               <>
-                <p className={`mb-[4px] text-sm ${isShowMore ? '' : 'line-clamp-3'}`}>{answer.body}</p>
-                <span className="cursor-pointer text-sky-400 w-fit" onClick={() => setIsShowMore((prev) => !prev)}>
-                  {isShowMore ? '折りたたむ' : 'もっと見る'}
-                </span>
+                {answer.body && (
+                  <>
+                    <p className={`mb-[4px] text-sm ${isShowMore ? '' : 'line-clamp-3'}`}>{answer.body}</p>
+                    <span className="cursor-pointer text-sky-400 w-fit" onClick={() => setIsShowMore((prev) => !prev)}>
+                      {isShowMore ? '折りたたむ' : 'もっと見る'}
+                    </span>
+                  </>
+                )}
               </>
             )}
           </>
