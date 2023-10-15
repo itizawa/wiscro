@@ -8,7 +8,7 @@ const getKey = (questionId: string) => `/api/questions/${questionId}/answers`;
 export const useAnswersByQuestionId = ({ questionId, fallbackData }: { questionId: string; fallbackData: Answer[] }) => {
   return useSWR(getKey(questionId), (endpoint) => restClient.apiGet<{ answers: Answer[] }>(endpoint).then((res) => res.answers), {
     fallbackData,
-    refreshInterval: 10,
+    refreshInterval: 5000,
   });
 };
 

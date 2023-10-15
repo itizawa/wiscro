@@ -44,6 +44,12 @@ export const PostAnswerModal: FC<Props> = ({ isOpen, onOpenChange, question }) =
         .then(() => {
           mutateAnswersByQuestionId(question._id);
           handleOpenChange();
+          window.setTimeout(() => {
+            window.scroll({
+              top: document.documentElement.scrollHeight - document.documentElement.clientHeight,
+              behavior: 'smooth',
+            });
+          }, 1000);
         })
         .finally(() => {
           setIsLoading(false);
