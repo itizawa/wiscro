@@ -3,7 +3,7 @@
 import React from 'react';
 import { Navbar, NavbarBrand, NavbarContent, NavbarItem, Link, Button, Spinner, Avatar, useDisclosure } from '@nextui-org/react';
 import { useCurrentUser } from '~/hooks/user/useCurrentUser';
-import { PostQuestionModal } from '~/components/domains/Question/PostQuestionModal';
+import { PostNoteModal } from '~/components/domains/Note/PostNoteModal';
 import { LoginButton } from '~/components/domains/User/LoginButton';
 
 export const WiscroNavbar = () => {
@@ -37,7 +37,7 @@ export const WiscroNavbar = () => {
           )}
         </NavbarContent>
       </Navbar>
-      <PostQuestionModal isOpen={isOpen} onOpenChange={onOpenChange} />
+      <PostNoteModal isOpen={isOpen} onOpenChange={onOpenChange} />
     </>
   );
 };

@@ -1,22 +1,16 @@
-export class Page {
+export interface Page {
   _id: string;
   url: string;
+  createdUserId: string;
+  noteId: string;
   title: string;
   description: string;
   favicon?: string;
   image?: string;
   body?: string;
+  summary?: string;
   siteName?: string;
-  lineUser: string;
-  constructor(init: Page) {
-    this._id = init._id;
-    this.url = init.url;
-    this.title = init.title;
-    this.description = init.description;
-    this.favicon = init.favicon;
-    this.image = init.image;
-    this.body = init.body;
-    this.siteName = init.siteName;
-    this.lineUser = init.lineUser;
-  }
+  createdAt: string;
+  updatedAt: string;
+  isFetching: boolean;
 }
