@@ -10,7 +10,7 @@ import { Note } from '~/domains/Note';
 import { useCurrentUser } from '~/hooks/user/useCurrentUser';
 import { URLS } from '~/constants/urls';
 import { isValidUrl } from '~/utils/isValidUrl';
-import { usePostPage } from '~/hooks/Page/usePostPage';
+import { usePostPage } from '~/hooks/Page/usePostPage/usePostPage';
 import { Icon } from '~/components/uiParts/icons';
 
 type Props = {
