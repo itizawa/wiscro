@@ -4,7 +4,7 @@ import { FC } from 'react';
 import { Avatar, AvatarIcon, Card } from '@nextui-org/react';
 import { format } from 'date-fns';
 import { LoginButton } from '../../User/LoginButton';
-import { PostPageButton } from '../../Page/PostPageButton';
+import { PostPageButton } from '~/components/domains/Page/PostPageButton';
 import { Note } from '~/domains/Note';
 import { useCurrentUser } from '~/hooks/user/useCurrentUser';
 
@@ -25,9 +25,9 @@ export const NoteCard: FC<Props> = ({ note }) => {
         <p className="mt-[16px] text-center">
           {currentUser?.username || 'ゲストユーザー'}さん
           <br />
-          この質問に回答してみませんか?
+          このノートにページを追加してみませんか?
         </p>
-        <p className="mt-[4px] text-sm text-slate-400">URLを貼り付けるだけで回答ができます</p>
+        <p className="mt-[4px] text-sm text-slate-400">URLを貼り付けるだけでページを追加できます</p>
         {currentUser ? (
           <div className="mt-[16px]">
             <PostPageButton note={note} />

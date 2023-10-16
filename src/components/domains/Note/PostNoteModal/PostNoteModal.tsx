@@ -56,7 +56,7 @@ export const PostNoteModal: FC<Props> = ({ isOpen, onOpenChange }) => {
     <Modal isOpen={isOpen} onOpenChange={handleOpenChange} placement="center" hideCloseButton>
       <ModalContent>
         <form onSubmit={handleSubmit(onSubmit)}>
-          <ModalHeader className="flex flex-col gap-1">質問を作成する</ModalHeader>
+          <ModalHeader className="flex flex-col gap-1">ノートを作成する</ModalHeader>
           <ModalBody>
             <Controller
               name="title"
@@ -90,7 +90,7 @@ export const PostNoteModal: FC<Props> = ({ isOpen, onOpenChange }) => {
               isDisabled={watch('description').length === 0 || watch('description').length === 0}
               isLoading={isLoading}
             >
-              質問する
+              ノートを作成する
             </Button>
           </ModalFooter>
         </form>

@@ -27,7 +27,7 @@ export const PageCard: FC<Props> = ({ page }) => {
       </CardHeader>
       <CardBody>
         <p className="font-bold mb-[4px]">{page.isFetching ? '読み込み中です...' : page.title}</p>
-        <p className="text-slate-600 text-xs mb-[8px]">回答日：{format(new Date(page.createdAt), 'yyyy/MM/dd HH:mm')}</p>
+        <p className="text-slate-600 text-xs mb-[8px]">追加日：{format(new Date(page.createdAt), 'yyyy/MM/dd HH:mm')}</p>
         {page.isFetching ? (
           <>
             <Skeleton className="rounded-lg mb-[4px]">

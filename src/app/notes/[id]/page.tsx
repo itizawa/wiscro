@@ -5,7 +5,7 @@ import { Note } from '~/domains/Note';
 import { restClient } from '~/libs/restClient';
 
 export async function generateStaticParams() {
-  // TODO: 新着の質問は予め静的サイト生成しておく
+  // TODO: 新着のノートは予め静的サイト生成しておく
   return [];
 }
 

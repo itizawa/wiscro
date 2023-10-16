@@ -72,7 +72,7 @@ export const TopNoteCard: FC<Props> = ({ note }) => {
                   {...field}
                   size="sm"
                   className="h-[32px]"
-                  placeholder="回答のURL"
+                  placeholder="ページのURL"
                   isInvalid={fieldState.isDirty && !isValidUrl(field.value)}
                   errorMessage={fieldState.isDirty && !isValidUrl(field.value) && 'URLの形式が正しくありません'}
                 />
@@ -87,7 +87,7 @@ export const TopNoteCard: FC<Props> = ({ note }) => {
             isDisabled={!isValidUrl(watch('url'))}
             isLoading={isLoading}
           >
-            回答する
+            ページを追加する
           </Button>
         </div>
       )}

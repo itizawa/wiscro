@@ -5,7 +5,7 @@ import { Button, Input, Modal, ModalBody, ModalContent, ModalFooter, ModalHeader
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 import { Note } from '~/domains/Note';
 import { isValidUrl } from '~/utils/isValidUrl/isValidUrl';
-import { usePostPage } from '~/hooks/Page/usePostPage';
+import { usePostPage } from '~/hooks/Page/usePostPage/usePostPage';
 import { useMutatePagesByNoteId } from '~/hooks/Page/usePagesByNoteId/usePagesByNoteId';
 
 type Props = {
@@ -62,7 +62,7 @@ export const PostPageModal: FC<Props> = ({ isOpen, onOpenChange, note }) => {
     <Modal isOpen={isOpen} onOpenChange={handleOpenChange} placement="center" hideCloseButton>
       <ModalContent>
         <form onSubmit={handleSubmit(onSubmit)}>
-          <ModalHeader className="flex flex-col gap-1">回答する</ModalHeader>
+          <ModalHeader className="flex flex-col gap-1">追加する</ModalHeader>
           <ModalBody>
             <p>{note.title}</p>
             <Controller
@@ -74,7 +74,7 @@ export const PostPageModal: FC<Props> = ({ isOpen, onOpenChange, note }) => {
               render={({ field, fieldState }) => (
                 <Input
                   {...field}
-                  label="回答のURL"
+                  label="ページのURL"
                   isInvalid={fieldState.isDirty && !isValidUrl(field.value)}
                   errorMessage={fieldState.isDirty && !isValidUrl(field.value) && 'URLの形式が正しくありません'}
                 />
@@ -83,7 +83,7 @@ export const PostPageModal: FC<Props> = ({ isOpen, onOpenChange, note }) => {
           </ModalBody>
           <ModalFooter>
             <Button color="primary" onClick={handleSubmit(onSubmit)} isDisabled={!isValidUrl(watch('url'))} isLoading={isLoading}>
-              回答する
+              ページをポスト
             </Button>
           </ModalFooter>
         </form>

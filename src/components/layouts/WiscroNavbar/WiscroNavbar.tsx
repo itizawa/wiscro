@@ -26,7 +26,7 @@ export const WiscroNavbar = () => {
               {currentUser ? (
                 <div className="flex gap-[16px]">
                   <Button color="primary" onClick={onOpen}>
-                    質問する
+                    ノートを作成する
                   </Button>
                   <Avatar src={currentUser.profileUrl} isBordered />
                 </div>

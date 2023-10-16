@@ -38,7 +38,7 @@ export const CreateNoteCard: FC = () => {
 
   return (
     <Card className="w-[100%] max-w-[500px] p-[40px] flex flex-col gap-[24px]" shadow="sm">
-      <h4>質問を作成する</h4>
+      <h4>ノートを作成する</h4>
       <div className="flex flex-col gap-[16px]">
         <Input
           label="タイトル"

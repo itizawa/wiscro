@@ -10,7 +10,7 @@ export const PostPageButton: FC<{ note: Note }> = ({ note }) => {
   return (
     <>
       <Button color="primary" onClick={onOpen}>
-        回答する
+        ページを追加する
       </Button>
       <PostPageModal isOpen={isOpen} onOpenChange={onOpenChange} note={note} />
     </>
