@@ -2,7 +2,7 @@ import { PageList } from './_components/PageList';
 import { Page } from '~/domains/Page';
 import { Note } from '~/domains/Note';
 import { restClient } from '~/libs/restClient';
-import { TopNoteCard } from '~/app/_components/TopNoteCard';
+import { TopNoteCard } from '~/components/domains/Note/NoteCard';
 
 export async function generateStaticParams() {
   // TODO: 新着のノートは予め静的サイト生成しておく

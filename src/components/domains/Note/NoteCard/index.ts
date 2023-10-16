@@ -1,1 +1,1 @@
-export { NoteCard } from './NoteCard';
+export { TopNoteCard } from './NoteCard';

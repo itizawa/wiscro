@@ -2,7 +2,7 @@
 
 import { FC } from 'react';
 import { Spinner } from '@nextui-org/react';
-import { TopNoteCard } from '../TopNoteCard/TopNoteCard';
+import { TopNoteCard } from '../../../components/domains/Note/NoteCard/NoteCard';
 import { useNotes } from '~/hooks/Note/useNotes';
 
 export const TopNoteCardList: FC = () => {
