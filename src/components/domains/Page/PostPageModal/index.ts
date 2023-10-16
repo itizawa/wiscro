@@ -1,0 +1,1 @@
+export { PostPageModal } from './PostPageModal';

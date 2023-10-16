@@ -1,1 +1,0 @@
-export { useAnswersByQuestionId } from './useAnswersByQuestionId';

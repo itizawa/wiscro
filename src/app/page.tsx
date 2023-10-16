@@ -1,6 +1,6 @@
 // app/page.tsx
-import { TopQuestionCardList } from './_components/TopQuestionCardList';
+import { TopNoteCardList } from './_components/TopNoteCardList';
 
 export default async function Page() {
-  return <TopQuestionCardList />;
+  return <TopNoteCardList />;
 }
