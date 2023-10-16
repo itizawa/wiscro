@@ -1,4 +1,4 @@
-import { Card, CardBody, CardHeader, Image, Skeleton, Tab, Tabs } from '@nextui-org/react';
+import { Card, CardBody, CardHeader, Image, Skeleton } from '@nextui-org/react';
 import { format } from 'date-fns';
 import { FC, useState } from 'react';
 import styles from './PageCard.module.css';
@@ -26,7 +26,9 @@ export const PageCard: FC<Props> = ({ page }) => {
         </a>
       </CardHeader>
       <CardBody>
-        <p className="font-bold mb-[4px]">{page.isFetching ? '読み込み中です...' : page.title}</p>
+        <a href={page.url} target="blank" rel="noopener noreferrer">
+          <p className="font-bold mb-[4px]">{page.isFetching ? '読み込み中です...' : page.title}</p>
+        </a>
         <p className="text-slate-600 text-xs mb-[8px]">追加日：{format(new Date(page.createdAt), 'yyyy/MM/dd HH:mm')}</p>
         {page.isFetching ? (
           <>
@@ -42,33 +44,10 @@ export const PageCard: FC<Props> = ({ page }) => {
           </>
         ) : (
           <>
-            {page.body && page.summary ? (
-              <Tabs color="primary" variant="bordered" size="md">
-                <Tab key="body" title="本文">
-                  <p className={`mb-[4px] text-sm ${isShowMore ? '' : 'line-clamp-3'}`}>{page.body}</p>
-                  <span className="cursor-pointer text-sky-400 w-fit" onClick={() => setIsShowMore((prev) => !prev)}>
-                    {isShowMore ? '折りたたむ' : 'もっと見る'}
-                  </span>
-                </Tab>
-                <Tab key="summary" title="サマリー">
-                  <p className={`mb-[4px] text-sm ${isShowMore ? '' : 'line-clamp-3'}`}>{page.summary}</p>
-                  <span className="cursor-pointer text-sky-400 w-fit" onClick={() => setIsShowMore((prev) => !prev)}>
-                    {isShowMore ? '折りたたむ' : 'もっと見る'}
-                  </span>
-                </Tab>
-              </Tabs>
-            ) : (
-              <>
-                {page.body && (
-                  <>
-                    <p className={`mb-[4px] text-sm ${isShowMore ? '' : 'line-clamp-3'}`}>{page.body}</p>
-                    <span className="cursor-pointer text-sky-400 w-fit" onClick={() => setIsShowMore((prev) => !prev)}>
-                      {isShowMore ? '折りたたむ' : 'もっと見る'}
-                    </span>
-                  </>
-                )}
-              </>
-            )}
+            <p className={`mb-[4px] text-sm ${isShowMore ? '' : 'line-clamp-3'}`}>{page.summary ? page.summary : page.body}</p>
+            <span className="cursor-pointer text-sky-400 w-fit" onClick={() => setIsShowMore((prev) => !prev)}>
+              {isShowMore ? '折りたたむ' : 'もっと見る'}
+            </span>
           </>
         )}
       </CardBody>

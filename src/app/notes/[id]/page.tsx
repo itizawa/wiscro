@@ -1,8 +1,8 @@
 import { PageList } from './_components/PageList';
-import { NoteCard } from '~/components/domains/Note/NoteCard';
 import { Page } from '~/domains/Page';
 import { Note } from '~/domains/Note';
 import { restClient } from '~/libs/restClient';
+import { TopNoteCard } from '~/app/_components/TopNoteCard';
 
 export async function generateStaticParams() {
   // TODO: 新着のノートは予め静的サイト生成しておく
@@ -15,7 +15,7 @@ export default async function Page({ params }: { params: { id: string } }) {
 
   return (
     <div className="flex justify-center items-center flex-col gap-[24px] pt-[24px] px-3 pb-[100px]">
-      <NoteCard note={note} />
+      <TopNoteCard note={note} />
       <PageList noteId={note._id} pages={pages} />
     </div>
   );
