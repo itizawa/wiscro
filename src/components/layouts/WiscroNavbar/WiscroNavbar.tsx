@@ -3,8 +3,9 @@
 import React from 'react';
 import { Navbar, NavbarBrand, NavbarContent, NavbarItem, Link, Button, Spinner, Avatar, useDisclosure } from '@nextui-org/react';
 import { useCurrentUser } from '~/hooks/user/useCurrentUser';
-import { PostQuestionModal } from '~/components/domains/Question/PostQuestionModal';
+import { PostNoteModal } from '~/components/domains/Note/PostNoteModal';
 import { LoginButton } from '~/components/domains/User/LoginButton';
+import { Icon } from '~/components/uiParts/icons';
 
 export const WiscroNavbar = () => {
   const { data: currentUser, isLoading } = useCurrentUser();
@@ -26,7 +27,8 @@ export const WiscroNavbar = () => {
               {currentUser ? (
                 <div className="flex gap-[16px]">
                   <Button color="primary" onClick={onOpen}>
-                    質問する
+                    <Icon icon="BOOK" />
+                    ノートを作成する
                   </Button>
                   <Avatar src={currentUser.profileUrl} isBordered />
                 </div>
@@ -37,7 +39,7 @@ export const WiscroNavbar = () => {
           )}
         </NavbarContent>
       </Navbar>
-      <PostQuestionModal isOpen={isOpen} onOpenChange={onOpenChange} />
+      <PostNoteModal isOpen={isOpen} onOpenChange={onOpenChange} />
     </>
   );
 };
