@@ -14,7 +14,7 @@ type Props = {
 
 export const TopNoteCard: FC<Props> = ({ note }) => {
   return (
-    <Card className="w-[100%] p-[16px] flex flex-col" shadow="sm">
+    <Card className="w-[100%] max-w-[400px] p-[16px] flex flex-col" shadow="sm">
       <h4 className="font-bold text-lg mb-[8px]">
         <Link href={URLS.QUESTION_DETAIL(note._id)}>{note.title}</Link>
       </h4>
