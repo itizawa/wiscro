@@ -1,9 +1,15 @@
+import { Metadata } from 'next';
 import { PageList } from './_components/PageList';
 import { PostPageForm } from './_components/PostPageForm/PostPageForm';
 import { Page } from '~/domains/Page';
 import { Note } from '~/domains/Note';
 import { restClient } from '~/libs/restClient';
 import { TopNoteCard } from '~/components/domains/Note/NoteCard';
+
+export async function generateMetadata({ params }: { params: { id: string } }): Promise<Metadata> {
+  const { note } = await restClient.apiGet<{ note: Note }>(`/api/notes/${params.id}`);
+  return { title: note.title, description: note.description };
+}
 
 export async function generateStaticParams() {
   // TODO: 新着のノートは予め静的サイト生成しておく
