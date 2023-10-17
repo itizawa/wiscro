@@ -1,3 +1,5 @@
+'use client';
+
 import { Card, CardBody, CardHeader, Image, Skeleton } from '@nextui-org/react';
 import { format } from 'date-fns';
 import { FC, useState } from 'react';

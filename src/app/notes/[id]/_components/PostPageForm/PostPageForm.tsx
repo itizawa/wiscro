@@ -49,6 +49,9 @@ export const PostPageForm: FC<Props> = ({ note }) => {
     [isLoading, postPage, note._id, reset, mutatePagesByNoteId],
   );
 
+  if (!currentUser) return;
+  if (currentUser._id !== note.createdUserId) return;
+
   return (
     <Card className="w-[100%] p-[12px] flex flex-col" shadow="sm">
       <div className="flex justify-between items-center gap-[8px]">
