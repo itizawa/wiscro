@@ -44,14 +44,14 @@ export const PageCard: FC<Props> = ({ page }) => {
               <div className="h-4 rounded-lg bg-secondary"></div>
             </Skeleton>
           </>
-        ) : (
+        ) : page.body ? (
           <>
-            <p className={`mb-[4px] text-sm ${isShowMore ? '' : 'line-clamp-3'}`}>{page.summary ? page.summary : page.body}</p>
+            <p className={`mb-[4px] text-sm ${isShowMore ? '' : 'line-clamp-3'}`}>{page.body}</p>
             <span className="cursor-pointer text-sky-400 w-fit" onClick={() => setIsShowMore((prev) => !prev)}>
               {isShowMore ? '折りたたむ' : 'もっと見る'}
             </span>
           </>
-        )}
+        ) : null}
       </CardBody>
     </Card>
   );
