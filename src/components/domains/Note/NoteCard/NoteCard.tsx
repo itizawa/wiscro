@@ -18,7 +18,9 @@ export const TopNoteCard: FC<Props> = ({ note }) => {
       <h4 className="font-bold text-lg mb-[8px]">
         <Link href={URLS.QUESTION_DETAIL(note._id)}>{note.title}</Link>
       </h4>
-      <p className="text-slate-600 text-sm mb-[16px]">投稿日：{format(new Date(note.createdAt), 'yyyy/MM/dd HH:mm')}</p>
+      {note.latestPostPageAt && (
+        <p className="text-slate-600 text-sm mb-[16px]">更新日：{format(new Date(note.latestPostPageAt), 'yyyy/MM/dd HH:mm')}</p>
+      )}
       <p>{note.description}</p>
     </Card>
   );
