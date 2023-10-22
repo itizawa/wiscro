@@ -13,7 +13,7 @@ export const WiscroNavbar = () => {
 
   return (
     <>
-      <Navbar shouldHideOnScroll isBordered isBlurred={false}>
+      <Navbar isBordered isBlurred={false}>
         <NavbarBrand>
           <Link href="/" color="foreground" className="font-bold">
             Wiscro
@@ -26,9 +26,9 @@ export const WiscroNavbar = () => {
             <NavbarItem>
               {currentUser ? (
                 <div className="flex gap-[16px]">
-                  <Button color="primary" onClick={onOpen}>
+                  <Button color="primary" className="color-[6366f1]" onClick={onOpen}>
                     <Icon icon="BOOK" />
-                    ノートを作成する
+                    作成する
                   </Button>
                   <Avatar src={currentUser.profileUrl} isBordered />
                 </div>

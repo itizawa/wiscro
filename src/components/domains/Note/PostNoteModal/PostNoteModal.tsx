@@ -41,7 +41,7 @@ export const PostNoteModal: FC<Props> = ({ isOpen, onOpenChange }) => {
       postNote({ title: data.title, description: data.description })
         .then((data) => {
           handleOpenChange();
-          router.push(URLS.QUESTION_DETAIL(data.note._id));
+          router.push(URLS.NOTE_DETAIL(data.note._id));
         })
         .catch((error) => {
           // TODO: 本来はコンソールに出すのではなく、ユーザーにエラーを通知する
