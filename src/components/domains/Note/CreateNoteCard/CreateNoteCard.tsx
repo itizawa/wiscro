@@ -31,7 +31,7 @@ export const CreateNoteCard: FC = () => {
     setIsLoading(true);
     await postNote({ title, description })
       .then((data) => {
-        router.push(URLS.QUESTION_DETAIL(data.note._id));
+        router.push(URLS.NOTE_DETAIL(data.note._id));
       })
       .finally(() => setIsLoading(false));
   }, [postNote, title, description, router]);
