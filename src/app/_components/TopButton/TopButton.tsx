@@ -18,7 +18,7 @@ export const TopButton: FC = () => {
       <div>
         <Button color="primary" onClick={currentUser ? onOpenPostNoteModal : onOpenLoginModal}>
           <Icon icon="BOOK" />
-          ログインしてノートを作成する
+          ノートを作成する
         </Button>
       </div>
       <PostNoteModal isOpen={isOpenPostNoteModal} onOpenChange={onOpenChangePostNoteModal} />
