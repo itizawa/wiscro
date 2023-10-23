@@ -3,8 +3,8 @@ import { Card } from '@nextui-org/card';
 
 export default async function Page() {
   return (
-    <div className="min-h-[500px] max-w-[600px] mx-auto mt-[24px] justify-center gap-[16px]">
-      <Card className="w-[100%] p-[24px] flex flex-col" shadow="sm">
+    <div className="min-h-[500px] max-w-[600px] mx-auto justify-center gap-[16px] py-[24px] p-[16px]">
+      <Card className="w-[100%] md:p-[24px] p-[16px] flex flex-col" shadow="sm">
         <p className="text-2xl mb-[40px]">プライバシーポリシー</p>
         <p className="mb-[16px]">
           本サービスの利用に際してユーザーから収集される情報の取り扱いについて説明します。
