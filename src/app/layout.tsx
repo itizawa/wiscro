@@ -5,7 +5,7 @@ import { WiscroNavbar } from '~/components/layouts/WiscroNavbar';
 
 export const metadata: Metadata = {
   title: 'Wiscro',
-  description: 'Wiscro is wisdom crowd',
+  description: 'WiscroはURLをまとめたページを気軽に作れるアプリケーションです。情報の整理や共有にお使いください。',
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
