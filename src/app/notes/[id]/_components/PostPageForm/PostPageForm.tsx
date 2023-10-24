@@ -64,14 +64,7 @@ export const PostPageForm: FC<Props> = ({ note }) => {
               validate: (value) => isValidUrl(value),
             }}
             render={({ field, fieldState }) => (
-              <Input
-                {...field}
-                size="sm"
-                className="h-[32px]"
-                placeholder="URL"
-                isInvalid={fieldState.isDirty && !isValidUrl(field.value)}
-                errorMessage={fieldState.isDirty && !isValidUrl(field.value) && 'URLの形式が正しくありません'}
-              />
+              <Input {...field} size="sm" className="h-[32px]" placeholder="URL" isInvalid={fieldState.isDirty && !isValidUrl(field.value)} />
             )}
           />
         </div>
