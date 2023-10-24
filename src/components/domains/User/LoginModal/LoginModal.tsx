@@ -29,7 +29,7 @@ export const LoginModal: FC<Props> = ({ isOpen, onOpenChange }) => {
               利用規約
             </a>
             および
-            <a href="https://www.wiscro.app/terms" className="text-sky-500">
+            <a href="https://www.wiscro.app/policy" className="text-sky-500">
               プライバシーポリシー
             </a>
             に同意してください。
