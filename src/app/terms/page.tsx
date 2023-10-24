@@ -36,7 +36,7 @@ export default async function Page() {
         <h3 className="mt-[24px] mb-[16px]">第5条(一般条件)</h3>
         <p>
           本規約は随時改定されることがあり、最新版は
-          <Link href="https://www.wiscro.app/terms" className="text-sky-500" target="_blank" rel="noreferrer">
+          <Link href="https://www.wiscro.app/terms" className="text-sky-500">
             https://www.wiscro.app/terms
           </Link>
           にて確認できます。
