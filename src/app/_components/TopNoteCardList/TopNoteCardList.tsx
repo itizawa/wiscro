@@ -9,15 +9,17 @@ export const TopNoteCardList: FC = () => {
   const { data: notes = [], isLoading: isLoadingNotes } = useNotes();
 
   return (
-    <div className="flex justify-center items-center flex-col gap-[24px] pt-[24px] pb-[80px] px-3">
+    <div className="flex justify-center items-center flex-col gap-[24px] pt-[40px] pb-[80px] px-3">
       {isLoadingNotes ? (
         <Spinner />
       ) : (
-        <>
+        <div className="grid grid-cols-2 gap-[24px] w-full max-w-[824px]">
           {notes.map((note) => (
-            <TopNoteCard key={note._id} note={note} />
+            <div key={note._id} className="col-span-2 md:col-span-1">
+              <TopNoteCard note={note} />
+            </div>
           ))}
-        </>
+        </div>
       )}
     </div>
   );
