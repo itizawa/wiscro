@@ -6,7 +6,7 @@ import { restClient } from '~/libs/restClient';
 import { Note } from '~/domains/Note';
 
 export default async function Page() {
-  const { notes } = await restClient.apiGet<{ notes: Note[] }>(`/api/notes`);
+  const { notes } = await restClient.apiGet<{ notes: Note[] }>(`/api/notes`, { next: { revalidate: 60 } });
 
   return (
     <>
