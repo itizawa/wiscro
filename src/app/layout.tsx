@@ -2,6 +2,7 @@ import { Metadata } from 'next';
 import { Providers } from './providers';
 import '../styles/global.scss';
 import { WiscroNavbar } from '~/components/layouts/WiscroNavbar';
+import { WiscroFooter } from '~/components/layouts/WiscroFooter';
 
 export const metadata: Metadata = {
   title: 'Wiscro',
@@ -14,6 +15,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body>
         <WiscroNavbar />
         <Providers>{children}</Providers>
+        <WiscroFooter />
       </body>
     </html>
   );
