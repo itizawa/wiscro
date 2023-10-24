@@ -1,7 +1,7 @@
 'use client';
 
 import { FC, useCallback } from 'react';
-import { Button, Link, Modal, ModalBody, ModalContent, ModalFooter, ModalHeader } from '@nextui-org/react';
+import { Image, Link, Modal, ModalBody, ModalContent, ModalHeader } from '@nextui-org/react';
 import { URLS } from '~/constants/urls';
 
 type Props = {
@@ -18,14 +18,23 @@ export const LoginModal: FC<Props> = ({ isOpen, onOpenChange }) => {
     <Modal isOpen={isOpen} onOpenChange={handleOpenChange} placement="center" hideCloseButton>
       <ModalContent>
         <ModalHeader>ようこそ Wiscro へ！</ModalHeader>
-        <ModalBody>
-          <p>ノートを作成してページをまとめましょう</p>
+        <ModalBody className="pb-[24px] items-center">
+          <p className="mb-[4px]">ノートを作成してページをまとめましょう</p>
+          <Link href={URLS.LOGIN_TO_BACKEND}>
+            <Image className="mx-auto" src="/images/sign-in-google.png" width={200} />
+          </Link>
+          <p className="text-slate-600">
+            ログインする前に、
+            <a href="https://www.wiscro.app/terms" className="text-sky-500">
+              利用規約
+            </a>
+            および
+            <a href="https://www.wiscro.app/terms" className="text-sky-500">
+              プライバシーポリシー
+            </a>
+            に同意してください。
+          </p>
         </ModalBody>
-        <ModalFooter>
-          <Button as={Link} color="primary" href={URLS.LOGIN_TO_BACKEND} variant="flat">
-            ログインする
-          </Button>
-        </ModalFooter>
       </ModalContent>
     </Modal>
   );
