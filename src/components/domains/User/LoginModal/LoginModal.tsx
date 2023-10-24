@@ -25,13 +25,13 @@ export const LoginModal: FC<Props> = ({ isOpen, onOpenChange }) => {
           </Link>
           <p className="text-slate-600">
             ログインする前に、
-            <a href="https://www.wiscro.app/terms" className="text-sky-500">
+            <Link href="https://www.wiscro.app/terms" className="text-sky-500" target="_blank" rel="noreferrer">
               利用規約
-            </a>
+            </Link>
             および
-            <a href="https://www.wiscro.app/policy" className="text-sky-500">
+            <Link href="https://www.wiscro.app/policy" className="text-sky-500" target="_blank" rel="noreferrer">
               プライバシーポリシー
-            </a>
+            </Link>
             に同意してください。
           </p>
         </ModalBody>

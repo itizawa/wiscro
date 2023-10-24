@@ -1,5 +1,6 @@
 // app/page.tsx
 import { Card } from '@nextui-org/card';
+import { Link } from '@nextui-org/link';
 
 export default async function Page() {
   return (
@@ -35,9 +36,9 @@ export default async function Page() {
         <h3 className="mt-[24px] mb-[16px]">第5条(一般条件)</h3>
         <p>
           本規約は随時改定されることがあり、最新版は
-          <a href="https://www.wiscro.app/terms" className="text-sky-500">
+          <Link href="https://www.wiscro.app/terms" className="text-sky-500">
             https://www.wiscro.app/terms
-          </a>
+          </Link>
           にて確認できます。
           <br />
           改定後の本規約は、ユーザーがサービスを継続して利用することで同意したものとみなされます。
