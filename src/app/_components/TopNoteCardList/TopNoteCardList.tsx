@@ -9,7 +9,8 @@ export const TopNoteCardList: FC = () => {
   const { data: notes = [], isLoading: isLoadingNotes } = useNotes();
 
   return (
-    <div className="flex justify-center items-center flex-col gap-[24px] pt-[40px] pb-[80px] px-3">
+    <div className="flex justify-center items-center flex-col gap-[24px] md:py-[80px] py-[40px] px-3">
+      <h1 className="text-2xl">最近更新されたNote</h1>
       {isLoadingNotes ? (
         <Spinner />
       ) : (
