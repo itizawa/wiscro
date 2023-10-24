@@ -10,10 +10,10 @@ export const WiscroFooter = () => {
         </Link>
         <p className="mt-[8px] text-slate-50 text-sm">あなたの切り口で記事をまとめよう</p>
         <div className="mt-[24px] flex gap-[16px]">
-          <Link href="https://www.wiscro.app/terms" className="text-slate-50">
+          <Link href="https://www.wiscro.app/terms" className="text-slate-50" target="_blank" rel="noreferrer">
             利用規約
           </Link>
-          <Link href="https://www.wiscro.app/policy" className="text-slate-50">
+          <Link href="https://www.wiscro.app/policy" className="text-slate-50" target="_blank" rel="noreferrer">
             プライバシーポリシー
           </Link>
         </div>
