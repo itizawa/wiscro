@@ -12,9 +12,11 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="ja" className="light min-h-[100vh] bg-slate-50">
-      <body>
+      <body className="min-h-[100vh] flex flex-col">
         <WiscroNavbar />
-        <Providers>{children}</Providers>
+        <div className="flex-1">
+          <Providers>{children}</Providers>
+        </div>
         <WiscroFooter />
       </body>
     </html>
