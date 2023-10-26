@@ -6,10 +6,13 @@ import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 import { useRouter } from 'next/navigation';
 import { usePostNote } from '~/hooks/Note/usePostNote';
 import { URLS } from '~/constants/urls';
+import { Note } from '~/domains/Note';
+import { useUpdateNote } from '~/hooks/Note/useUpdateNote';
 
 type Props = {
   isOpen: boolean;
   onOpenChange: () => void;
+  note?: Note;
 };
 
 interface IFormInput {
@@ -17,15 +20,16 @@ interface IFormInput {
   description: string;
 }
 
-export const PostNoteModal: FC<Props> = ({ isOpen, onOpenChange }) => {
+export const EditNoteModal: FC<Props> = ({ isOpen, onOpenChange, note }) => {
   const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
 
   const { postNote } = usePostNote();
+  const { updateNote } = useUpdateNote();
   const { control, watch, handleSubmit, reset } = useForm({
     defaultValues: {
-      title: '',
-      description: '',
+      title: note?.title || '',
+      description: note?.description || '',
     },
   });
 
@@ -38,18 +42,31 @@ export const PostNoteModal: FC<Props> = ({ isOpen, onOpenChange }) => {
     async (data) => {
       if (isLoading) return;
       setIsLoading(true);
-      postNote({ title: data.title, description: data.description })
-        .then((data) => {
-          handleOpenChange();
-          router.push(URLS.NOTE_DETAIL(data.note._id));
-        })
-        .catch((error) => {
-          // TODO: 本来はコンソールに出すのではなく、ユーザーにエラーを通知する
-          console.error(error);
-        })
-        .finally(() => setIsLoading(false));
+
+      if (note) {
+        updateNote({ _id: note._id, title: data.title, description: data.description })
+          .then(() => {
+            handleOpenChange();
+          })
+          .catch((error) => {
+            // TODO: 本来はコンソールに出すのではなく、ユーザーにエラーを通知する
+            console.error(error);
+          })
+          .finally(() => setIsLoading(false));
+      } else {
+        postNote({ title: data.title, description: data.description })
+          .then((data) => {
+            handleOpenChange();
+            router.push(URLS.NOTE_DETAIL(data.note._id));
+          })
+          .catch((error) => {
+            // TODO: 本来はコンソールに出すのではなく、ユーザーにエラーを通知する
+            console.error(error);
+          })
+          .finally(() => setIsLoading(false));
+      }
     },
-    [handleOpenChange, isLoading, postNote, router],
+    [handleOpenChange, isLoading, note, postNote, router, updateNote],
   );
 
   return (
