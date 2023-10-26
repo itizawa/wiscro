@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { TopNoteCard } from '../../../components/domains/Note/NoteCard/NoteCard';
+import { TopNoteCard } from '../TopNoteCard/TopNoteCard';
 import { Note } from '~/domains/Note';
 
 type Props = {
