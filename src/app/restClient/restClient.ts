@@ -6,15 +6,12 @@ import { cookies } from 'next/headers';
 export const handler = async <T>(path: string, method: 'GET' | 'POST' | 'PATCH' | 'DELETE', options?: RequestInit): Promise<T> => {
   const cookieStore = cookies();
   const url = urlJoin(process.env.NEXT_PUBLIC_SERVER_URL || 'https://api.wiscro.app/', path);
-
+  const connectSid = cookieStore.get('connect.sid');
   const headers: HeadersInit = {
     'Content-Type': 'application/json',
     'X-Requested-With': 'XMLHttpRequest',
     'Access-Control-Allow-Credentials': 'true',
-    cookie: cookieStore
-      .getAll()
-      .map((v) => `${v.name}=${v.value}`)
-      .join(`;`),
+    cookie: connectSid ? `${connectSid.name}=${connectSid.value}` : '',
   };
 
   const init: RequestInit = {
