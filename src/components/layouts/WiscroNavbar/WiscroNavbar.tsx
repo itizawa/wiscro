@@ -3,9 +3,9 @@
 import React from 'react';
 import { Navbar, NavbarBrand, NavbarContent, NavbarItem, Link, Button, Spinner, Avatar, useDisclosure } from '@nextui-org/react';
 import { useCurrentUser } from '~/hooks/user/useCurrentUser';
-import { PostNoteModal } from '~/components/domains/Note/PostNoteModal';
 import { LoginButton } from '~/components/domains/User/LoginButton';
 import { Icon } from '~/components/uiParts/icons';
+import { EditNoteModal } from '~/components/domains/Note/EditNoteModal';
 
 export const WiscroNavbar = () => {
   const { data: currentUser, isLoading } = useCurrentUser();
@@ -39,7 +39,7 @@ export const WiscroNavbar = () => {
           )}
         </NavbarContent>
       </Navbar>
-      <PostNoteModal isOpen={isOpen} onOpenChange={onOpenChange} />
+      <EditNoteModal isOpen={isOpen} onOpenChange={onOpenChange} />
     </>
   );
 };
