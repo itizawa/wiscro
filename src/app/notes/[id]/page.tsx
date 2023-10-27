@@ -3,12 +3,11 @@ import { PageList } from './_components/PageList';
 import { PostPageForm } from './_components/PostPageForm/PostPageForm';
 import { fetchNote } from './actions';
 import { Page } from '~/domains/Page';
-import { Note } from '~/domains/Note';
 import { restClient } from '~/libs/restClient';
 import { NoteCard } from '~/components/domains/Note/NoteCard';
 
 export async function generateMetadata({ params }: { params: { id: string } }): Promise<Metadata> {
-  const { note } = await restClient.apiGet<{ note: Note }>(`/api/notes/${params.id}`);
+  const { note } = await fetchNote(params.id);
   return { title: note.title, description: note.description };
 }
 
