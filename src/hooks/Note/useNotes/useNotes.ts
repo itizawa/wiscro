@@ -1,12 +1,12 @@
 import { useCallback } from 'react';
 import useSWR, { mutate } from 'swr';
 import { Note } from '~/domains/Note';
-import { restClient } from '~/libs/restClient';
+import { apiGet } from '~/app/restClient';
 
 const getKey = () => `/api/notes`;
 
 export const useNotes = () => {
-  return useSWR(getKey(), (endpoint) => restClient.apiGet<{ notes: Note[] }>(endpoint).then((res) => res.notes));
+  return useSWR(getKey(), (endpoint) => apiGet<{ notes: Note[] }>(endpoint).then((res) => res.notes));
 };
 
 export const useMutateNotes = () => {

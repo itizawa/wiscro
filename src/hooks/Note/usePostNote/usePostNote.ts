@@ -1,12 +1,12 @@
 import { useCallback } from 'react';
+import { apiPost } from '~/app/restClient';
 import { Note } from '~/domains/Note';
-import { restClient } from '~/libs/restClient';
 
 type Args = Pick<Note, 'description' | 'title'>;
 
 export const usePostNote = () => {
   const postNote = useCallback(async ({ title, description }: Args) => {
-    return restClient.apiPost<{ note: Note }>('/api/notes', {
+    return apiPost<{ note: Note }>('/api/notes', {
       body: JSON.stringify({
         title,
         description,

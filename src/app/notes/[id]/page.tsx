@@ -3,8 +3,8 @@ import { PageList } from './_components/PageList';
 import { PostPageForm } from './_components/PostPageForm/PostPageForm';
 import { fetchNote } from './actions';
 import { Page } from '~/domains/Page';
-import { restClient } from '~/libs/restClient';
 import { NoteCard } from '~/components/domains/Note/NoteCard';
+import { apiGet } from '~/app/restClient';
 
 export async function generateMetadata({ params }: { params: { id: string } }): Promise<Metadata> {
   const { note } = await fetchNote(params.id);
@@ -16,9 +16,9 @@ export async function generateStaticParams() {
   return [];
 }
 
-export default async function Page({ params }: { params: { id: string } }) {
-  const { note } = await fetchNote(params.id);
-  const { pages } = await restClient.apiGet<{ pages: Page[] }>(`/api/notes/${params.id}/pages`);
+export default async function Page(props: { params: { id: string } }) {
+  const { note } = await fetchNote(props.params.id);
+  const { pages } = await apiGet<{ pages: Page[] }>(`/api/notes/${props.params.id}/pages`);
 
   return (
     <div className="grid grid-cols-2 justify-center gap-[24px] pt-[24px] px-3 pb-[100px] max-w-[848px] mx-auto">

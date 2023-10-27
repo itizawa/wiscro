@@ -2,11 +2,11 @@
 import { Image } from '@nextui-org/image';
 import { TopNoteCardList } from './_components/TopNoteCardList';
 import { TopButton } from './_components/TopButton/TopButton';
-import { restClient } from '~/libs/restClient';
+import { apiGet } from './restClient';
 import { Note } from '~/domains/Note';
 
 export default async function Page() {
-  const { notes } = await restClient.apiGet<{ notes: Note[] }>(`/api/notes`, { next: { revalidate: 60 } });
+  const { notes } = await apiGet<{ notes: Note[] }>(`/api/notes`, { next: { revalidate: 60 } });
 
   return (
     <>
