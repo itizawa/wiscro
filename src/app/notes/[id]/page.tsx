@@ -1,6 +1,7 @@
 import { Metadata } from 'next';
 import { PageList } from './_components/PageList';
 import { PostPageForm } from './_components/PostPageForm/PostPageForm';
+import { fetchNote } from './actions';
 import { Page } from '~/domains/Page';
 import { Note } from '~/domains/Note';
 import { restClient } from '~/libs/restClient';
@@ -17,7 +18,7 @@ export async function generateStaticParams() {
 }
 
 export default async function Page({ params }: { params: { id: string } }) {
-  const { note } = await restClient.apiGet<{ note: Note }>(`/api/notes/${params.id}`);
+  const { note } = await fetchNote(params.id);
   const { pages } = await restClient.apiGet<{ pages: Page[] }>(`/api/notes/${params.id}/pages`);
 
   return (

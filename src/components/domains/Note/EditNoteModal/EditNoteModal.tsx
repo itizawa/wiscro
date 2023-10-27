@@ -8,6 +8,7 @@ import { usePostNote } from '~/hooks/Note/usePostNote';
 import { URLS } from '~/constants/urls';
 import { Note } from '~/domains/Note';
 import { useUpdateNote } from '~/hooks/Note/useUpdateNote';
+import { mutateNote } from '~/app/notes/[id]/actions';
 
 type Props = {
   isOpen: boolean;
@@ -27,15 +28,15 @@ export const EditNoteModal: FC<Props> = ({ isOpen, onOpenChange, note }) => {
   const { postNote } = usePostNote();
   const { updateNote } = useUpdateNote();
   const { control, watch, handleSubmit, reset } = useForm({
-    defaultValues: {
+    values: {
       title: note?.title || '',
       description: note?.description || '',
     },
   });
 
   const handleOpenChange = useCallback(() => {
-    reset();
     onOpenChange();
+    reset();
   }, [onOpenChange, reset]);
 
   const onSubmit: SubmitHandler<IFormInput> = useCallback(
@@ -45,8 +46,9 @@ export const EditNoteModal: FC<Props> = ({ isOpen, onOpenChange, note }) => {
 
       if (note) {
         updateNote({ _id: note._id, title: data.title, description: data.description })
-          .then(() => {
+          .then(async () => {
             handleOpenChange();
+            mutateNote();
           })
           .catch((error) => {
             // TODO: 本来はコンソールに出すのではなく、ユーザーにエラーを通知する
