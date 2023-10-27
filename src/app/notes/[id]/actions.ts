@@ -5,7 +5,7 @@ import { Note } from '~/domains/Note';
 import { restClient } from '~/libs/restClient';
 
 export const fetchNote = async (id: string) => {
-  return await restClient.apiGet<{ note: Note }>(`/api/notes/${id}`, { next: { tags: ['note'] } });
+  return await restClient.apiGet<{ note: Note }>(`/api/notes/${id}`, { next: { tags: ['note'], revalidate: 3600 } });
 };
 export const mutateNote = async () => {
   revalidateTag('note');
