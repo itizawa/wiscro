@@ -54,7 +54,7 @@ export const PostPageForm: FC<Props> = ({ note }) => {
 
   return (
     <Card className="w-[100%] p-[12px] flex flex-col" shadow="sm">
-      <div className="flex justify-between items-center gap-[8px]">
+      <form onSubmit={handleSubmit(onSubmit)} className="flex justify-between items-center gap-[8px]">
         <Avatar size="sm" icon={<AvatarIcon />} src={currentUser?.profileUrl} isBordered />
         <div className="flex-1">
           <Controller
@@ -64,7 +64,14 @@ export const PostPageForm: FC<Props> = ({ note }) => {
               validate: (value) => isValidUrl(value),
             }}
             render={({ field, fieldState }) => (
-              <Input {...field} size="sm" className="h-[32px]" placeholder="URL" isInvalid={fieldState.isDirty && !isValidUrl(field.value)} />
+              <Input
+                {...field}
+                size="sm"
+                onSubmit={handleSubmit(onSubmit)}
+                className="h-[32px]"
+                placeholder="URL"
+                isInvalid={fieldState.isDirty && !isValidUrl(field.value)}
+              />
             )}
           />
         </div>
@@ -79,7 +86,7 @@ export const PostPageForm: FC<Props> = ({ note }) => {
           <Icon icon="PENCIL" width={12} height={12} />
           追加
         </Button>
-      </div>
+      </form>
     </Card>
   );
 };
