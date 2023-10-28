@@ -2,12 +2,8 @@
 import { Image } from '@nextui-org/image';
 import { TopNoteCardList } from './_components/TopNoteCardList';
 import { TopButton } from './_components/TopButton/TopButton';
-import { apiGet } from './restClient';
-import { Note } from '~/domains/Note';
 
 export default async function Page() {
-  const { notes } = await apiGet<{ notes: Note[] }>(`/api/notes`, { next: { revalidate: 60 } });
-
   return (
     <>
       <div className="bg-white drop-shadow-sm">
@@ -23,7 +19,7 @@ export default async function Page() {
           </div>
         </div>
       </div>
-      <TopNoteCardList notes={notes} />
+      <TopNoteCardList />
     </>
   );
 }

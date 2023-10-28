@@ -11,6 +11,13 @@ export const fetchNote = async (id: string) => {
     cache: 'no-cache',
   });
 };
+
+export const fetchNotes = async () => {
+  return await apiGet<{ notes: Note[] }>(`/api/notes`, {
+    next: { tags: [TAG], revalidate: 60 },
+  });
+};
+
 export const mutateNote = async () => {
   revalidateTag(TAG);
 };
