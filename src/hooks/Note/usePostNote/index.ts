@@ -1,1 +1,0 @@
-export { usePostNote } from './usePostNote';
