@@ -11,11 +11,6 @@ export async function generateMetadata({ params }: { params: { id: string } }): 
   return { title: note.title, description: note.description };
 }
 
-export async function generateStaticParams() {
-  // TODO: 新着のノートは予め静的サイト生成しておく
-  return [];
-}
-
 export default async function Page(props: { params: { id: string } }) {
   const { note } = await fetchNote(props.params.id);
   const { pages } = await fetchNotePages(props.params.id);

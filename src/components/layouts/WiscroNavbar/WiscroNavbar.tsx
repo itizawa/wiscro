@@ -2,10 +2,12 @@ import React, { FC } from 'react';
 import { Navbar, NavbarBrand, NavbarContent, NavbarItem } from '@nextui-org/navbar';
 import { Link } from '@nextui-org/link';
 import { LoginButton } from '~/components/domains/User/LoginButton';
-import { User } from '~/domains/User';
 import { PersonalDropdown } from '~/components/domains/User/PersonalDropdown';
+import { fetchMe } from '~/app/actions/userActions';
 
-export const WiscroNavbar: FC<{ currentUser: User }> = ({ currentUser }) => {
+export const WiscroNavbar: FC = async () => {
+  const { currentUser } = await fetchMe();
+
   return (
     <>
       <Navbar isBordered isBlurred={false}>
