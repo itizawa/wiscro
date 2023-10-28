@@ -2,24 +2,20 @@
 
 import { revalidateTag } from 'next/cache';
 import { apiGet, apiPatch, apiPost } from '~/app/restClient';
+import { API_NOTE_DETAIL, API_NOTE_LIST } from '~/constants/apiUrls';
 import { Note } from '~/domains/Note';
 
-const TAG = 'notes';
 export const fetchNote = async (id: string) => {
-  return await apiGet<{ note: Note }>(`/api/notes/${id}`, {
-    next: { tags: [TAG] },
-    cache: 'no-cache',
+  return await apiGet<{ note: Note }>(API_NOTE_DETAIL(id), {
+    next: { tags: [API_NOTE_DETAIL(id)] },
   });
 };
 
 export const fetchNotes = async () => {
-  return await apiGet<{ notes: Note[] }>(`/api/notes`, {
-    next: { tags: [TAG], revalidate: 60 },
+  return await apiGet<{ notes: Note[] }>(API_NOTE_LIST(), {
+    // 60秒間はキャッシュを使うので単体のキャッシュを保持しない
+    next: { tags: [API_NOTE_LIST()], revalidate: 60 },
   });
-};
-
-export const mutateNote = async () => {
-  revalidateTag(TAG);
 };
 
 export const postNote = async ({ title, description }: Pick<Note, 'description' | 'title'>) => {
@@ -38,5 +34,6 @@ export const updateNote = async ({ _id, title, description }: Pick<Note, '_id' |
       description,
     }),
   });
-  mutateNote();
+  revalidateTag(API_NOTE_DETAIL(_id));
+  revalidateTag(API_NOTE_LIST());
 };
