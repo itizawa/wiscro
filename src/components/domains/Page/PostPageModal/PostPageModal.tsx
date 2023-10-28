@@ -5,8 +5,7 @@ import { Button, Input, Modal, ModalBody, ModalContent, ModalFooter, ModalHeader
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 import { Note } from '~/domains/Note';
 import { isValidUrl } from '~/utils/isValidUrl/isValidUrl';
-import { usePostPage } from '~/hooks/Page/usePostPage/usePostPage';
-import { useMutatePagesByNoteId } from '~/hooks/Page/usePagesByNoteId/usePagesByNoteId';
+import { postPage } from '~/app/actions/pageActions';
 
 type Props = {
   isOpen: boolean;
@@ -25,8 +24,6 @@ export const PostPageModal: FC<Props> = ({ isOpen, onOpenChange, note }) => {
       url: '',
     },
   });
-  const { mutatePagesByNoteId } = useMutatePagesByNoteId();
-  const { postPage } = usePostPage();
   const handleOpenChange = useCallback(() => {
     reset();
     onOpenChange();
@@ -42,7 +39,6 @@ export const PostPageModal: FC<Props> = ({ isOpen, onOpenChange, note }) => {
           console.error(error);
         })
         .then(() => {
-          mutatePagesByNoteId(note._id);
           handleOpenChange();
           window.setTimeout(() => {
             window.scroll({
@@ -55,7 +51,7 @@ export const PostPageModal: FC<Props> = ({ isOpen, onOpenChange, note }) => {
           setIsLoading(false);
         });
     },
-    [handleOpenChange, isLoading, mutatePagesByNoteId, postPage, note._id],
+    [handleOpenChange, isLoading, note._id],
   );
 
   return (
