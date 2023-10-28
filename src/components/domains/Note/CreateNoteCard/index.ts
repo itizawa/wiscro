@@ -1,1 +1,0 @@
-export { CreateNoteCard } from './CreateNoteCard';
