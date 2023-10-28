@@ -1,7 +1,7 @@
 import { Metadata } from 'next';
 import { PageList } from './_components/PageList';
 import { PostPageForm } from './_components/PostPageForm/PostPageForm';
-import { fetchNote } from './actions';
+import { fetchNote } from '~/app/actions/noteActions';
 import { Page } from '~/domains/Page';
 import { NoteCard } from '~/components/domains/Note/NoteCard';
 import { apiGet } from '~/app/restClient';
