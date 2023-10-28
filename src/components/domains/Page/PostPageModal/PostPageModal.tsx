@@ -5,7 +5,7 @@ import { Button, Input, Modal, ModalBody, ModalContent, ModalFooter, ModalHeader
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 import { Note } from '~/domains/Note';
 import { isValidUrl } from '~/utils/isValidUrl/isValidUrl';
-import { usePostPage } from '~/hooks/Page/usePostPage/usePostPage';
+import { postPage } from '~/app/actions/pageActions';
 
 type Props = {
   isOpen: boolean;
@@ -24,7 +24,6 @@ export const PostPageModal: FC<Props> = ({ isOpen, onOpenChange, note }) => {
       url: '',
     },
   });
-  const { postPage } = usePostPage();
   const handleOpenChange = useCallback(() => {
     reset();
     onOpenChange();
@@ -52,7 +51,7 @@ export const PostPageModal: FC<Props> = ({ isOpen, onOpenChange, note }) => {
           setIsLoading(false);
         });
     },
-    [handleOpenChange, isLoading, postPage, note._id],
+    [handleOpenChange, isLoading, note._id],
   );
 
   return (
