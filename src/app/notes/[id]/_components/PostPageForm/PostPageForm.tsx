@@ -4,22 +4,22 @@ import { FC, useCallback, useState } from 'react';
 import { Avatar, AvatarIcon, Button, Card, Input } from '@nextui-org/react';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 import { Note } from '~/domains/Note';
-import { useCurrentUser } from '~/hooks/user/useCurrentUser';
 import { isValidUrl } from '~/utils/isValidUrl';
 import { Icon } from '~/components/uiParts/icons';
 import { postPage } from '~/app/actions/pageActions';
+import { User } from '~/domains/User';
 
 type Props = {
   note: Note;
+  currentUser: User;
 };
 
 interface IFormInput {
   url: string;
 }
 
-export const PostPageForm: FC<Props> = ({ note }) => {
+export const PostPageForm: FC<Props> = ({ note, currentUser }) => {
   const [isLoading, setIsLoading] = useState(false);
-  const { data: currentUser } = useCurrentUser();
   const { control, watch, handleSubmit, reset } = useForm({
     defaultValues: {
       url: '',

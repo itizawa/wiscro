@@ -3,19 +3,21 @@
 import Link from 'next/link';
 
 import { FC } from 'react';
-import { Button, Card, useDisclosure } from '@nextui-org/react';
+import { useDisclosure } from '@nextui-org/use-disclosure';
+import { Card } from '@nextui-org/card';
+import { Button } from '@nextui-org/button';
 import { format } from 'date-fns';
 import { EditNoteModal } from '../EditNoteModal';
 import { Note } from '~/domains/Note';
 import { URLS } from '~/constants/urls';
-import { useCurrentUser } from '~/hooks/user/useCurrentUser';
+import { User } from '~/domains/User';
 
 type Props = {
   note: Note;
+  currentUser?: User;
 };
 
-export const NoteCard: FC<Props> = ({ note }) => {
-  const { data: currentUser } = useCurrentUser();
+export const NoteCard: FC<Props> = ({ note, currentUser }) => {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
 
   return (
