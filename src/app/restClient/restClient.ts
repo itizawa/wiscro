@@ -5,6 +5,8 @@ import { cookies } from 'next/headers';
 
 export const handler = async <T>(path: string, method: 'GET' | 'POST' | 'PATCH' | 'DELETE', options?: RequestInit): Promise<T> => {
   const cookieStore = cookies();
+  console.log(cookieStore.getAll(), 'cookieStore');
+
   const url = urlJoin(process.env.NEXT_PUBLIC_SERVER_URL || 'https://api.wiscro.app/', path);
   const connectSid = cookieStore.get('connect.sid');
   const headers: HeadersInit = {
