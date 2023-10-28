@@ -14,7 +14,7 @@ export const LoginButton: FC = () => {
   useEffect(() => {
     apiGetForC('/api/me');
     router.refresh();
-  }, []);
+  }, [router]);
 
   return (
     <>
