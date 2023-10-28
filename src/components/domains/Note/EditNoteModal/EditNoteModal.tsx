@@ -4,11 +4,9 @@ import { FC, useCallback, useState } from 'react';
 import { Button, Input, Modal, ModalBody, ModalContent, ModalFooter, ModalHeader, Textarea } from '@nextui-org/react';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 import { useRouter } from 'next/navigation';
-import { usePostNote } from '~/hooks/Note/usePostNote';
 import { URLS } from '~/constants/urls';
 import { Note } from '~/domains/Note';
-import { useUpdateNote } from '~/hooks/Note/useUpdateNote';
-import { mutateNote } from '~/app/notes/[id]/actions';
+import { postNote, updateNote } from '~/app/actions/noteActions';
 
 type Props = {
   isOpen: boolean;
@@ -25,8 +23,6 @@ export const EditNoteModal: FC<Props> = ({ isOpen, onOpenChange, note }) => {
   const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
 
-  const { postNote } = usePostNote();
-  const { updateNote } = useUpdateNote();
   const { control, watch, handleSubmit, reset } = useForm({
     values: {
       title: note?.title || '',
@@ -48,7 +44,6 @@ export const EditNoteModal: FC<Props> = ({ isOpen, onOpenChange, note }) => {
         updateNote({ _id: note._id, title: data.title, description: data.description })
           .then(async () => {
             handleOpenChange();
-            mutateNote();
           })
           .catch((error) => {
             // TODO: 本来はコンソールに出すのではなく、ユーザーにエラーを通知する
@@ -68,7 +63,7 @@ export const EditNoteModal: FC<Props> = ({ isOpen, onOpenChange, note }) => {
           .finally(() => setIsLoading(false));
       }
     },
-    [handleOpenChange, isLoading, note, postNote, router, updateNote],
+    [handleOpenChange, isLoading, note, router],
   );
 
   return (

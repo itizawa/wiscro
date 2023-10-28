@@ -1,33 +1,33 @@
 import { Metadata } from 'next';
-import { PageList } from './_components/PageList';
 import { PostPageForm } from './_components/PostPageForm/PostPageForm';
-import { fetchNote } from './actions';
+import { fetchNote, fetchNotePages } from '~/app/actions/noteActions';
 import { Page } from '~/domains/Page';
-import { restClient } from '~/libs/restClient';
 import { NoteCard } from '~/components/domains/Note/NoteCard';
+import { PageCard } from '~/components/domains/Page/PageCard';
+import { fetchMe } from '~/app/actions/userActions';
 
 export async function generateMetadata({ params }: { params: { id: string } }): Promise<Metadata> {
   const { note } = await fetchNote(params.id);
   return { title: note.title, description: note.description };
 }
 
-export async function generateStaticParams() {
-  // TODO: 新着のノートは予め静的サイト生成しておく
-  return [];
-}
-
-export default async function Page({ params }: { params: { id: string } }) {
-  const { note } = await fetchNote(params.id);
-  const { pages } = await restClient.apiGet<{ pages: Page[] }>(`/api/notes/${params.id}/pages`);
+export default async function Page(props: { params: { id: string } }) {
+  const { note } = await fetchNote(props.params.id);
+  const { pages } = await fetchNotePages(props.params.id);
+  const { currentUser } = await fetchMe();
 
   return (
     <div className="grid grid-cols-2 justify-center gap-[24px] pt-[24px] px-3 pb-[100px] max-w-[848px] mx-auto">
       <div className="col-span-2 md:col-span-1">
-        <NoteCard note={note} />
+        <NoteCard note={note} currentUser={currentUser} />
       </div>
       <div className="col-span-2 md:col-span-1 flex flex-col gap-[12px]">
-        <PostPageForm note={note} />
-        <PageList noteId={note._id} pages={pages} />
+        <PostPageForm note={note} currentUser={currentUser} />
+        <div className="w-[100%] max-w-[400px] flex flex-col gap-[16px]">
+          {pages.map((page) => {
+            return <PageCard key={page._id} page={page} />;
+          })}
+        </div>
       </div>
     </div>
   );

@@ -1,3 +1,5 @@
+'use client';
+
 import { Button } from '@nextui-org/button';
 import { FC } from 'react';
 import { useDisclosure } from '@nextui-org/react';
