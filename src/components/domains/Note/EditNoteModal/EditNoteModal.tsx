@@ -6,7 +6,7 @@ import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 import { useRouter } from 'next/navigation';
 import { URLS } from '~/constants/urls';
 import { Note } from '~/domains/Note';
-import { postNote, updateNote } from '~/app/actions/noteActions';
+import { apiPatch, apiPost } from '~/app/restClient';
 
 type Props = {
   isOpen: boolean;
@@ -41,7 +41,12 @@ export const EditNoteModal: FC<Props> = ({ isOpen, onOpenChange, note }) => {
       setIsLoading(true);
 
       if (note) {
-        updateNote({ _id: note._id, title: data.title, description: data.description })
+        await apiPatch<{ note: Note }>(`/api/notes/${note._id}`, {
+          body: JSON.stringify({
+            title: data.title,
+            description: data.description,
+          }),
+        })
           .then(async () => {
             handleOpenChange();
           })
@@ -51,7 +56,12 @@ export const EditNoteModal: FC<Props> = ({ isOpen, onOpenChange, note }) => {
           })
           .finally(() => setIsLoading(false));
       } else {
-        postNote({ title: data.title, description: data.description })
+        apiPost<{ note: Note }>('/api/notes', {
+          body: JSON.stringify({
+            title: data.title,
+            description: data.description,
+          }),
+        })
           .then((data) => {
             handleOpenChange();
             router.push(URLS.NOTE_DETAIL(data.note._id));
