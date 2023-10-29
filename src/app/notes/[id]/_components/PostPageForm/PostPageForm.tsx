@@ -6,19 +6,20 @@ import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 import { Note } from '~/domains/Note';
 import { isValidUrl } from '~/utils/isValidUrl';
 import { Icon } from '~/components/uiParts/icons';
-import { postPage } from '~/app/actions/pageActions';
-import { User } from '~/domains/User';
-
+import { useCurrentUser } from '~/hooks/user/useCurrentUser';
+import { apiPost } from '~/app/restClient';
+import { useMutatePagesByNoteId } from '~/hooks/Page/usePagesByNoteId';
 type Props = {
   note: Note;
-  currentUser: User;
 };
 
 interface IFormInput {
   url: string;
 }
 
-export const PostPageForm: FC<Props> = ({ note, currentUser }) => {
+export const PostPageForm: FC<Props> = ({ note }) => {
+  const { data: currentUser } = useCurrentUser();
+  const { mutatePagesByNoteId } = useMutatePagesByNoteId();
   const [isLoading, setIsLoading] = useState(false);
   const { control, watch, handleSubmit, reset } = useForm({
     defaultValues: {
@@ -30,9 +31,10 @@ export const PostPageForm: FC<Props> = ({ note, currentUser }) => {
     async (data) => {
       if (isLoading) return;
       setIsLoading(true);
-      postPage({ url: data.url, noteId: note._id })
+      await apiPost('/api/pages', { body: JSON.stringify({ url: data.url, noteId: note._id }) })
         .then(() => {
           reset();
+          mutatePagesByNoteId(note._id);
         })
         .catch((error) => {
           // TODO: 本来はコンソールに出すのではなく、ユーザーにエラーを通知する
@@ -42,7 +44,7 @@ export const PostPageForm: FC<Props> = ({ note, currentUser }) => {
           setIsLoading(false);
         });
     },
-    [isLoading, note._id, reset],
+    [isLoading, mutatePagesByNoteId, note._id, reset],
   );
 
   if (!currentUser) return;
