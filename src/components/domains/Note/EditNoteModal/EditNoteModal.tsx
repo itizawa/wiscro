@@ -7,6 +7,7 @@ import { useRouter } from 'next/navigation';
 import { URLS } from '~/constants/urls';
 import { Note } from '~/domains/Note';
 import { apiPatch, apiPost } from '~/app/restClient';
+import { useMutateNote } from '~/hooks/Note/useNote/useNote';
 
 type Props = {
   isOpen: boolean;
@@ -22,6 +23,7 @@ interface IFormInput {
 export const EditNoteModal: FC<Props> = ({ isOpen, onOpenChange, note }) => {
   const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
+  const { mutateNote } = useMutateNote();
 
   const { control, watch, handleSubmit, reset } = useForm({
     values: {
@@ -49,6 +51,7 @@ export const EditNoteModal: FC<Props> = ({ isOpen, onOpenChange, note }) => {
         })
           .then(async () => {
             handleOpenChange();
+            mutateNote(note._id);
           })
           .catch((error) => {
             // TODO: 本来はコンソールに出すのではなく、ユーザーにエラーを通知する
@@ -73,7 +76,7 @@ export const EditNoteModal: FC<Props> = ({ isOpen, onOpenChange, note }) => {
           .finally(() => setIsLoading(false));
       }
     },
-    [handleOpenChange, isLoading, note, router],
+    [handleOpenChange, isLoading, mutateNote, note, router],
   );
 
   return (
