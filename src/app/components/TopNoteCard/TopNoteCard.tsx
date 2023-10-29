@@ -7,12 +7,15 @@ import { Card } from '@nextui-org/react';
 import { format } from 'date-fns';
 import { Note } from '~/domains/Note';
 import { URLS } from '~/constants/urls';
+import { useNote } from '~/hooks/Note/useNote';
 
 type Props = {
   note: Note;
 };
 
-export const TopNoteCard: FC<Props> = ({ note }) => {
+export const TopNoteCard: FC<Props> = ({ note: _note }) => {
+  const { data: note } = useNote({ noteId: _note._id, fallbackData: _note });
+
   return (
     <Card className="w-[100%] max-w-[400px] p-[16px] flex flex-col" shadow="sm">
       <h4 className="font-bold text-lg mb-[8px]">
