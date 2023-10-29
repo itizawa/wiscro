@@ -10,14 +10,14 @@ import { format } from 'date-fns';
 import { EditNoteModal } from '../EditNoteModal';
 import { Note } from '~/domains/Note';
 import { URLS } from '~/constants/urls';
-import { User } from '~/domains/User';
+import { useCurrentUser } from '~/hooks/user/useCurrentUser';
 
 type Props = {
   note: Note;
-  currentUser?: User;
 };
 
-export const NoteCard: FC<Props> = ({ note, currentUser }) => {
+export const NoteCard: FC<Props> = ({ note }) => {
+  const { data: currentUser } = useCurrentUser();
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
 
   return (

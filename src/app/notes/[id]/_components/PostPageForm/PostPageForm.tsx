@@ -7,18 +7,18 @@ import { Note } from '~/domains/Note';
 import { isValidUrl } from '~/utils/isValidUrl';
 import { Icon } from '~/components/uiParts/icons';
 import { postPage } from '~/app/actions/pageActions';
-import { User } from '~/domains/User';
+import { useCurrentUser } from '~/hooks/user/useCurrentUser';
 
 type Props = {
   note: Note;
-  currentUser: User;
 };
 
 interface IFormInput {
   url: string;
 }
 
-export const PostPageForm: FC<Props> = ({ note, currentUser }) => {
+export const PostPageForm: FC<Props> = ({ note }) => {
+  const { data: currentUser } = useCurrentUser();
   const [isLoading, setIsLoading] = useState(false);
   const { control, watch, handleSubmit, reset } = useForm({
     defaultValues: {
