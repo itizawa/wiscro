@@ -6,8 +6,8 @@ import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 import { Note } from '~/domains/Note';
 import { isValidUrl } from '~/utils/isValidUrl';
 import { Icon } from '~/components/uiParts/icons';
-import { postPage } from '~/app/actions/pageActions';
 import { useCurrentUser } from '~/hooks/user/useCurrentUser';
+import { apiPost } from '~/app/restClient';
 
 type Props = {
   note: Note;
@@ -30,7 +30,7 @@ export const PostPageForm: FC<Props> = ({ note }) => {
     async (data) => {
       if (isLoading) return;
       setIsLoading(true);
-      postPage({ url: data.url, noteId: note._id })
+      await apiPost('/api/pages', { body: JSON.stringify({ url: data.url, noteId: note._id }) })
         .then(() => {
           reset();
         })
