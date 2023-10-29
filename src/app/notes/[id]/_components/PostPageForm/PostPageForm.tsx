@@ -8,7 +8,7 @@ import { isValidUrl } from '~/utils/isValidUrl';
 import { Icon } from '~/components/uiParts/icons';
 import { useCurrentUser } from '~/hooks/user/useCurrentUser';
 import { apiPost } from '~/app/restClient';
-
+import { useMutatePagesByNoteId } from '~/hooks/Page/usePagesByNoteId';
 type Props = {
   note: Note;
 };
@@ -19,6 +19,7 @@ interface IFormInput {
 
 export const PostPageForm: FC<Props> = ({ note }) => {
   const { data: currentUser } = useCurrentUser();
+  const { mutatePagesByNoteId } = useMutatePagesByNoteId();
   const [isLoading, setIsLoading] = useState(false);
   const { control, watch, handleSubmit, reset } = useForm({
     defaultValues: {
@@ -33,6 +34,7 @@ export const PostPageForm: FC<Props> = ({ note }) => {
       await apiPost('/api/pages', { body: JSON.stringify({ url: data.url, noteId: note._id }) })
         .then(() => {
           reset();
+          mutatePagesByNoteId(note._id);
         })
         .catch((error) => {
           // TODO: 本来はコンソールに出すのではなく、ユーザーにエラーを通知する
@@ -42,7 +44,7 @@ export const PostPageForm: FC<Props> = ({ note }) => {
           setIsLoading(false);
         });
     },
-    [isLoading, note._id, reset],
+    [isLoading, mutatePagesByNoteId, note._id, reset],
   );
 
   if (!currentUser) return;
