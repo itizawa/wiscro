@@ -11,13 +11,15 @@ import { EditNoteModal } from '../EditNoteModal';
 import { Note } from '~/domains/Note';
 import { URLS } from '~/constants/urls';
 import { useCurrentUser } from '~/hooks/user/useCurrentUser';
+import { useNote } from '~/hooks/Note/useNote';
 
 type Props = {
   note: Note;
 };
 
-export const NoteCard: FC<Props> = ({ note }) => {
+export const NoteCard: FC<Props> = ({ note: _note }) => {
   const { data: currentUser } = useCurrentUser();
+  const { data: note } = useNote({ noteId: _note._id, fallbackData: _note });
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
 
   return (

@@ -1,9 +1,9 @@
 import { Metadata } from 'next';
 import { PostPageForm } from './_components/PostPageForm/PostPageForm';
+import { PageList } from './_components/PageList/PageList';
 import { fetchNote, fetchNotePages } from '~/app/actions/noteActions';
 import { Page } from '~/domains/Page';
 import { NoteCard } from '~/components/domains/Note/NoteCard';
-import { PageCard } from '~/components/domains/Page/PageCard';
 
 export async function generateMetadata({ params }: { params: { id: string } }): Promise<Metadata> {
   const { note } = await fetchNote(params.id);
@@ -21,11 +21,7 @@ export default async function Page(props: { params: { id: string } }) {
       </div>
       <div className="col-span-2 md:col-span-1 flex flex-col gap-[12px]">
         <PostPageForm note={note} />
-        <div className="w-[100%] max-w-[400px] flex flex-col gap-[16px]">
-          {pages.map((page) => {
-            return <PageCard key={page._id} page={page} />;
-          })}
-        </div>
+        <PageList noteId={note._id} pages={pages} />
       </div>
     </div>
   );
