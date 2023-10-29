@@ -1,10 +1,16 @@
 // app/page.tsx
 import { Image } from '@nextui-org/image';
+import { getServerSession } from 'next-auth';
 import { TopNoteCardList } from './components/TopNoteCardList';
 import { TopButton } from './components/TopButton/TopButton';
 import { fetchMe } from './actions/userActions';
+import { authOptions } from './api/auth/[...nextauth]/route';
 
 export default async function Page() {
+  const session = await getServerSession(authOptions);
+  const user = session?.user;
+  console.log(user, 12);
+
   const { currentUser } = await fetchMe();
 
   return (

@@ -2,7 +2,7 @@
 
 import { FC, useCallback } from 'react';
 import { Image, Link, Modal, ModalBody, ModalContent, ModalHeader } from '@nextui-org/react';
-import { URLS } from '~/constants/urls';
+import { signIn } from 'next-auth/react';
 
 type Props = {
   isOpen: boolean;
@@ -20,9 +20,9 @@ export const LoginModal: FC<Props> = ({ isOpen, onOpenChange }) => {
         <ModalHeader>ようこそ Wiscro へ！</ModalHeader>
         <ModalBody className="pb-[24px] items-center">
           <p className="mb-[4px]">ノートを作成してページをまとめましょう</p>
-          <Link href={URLS.LOGIN_TO_BACKEND}>
+          <div className="cursor-pointer" onClick={() => signIn('google')}>
             <Image className="mx-auto" src="/images/sign-in-google.png" width={200} />
-          </Link>
+          </div>
           <p className="text-slate-600">
             ログインする前に、
             <Link href="https://www.wiscro.app/terms" className="text-sky-500" target="_blank" rel="noreferrer">
