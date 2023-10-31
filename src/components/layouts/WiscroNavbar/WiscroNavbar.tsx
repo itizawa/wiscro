@@ -1,3 +1,5 @@
+'use server';
+
 import React, { FC } from 'react';
 import { Navbar, NavbarBrand, NavbarContent, NavbarItem } from '@nextui-org/navbar';
 import { Link } from '@nextui-org/link';
