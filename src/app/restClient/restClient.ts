@@ -1,20 +1,11 @@
-'use server';
-
 import urlJoin from 'url-join';
-import { cookies } from 'next/headers';
-export const handler = async <T>(path: string, method: 'GET' | 'POST' | 'PATCH' | 'DELETE', options?: RequestInit): Promise<T> => {
-  const cookieStore = cookies();
-  const cookie = cookieStore
-    .getAll()
-    .map((cookie) => `${cookie.name}=${cookie.value}`)
-    .join(';');
 
+export const handler = async <T>(path: string, method: 'GET' | 'POST' | 'PATCH' | 'DELETE', options?: RequestInit): Promise<T> => {
   const url = urlJoin(process.env.NEXT_PUBLIC_SERVER_URL || 'https://api.wiscro.app/', path);
   const headers: HeadersInit = {
     'Content-Type': 'application/json',
     'X-Requested-With': 'XMLHttpRequest',
     'Access-Control-Allow-Credentials': 'true',
-    cookie: cookie,
   };
 
   const init: RequestInit = {
