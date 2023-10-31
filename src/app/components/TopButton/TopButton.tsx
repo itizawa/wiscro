@@ -6,10 +6,9 @@ import { FC } from 'react';
 import { EditNoteModal } from '~/components/domains/Note/EditNoteModal';
 import { LoginModal } from '~/components/domains/User/LoginModal';
 import { Icon } from '~/components/uiParts/icons';
-import { useCurrentUser } from '~/hooks/user/useCurrentUser';
+import { User } from '~/domains/User';
 
-export const TopButton: FC = () => {
-  const { data: currentUser } = useCurrentUser();
+export const TopButton: FC<{ currentUser: User }> = ({ currentUser }) => {
   const { isOpen: isOpenPostNoteModal, onOpen: onOpenPostNoteModal, onOpenChange: onOpenChangePostNoteModal } = useDisclosure();
   const { isOpen: isOpenLoginModal, onOpen: onOpenLoginModal, onOpenChange: onOpenChangeLoginModal } = useDisclosure();
 
