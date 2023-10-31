@@ -1,13 +1,15 @@
+'use client';
+
 import React, { FC } from 'react';
 import { Navbar, NavbarBrand, NavbarContent, NavbarItem } from '@nextui-org/navbar';
 import { Link } from '@nextui-org/link';
+import { Spinner } from '@nextui-org/react';
 import { LoginButton } from '~/components/domains/User/LoginButton';
 import { PersonalDropdown } from '~/components/domains/User/PersonalDropdown';
-import { User } from '~/domains/User';
-import { apiGet } from '~/app/restClient';
+import { useCurrentUser } from '~/hooks/user/useCurrentUser';
 
-export const WiscroNavbar: FC = async () => {
-  const { currentUser } = await apiGet<{ currentUser: User }>('/api/me', { cache: 'no-cache' });
+export const WiscroNavbar: FC = () => {
+  const { data: currentUser, isLoading } = useCurrentUser();
 
   return (
     <>
@@ -18,7 +20,11 @@ export const WiscroNavbar: FC = async () => {
           </Link>
         </NavbarBrand>
         <NavbarContent justify="end">
-          <NavbarItem>{currentUser ? <PersonalDropdown currentUser={currentUser} /> : <LoginButton />}</NavbarItem>
+          {isLoading ? (
+            <Spinner />
+          ) : (
+            <NavbarItem>{currentUser ? <PersonalDropdown currentUser={currentUser} /> : <LoginButton />}</NavbarItem>
+          )}
         </NavbarContent>
       </Navbar>
     </>
