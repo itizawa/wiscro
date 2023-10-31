@@ -6,19 +6,19 @@ import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 import { Note } from '~/domains/Note';
 import { isValidUrl } from '~/utils/isValidUrl';
 import { Icon } from '~/components/uiParts/icons';
-import { useCurrentUser } from '~/hooks/user/useCurrentUser';
 import { apiPost } from '~/app/restClient';
 import { useMutatePagesByNoteId } from '~/hooks/Page/usePagesByNoteId';
+import { User } from '~/domains/User';
 type Props = {
   note: Note;
+  currentUser: User;
 };
 
 interface IFormInput {
   url: string;
 }
 
-export const PostPageForm: FC<Props> = ({ note }) => {
-  const { data: currentUser } = useCurrentUser();
+export const PostPageForm: FC<Props> = ({ note, currentUser }) => {
   const { mutatePagesByNoteId } = useMutatePagesByNoteId();
   const [isLoading, setIsLoading] = useState(false);
   const { control, watch, handleSubmit, reset } = useForm({
