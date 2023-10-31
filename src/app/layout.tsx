@@ -29,7 +29,7 @@ export const metadata: Metadata = {
   metadataBase: new URL(process.env.URL ?? 'http://localhost:3000'),
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default async function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="ja" className="light min-h-[100vh] bg-slate-50">
       <body className="min-h-[100vh] flex flex-col">
