@@ -1,9 +1,34 @@
 // app/page.tsx
 import { Image } from '@nextui-org/image';
+import { cookies } from 'next/headers';
+import urlJoin from 'url-join';
 import { TopNoteCardList } from './components/TopNoteCardList';
 import { TopButton } from './components/TopButton/TopButton';
 
 export default async function Page() {
+  const cookieStore = cookies();
+  const cookie = cookieStore
+    .getAll()
+    .map((v) => `${v.name}=${v.value}`)
+    .join('; ');
+  console.log(cookie, 14);
+
+  const response = await fetch(urlJoin(process.env.NEXT_PUBLIC_SERVER_URL || '', '/api/me'), {
+    headers: {
+      'Content-Type': 'application/json',
+      'X-Requested-With': 'XMLHttpRequest',
+      'Access-Control-Allow-Credentials': 'true',
+      cookie,
+    },
+    credentials: 'include',
+    cache: 'no-store',
+  }).catch((error) => {
+    console.error(error);
+    throw new Error(error);
+  });
+  const data = await response.json();
+  console.log(data, 26);
+
   return (
     <>
       <div className="bg-white drop-shadow-sm">
