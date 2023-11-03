@@ -30,7 +30,7 @@ export const PostPageForm: FC<Props> = ({ note, currentUser }) => {
     async (data) => {
       if (isLoading) return;
       setIsLoading(true);
-      await apiPost('/api/pages', { body: JSON.stringify({ url: data.url, noteId: note._id }) })
+      postPage({ url: data.url, noteId: note._id })
         .then(() => {
           reset();
         })
@@ -42,7 +42,7 @@ export const PostPageForm: FC<Props> = ({ note, currentUser }) => {
           setIsLoading(false);
         });
     },
-    [isLoading, mutatePagesByNoteId, note._id, reset],
+    [isLoading, note._id, reset],
   );
 
   if (!currentUser) return;
