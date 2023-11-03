@@ -3,11 +3,10 @@ import { Navbar, NavbarBrand, NavbarContent, NavbarItem } from '@nextui-org/navb
 import { Link } from '@nextui-org/link';
 import { LoginButton } from '~/components/domains/User/LoginButton';
 import { PersonalDropdown } from '~/components/domains/User/PersonalDropdown';
-import { User } from '~/domains/User';
-import { apiGet } from '~/app/restClient';
+import { fetchMe } from '~/app/actions/userActions';
 
 export const WiscroNavbar: FC = async () => {
-  const { currentUser } = await apiGet<{ currentUser: User }>('/api/me', { cache: 'no-cache' });
+  const { currentUser } = await fetchMe();
 
   return (
     <>

@@ -2,11 +2,10 @@
 import { Image } from '@nextui-org/image';
 import { TopNoteCardList } from './components/TopNoteCardList';
 import { TopButton } from './components/TopButton/TopButton';
-import { apiGet } from './restClient';
-import { User } from '~/domains/User';
+import { fetchMe } from './actions/userActions';
 
 export default async function Page() {
-  const { currentUser } = await apiGet<{ currentUser: User }>('/api/me');
+  const { currentUser } = await fetchMe();
 
   return (
     <>

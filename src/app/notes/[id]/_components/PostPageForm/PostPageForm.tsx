@@ -6,9 +6,9 @@ import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 import { Note } from '~/domains/Note';
 import { isValidUrl } from '~/utils/isValidUrl';
 import { Icon } from '~/components/uiParts/icons';
-import { apiPost } from '~/app/restClient';
-import { useMutatePagesByNoteId } from '~/hooks/Page/usePagesByNoteId';
+import { postPage } from '~/app/actions/pageActions';
 import { User } from '~/domains/User';
+
 type Props = {
   note: Note;
   currentUser: User;
@@ -19,7 +19,6 @@ interface IFormInput {
 }
 
 export const PostPageForm: FC<Props> = ({ note, currentUser }) => {
-  const { mutatePagesByNoteId } = useMutatePagesByNoteId();
   const [isLoading, setIsLoading] = useState(false);
   const { control, watch, handleSubmit, reset } = useForm({
     defaultValues: {
@@ -34,7 +33,6 @@ export const PostPageForm: FC<Props> = ({ note, currentUser }) => {
       await apiPost('/api/pages', { body: JSON.stringify({ url: data.url, noteId: note._id }) })
         .then(() => {
           reset();
-          mutatePagesByNoteId(note._id);
         })
         .catch((error) => {
           // TODO: 本来はコンソールに出すのではなく、ユーザーにエラーを通知する
