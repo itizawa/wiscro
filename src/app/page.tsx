@@ -48,7 +48,7 @@ export default function Home() {
                 <th className="py-4 pr-4 text-left w-1/4 text-gray-600">
                   設立
                 </th>
-                <td className="py-4">2023年4月1日</td>
+                <td className="py-4">2023年5月18日</td>
               </tr>
               <tr className="border-b">
                 <th className="py-4 pr-4 text-left w-1/4 text-gray-600">
