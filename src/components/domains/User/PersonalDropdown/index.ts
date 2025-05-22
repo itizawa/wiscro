@@ -1,1 +1,0 @@
-export { PersonalDropdown } from './PersonalDropdown';
