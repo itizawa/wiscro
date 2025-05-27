@@ -6,16 +6,18 @@ export default function Home() {
   return (
     <main className="min-h-screen">
       <section className="h-[500px] relative">
-        <div className="absolute top-8 left-8 p-8 bg-[rgba(255,255,255,0.6)] rounded-lg shadow-lg">
-          <span className="md:text-2xl font-bold text-[#2F4A7B]">
-            <span className="font-bold">wisdom(知恵) + crowd(群衆)</span>
-            <br />
-            集合知・群衆の知恵
-            <br />
-            インターネットを通じて
-            <br />
-            世界をより良くするための会社
-          </span>
+        <div className="relative max-w-6xl mx-auto">
+          <div className="absolute top-8 left-8 p-8 bg-[rgba(255,255,255,0.6)] rounded-lg shadow-lg">
+            <span className="md:text-2xl font-bold text-[#2F4A7B]">
+              <span className="font-bold">wisdom(知恵) + crowd(群衆)</span>
+              <br />
+              集合知・群衆の知恵
+              <br />
+              インターネットを通じて
+              <br />
+              世界をより良くするための会社
+            </span>
+          </div>
         </div>
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
