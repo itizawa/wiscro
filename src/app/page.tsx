@@ -16,11 +16,10 @@ export default function Home() {
             <span className="md:text-2xl font-bold text-[#2F4A7B]">
               <span className="font-bold">wisdom(知恵) + crowd(群衆)</span>
               <br />
-              集合知・群衆の知恵
               <br />
               インターネットを通じて
               <br />
-              世界をより良くするための会社
+              世界をより良くする
             </span>
           </div>
         </div>
