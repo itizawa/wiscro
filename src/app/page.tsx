@@ -94,7 +94,7 @@ export default function Home() {
           </div>
           <div>
             <h3 className="text-xl font-bold mb-2">市澤 樹享</h3>
-            <p className="text-sm md:text-base">
+            <p className="md:text-base">
               LINE公式アカウントを活用した採用管理システムを提供する急成長スタートアップにて、
               <br />
               アプリケーションエンジニアとしてプロダクトの立ち上げから携わっています。
