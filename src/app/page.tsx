@@ -10,7 +10,7 @@ export default function Home() {
         backgroundImage: `linear-gradient(45deg, rgb(139 208 254 / 30%), rgba(0, 123, 255, 0))`,
       }}
     >
-      <section className="h-[500px] relative">
+      <section className="h-[224px] md:h-[500px] relative">
         <div className="relative max-w-6xl mx-auto">
           <div className="absolute top-8 left-8 p-8 bg-[rgba(255,255,255,0.6)] rounded-lg shadow-lg">
             <span className="md:text-2xl font-bold text-[#2F4A7B]">
@@ -28,7 +28,7 @@ export default function Home() {
         <img
           src="/eye-catch.png"
           alt="wiscro"
-          className="h-[500px] object-cover w-full"
+          className="h-[224px] md:h-[500px] object-cover w-full"
         />
       </section>
       <section
