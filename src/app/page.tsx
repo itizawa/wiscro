@@ -4,7 +4,12 @@ import Image from "next/image";
 
 export default function Home() {
   return (
-    <main className="min-h-screen">
+    <main
+      className="min-h-screen flex flex-col items-center "
+      style={{
+        backgroundImage: `linear-gradient(45deg, rgb(139 208 254 / 30%), rgba(0, 123, 255, 0))`,
+      }}
+    >
       <section className="h-[500px] relative">
         <div className="relative max-w-6xl mx-auto">
           <div className="absolute top-8 left-8 p-8 bg-[rgba(255,255,255,0.6)] rounded-lg shadow-lg">
@@ -27,7 +32,7 @@ export default function Home() {
         />
       </section>
       <section
-        className="py-20 px-4 md:px-8 max-w-6xl mx-auto"
+        className="py-6 md:py-12 px-4 md:px-8 w-full max-w-6xl mx-auto"
         id="company-overview"
       >
         <h2 className="text-2xl font-bold mb-6 pb-2 border-b">概要</h2>
@@ -73,7 +78,7 @@ export default function Home() {
 
       {/* Representative Introduction */}
       <section
-        className="py-20 px-4 md:px-8 max-w-6xl mx-auto"
+        className="py-6 md:py-12 px-4 md:px-8 max-w-6xl mx-auto"
         id="representative"
       >
         <h2 className="text-2xl font-bold mb-6 pb-2 border-b">代表紹介</h2>
@@ -104,7 +109,10 @@ export default function Home() {
       </section>
 
       {/* Services Section */}
-      <section className="py-20 px-4 md:px-8 max-w-6xl mx-auto" id="products">
+      <section
+        className="py-6 md:py-12 px-4 md:px-8 max-w-6xl mx-auto"
+        id="products"
+      >
         <h2 className="text-2xl font-bold mb-4 pb-2 border-b">
           プロダクト一覧
         </h2>
@@ -133,13 +141,13 @@ export default function Home() {
 
       {/* Development Achievements */}
       <section
-        className="py-20 px-4 md:px-8 max-w-6xl mx-auto"
+        className="py-6 md:py-12 px-4 md:px-8 max-w-6xl mx-auto"
         id="achievements"
       >
         <h2 className="text-2xl font-bold mb-4 pb-2 border-b">開発実績</h2>
         <p className="mb-6 text-gray-600">これまでの開発実績を紹介します。</p>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <div className="border rounded-lg overflow-hidden">
+          <div className="border rounded-lg overflow-hidden bg-gray-50">
             <div className="h-48 bg-emerald-100 relative">
               <Image
                 src="/design.png"
@@ -155,7 +163,7 @@ export default function Home() {
               </p>
             </div>
           </div>
-          <div className="border rounded-lg overflow-hidden">
+          <div className="border rounded-lg overflow-hidden bg-gray-50">
             <div className="h-48 bg-amber-100 relative">
               <Image
                 src="/fc.png"
@@ -175,7 +183,7 @@ export default function Home() {
       </section>
 
       {/* Contact Section */}
-      <section className="py-12 px-4 md:px-8 max-w-6xl mx-auto text-center">
+      <section className="py-6 md:py-12 px-4 md:px-8 max-w-6xl mx-auto text-center">
         <h2 className="text-2xl font-bold mb-6">お問い合わせ</h2>
         <p className="mb-8">
           ご相談、お見積もりなど、お気軽にお問い合わせください。
