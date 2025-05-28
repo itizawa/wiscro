@@ -67,7 +67,7 @@ export default function Home() {
                   事業内容
                 </th>
                 <td className="py-4">
-                  アプリケーション開発、システムコンサルティング
+                  企業向け業務ソフトウェア・Webサービス開発
                 </td>
               </tr>
             </tbody>
@@ -112,9 +112,7 @@ export default function Home() {
         className="py-6 md:py-12 px-4 md:px-8 max-w-6xl mx-auto"
         id="products"
       >
-        <h2 className="text-2xl font-bold mb-4 pb-2 border-b">
-          プロダクト一覧
-        </h2>
+        <h2 className="text-2xl font-bold mb-4 pb-2 border-b">サービス一覧</h2>
         <p className="mb-6 text-gray-600">
           企画・開発・運用までを一貫して開発しています。
         </p>

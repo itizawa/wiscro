@@ -59,7 +59,7 @@ export default function Header() {
               className="text-gray-700 hover:text-gray-900"
               onClick={(e) => handleSmoothScroll(e, "products")}
             >
-              プロダクト一覧
+              サービス一覧
             </a>
             <a
               href="#achievements"
@@ -107,7 +107,7 @@ export default function Header() {
                     className="px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50"
                     onClick={(e) => handleSmoothScroll(e, "products")}
                   >
-                    プロダクト一覧
+                    サービス一覧
                   </a>
                   <a
                     href="#achievements"
