@@ -1,8 +1,12 @@
+import { BlogList } from "@/components/blog/BlogList";
 import { ProductCard } from "@/components/ProductCard";
 import { Button } from "@/components/ui/button";
+import { getAllBlogPosts } from "@/shared/lib/blog";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function Home() {
+  const recentPosts = getAllBlogPosts().slice(0, 3);
   return (
     <main
       className="min-h-screen flex flex-col items-center "
@@ -177,6 +181,28 @@ export default function Home() {
             </div>
           </div>
         </div>
+      </section>
+
+      {/* Blog Section */}
+      <section
+        className="py-6 md:py-12 px-4 md:px-8 max-w-6xl mx-auto  w-full"
+        id="blogs"
+      >
+        <div className="flex justify-between items-center mb-6">
+          <h2 className="text-2xl font-bold pb-2 border-b">
+            最新のお知らせ記事
+          </h2>
+          <Link
+            href="/blog"
+            className="text-blue-700 hover:text-blue-800 font-medium"
+          >
+            すべて見る →
+          </Link>
+        </div>
+        <p className="mb-6 text-gray-600">
+          技術情報や企業活動について発信しています。
+        </p>
+        <BlogList posts={recentPosts} />
       </section>
 
       {/* Contact Section */}

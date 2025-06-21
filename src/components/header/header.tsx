@@ -68,6 +68,9 @@ export default function Header() {
             >
               開発実績
             </a>
+            <Link href="/blog" className="text-gray-700 hover:text-gray-900">
+              お知らせ
+            </Link>
             <a
               href="https://docs.google.com/forms/d/e/1FAIpQLSeNmuXo7-05iU_m5ge4pq_1pysVTqcis8JWOgrupso1foOZpw/viewform?usp=dialogo"
               target="_blank"
@@ -116,6 +119,12 @@ export default function Header() {
                   >
                     開発実績
                   </a>
+                  <Link
+                    href="/blog"
+                    className="px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50"
+                  >
+                    お知らせ
+                  </Link>
                   <div className="pt-4">
                     <a
                       href="https://docs.google.com/forms/d/e/1FAIpQLSeNmuXo7-05iU_m5ge4pq_1pysVTqcis8JWOgrupso1foOZpw/viewform?usp=dialogo"
