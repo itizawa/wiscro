@@ -1,8 +1,42 @@
 import { ProductCard } from "@/components/ProductCard";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
+import fs from 'fs';
+import path from 'path';
+import matter from 'gray-matter';
+import Link from 'next/link';
 
-export default function Home() {
+// Define PostData interface
+interface PostData {
+  id: string;
+  title: string;
+  date: string;
+}
+
+const postsDirectory = path.join(process.cwd(), 'contents/news');
+
+async function getRecentPostsData(): Promise<PostData[]> {
+  const fileNames = fs.readdirSync(postsDirectory);
+  const allPostsData = fileNames.map((fileName) => {
+    const id = fileName.replace(/\.md$/, '');
+    const fullPath = path.join(postsDirectory, fileName);
+    const fileContents = fs.readFileSync(fullPath, 'utf8');
+    const matterResult = matter(fileContents);
+    return {
+      id,
+      ...(matterResult.data as { title: string; date: string }),
+    };
+  });
+
+  // Sort posts by date in descending order
+  allPostsData.sort((a, b) => (a.date < b.date ? 1 : -1));
+
+  return allPostsData.slice(0, 5); // Return the 5 most recent posts
+}
+
+export default async function Home() {
+  const recentPosts = await getRecentPostsData();
+
   return (
     <main
       className="min-h-screen flex flex-col items-center "
@@ -176,6 +210,34 @@ export default function Home() {
               </p>
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* New Section for Recent News */}
+      <section className="py-20 px-4 md:px-8 max-w-6xl mx-auto" id="recent-news">
+        <h2 className="text-2xl font-bold mb-6 pb-2 border-b">
+          Recent News
+        </h2>
+        {recentPosts.length > 0 ? (
+          <ul className="space-y-4">
+            {recentPosts.map(({ id, title, date }) => (
+              <li key={id} className="p-4 border rounded-lg shadow-sm hover:shadow-md transition-shadow">
+                <h3 className="text-xl font-medium mb-1">
+                  <Link href={`/news/${id}`} className="hover:underline">
+                    {title}
+                  </Link>
+                </h3>
+                <p className="text-gray-500 text-xs">{date}</p>
+              </li>
+            ))}
+          </ul>
+        ) : (
+          <p>No news available at the moment.</p>
+        )}
+         <div className="mt-8 text-center">
+            <Link href="/news" className="bg-green-500 hover:bg-green-700 text-white font-bold py-3 px-6 rounded-lg text-base transition-colors duration-150">
+                View All News
+            </Link>
         </div>
       </section>
 
