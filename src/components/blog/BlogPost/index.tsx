@@ -1,3 +1,4 @@
+import { MarkdownViewer } from "@/components/MarkdownViewer";
 import { BlogPost as BlogPostType } from "@/shared/types/blog";
 
 interface BlogPostProps {
@@ -38,6 +39,7 @@ export function BlogPost({ post }: BlogPostProps) {
         )}
         {post.thumbnail && (
           <div className="mb-8">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src={post.thumbnail}
               alt={post.title}
@@ -46,11 +48,9 @@ export function BlogPost({ post }: BlogPostProps) {
           </div>
         )}
       </header>
-
-      <div
-        className="prose prose-lg max-w-none"
-        dangerouslySetInnerHTML={{ __html: post.htmlContent }}
-      />
+      <div className="prose space-y-4 break-words">
+        <MarkdownViewer body={post.htmlContent} />
+      </div>
     </article>
   );
 }

@@ -65,7 +65,7 @@ export async function getBlogPostBySlug(slug: string): Promise<BlogPost | null> 
   }
 }
 
-export async function getBlogPostWithHtmlBySlug(slug: string): Promise<(BlogPost & { htmlContent: string }) | null> {
+export function getBlogPostWithHtmlBySlug(slug: string): (BlogPost & { htmlContent: string }) | null {
   try {
     const fullPath = path.join(BLOG_CONTENT_PATH, `${slug}.md`);
     const fileContents = fs.readFileSync(fullPath, 'utf8');
@@ -88,7 +88,7 @@ export async function getBlogPostWithHtmlBySlug(slug: string): Promise<(BlogPost
       return null;
     }
 
-    const htmlContent = await parseMarkdown(content);
+    const htmlContent = parseMarkdown(content);
     
     return {
       ...post,
