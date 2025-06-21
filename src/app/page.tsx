@@ -42,7 +42,7 @@ export default function Home() {
                 <th className="py-4 pr-4 text-left w-1/4 text-gray-600">
                   団体名
                 </th>
-                <td className="py-4">wiscro</td>
+                <td className="py-4">wiscro（ウィズクロ）</td>
               </tr>
               <tr className="border-b">
                 <th className="py-4 pr-4 text-left w-1/4 text-gray-600">
