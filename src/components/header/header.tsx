@@ -4,23 +4,25 @@ import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Menu } from "lucide-react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useState } from "react";
 
 export default function Header() {
   const [isSheetOpen, setIsSheetOpen] = useState(false);
+  const pathname = usePathname();
+  const isHomePage = pathname === "/";
 
-  const handleSmoothScroll = (
+  const handleLinkClick = (
     e: React.MouseEvent<HTMLAnchorElement>,
     targetId: string
   ) => {
+    if (!isHomePage) return;
     e.preventDefault();
-
-    // Sheetを閉じる
     setIsSheetOpen(false);
 
     const targetElement = document.getElementById(targetId);
     if (targetElement) {
-      const headerHeight = 64; // sticky headerの高さ
+      const headerHeight = 64;
       const elementPosition = targetElement.offsetTop - headerHeight;
 
       window.scrollTo({
@@ -41,36 +43,40 @@ export default function Header() {
 
           <div className="hidden md:flex items-center space-x-8">
             <a
-              href="#company-overview"
+              href="/company-overview"
               className="text-gray-700 hover:text-gray-900"
-              onClick={(e) => handleSmoothScroll(e, "company-overview")}
+              onClick={(e) => handleLinkClick(e, "company-overview")}
             >
               概要
             </a>
             <a
-              href="#representative"
+              href="/representative"
               className="text-gray-700 hover:text-gray-900"
-              onClick={(e) => handleSmoothScroll(e, "representative")}
+              onClick={(e) => handleLinkClick(e, "representative")}
             >
               代表紹介
             </a>
             <a
-              href="#products"
+              href="/products"
               className="text-gray-700 hover:text-gray-900"
-              onClick={(e) => handleSmoothScroll(e, "products")}
+              onClick={(e) => handleLinkClick(e, "products")}
             >
               サービス一覧
             </a>
             <a
-              href="#achievements"
+              href="/achievements"
               className="text-gray-700 hover:text-gray-900"
-              onClick={(e) => handleSmoothScroll(e, "achievements")}
+              onClick={(e) => handleLinkClick(e, "achievements")}
             >
               開発実績
             </a>
-            <Link href="/blog" className="text-gray-700 hover:text-gray-900">
+            <a
+              href="/blog"
+              className="text-gray-700 hover:text-gray-900"
+              onClick={(e) => handleLinkClick(e, "blogs")}
+            >
               お知らせ
-            </Link>
+            </a>
             <a
               href="https://docs.google.com/forms/d/e/1FAIpQLSeNmuXo7-05iU_m5ge4pq_1pysVTqcis8JWOgrupso1foOZpw/viewform?usp=dialogo"
               target="_blank"
@@ -92,39 +98,40 @@ export default function Header() {
               <SheetContent side="right" className="pt-10">
                 <div className="flex flex-col space-y-4 mt-6 px-2">
                   <a
-                    href="#company-overview"
+                    href="/company-overview"
                     className="px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50"
-                    onClick={(e) => handleSmoothScroll(e, "company-overview")}
+                    onClick={(e) => handleLinkClick(e, "company-overview")}
                   >
                     概要
                   </a>
                   <a
-                    href="#representative"
+                    href="/representative"
                     className="px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50"
-                    onClick={(e) => handleSmoothScroll(e, "representative")}
+                    onClick={(e) => handleLinkClick(e, "representative")}
                   >
                     代表紹介
                   </a>
                   <a
-                    href="#products"
+                    href="/products"
                     className="px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50"
-                    onClick={(e) => handleSmoothScroll(e, "products")}
+                    onClick={(e) => handleLinkClick(e, "products")}
                   >
                     サービス一覧
                   </a>
                   <a
-                    href="#achievements"
+                    href="/achievements"
                     className="px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50"
-                    onClick={(e) => handleSmoothScroll(e, "achievements")}
+                    onClick={(e) => handleLinkClick(e, "achievements")}
                   >
                     開発実績
                   </a>
-                  <Link
+                  <a
                     href="/blog"
                     className="px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50"
+                    onClick={(e) => handleLinkClick(e, "blogs")}
                   >
                     お知らせ
-                  </Link>
+                  </a>
                   <div className="pt-4">
                     <a
                       href="https://docs.google.com/forms/d/e/1FAIpQLSeNmuXo7-05iU_m5ge4pq_1pysVTqcis8JWOgrupso1foOZpw/viewform?usp=dialogo"
