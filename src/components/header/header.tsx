@@ -16,10 +16,16 @@ export default function Header() {
     e: React.MouseEvent<HTMLAnchorElement>,
     targetId: string
   ) => {
-    if (!isHomePage) return;
     e.preventDefault();
     setIsSheetOpen(false);
 
+    if (!isHomePage) {
+      // トップページ以外の場合、ハッシュ付きでトップページに遷移
+      window.location.href = `/#${targetId}`;
+      return;
+    }
+
+    // トップページの場合、直接スクロール
     const targetElement = document.getElementById(targetId);
     if (targetElement) {
       const headerHeight = 64;
@@ -70,13 +76,13 @@ export default function Header() {
             >
               開発実績
             </a>
-            <a
+            <Link
               href="/blog"
               className="text-gray-700 hover:text-gray-900"
               onClick={(e) => handleLinkClick(e, "blogs")}
             >
               お知らせ
-            </a>
+            </Link>
             <a
               href="https://docs.google.com/forms/d/e/1FAIpQLSeNmuXo7-05iU_m5ge4pq_1pysVTqcis8JWOgrupso1foOZpw/viewform?usp=dialogo"
               target="_blank"
@@ -125,13 +131,13 @@ export default function Header() {
                   >
                     開発実績
                   </a>
-                  <a
+                  <Link
                     href="/blog"
                     className="px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50"
                     onClick={(e) => handleLinkClick(e, "blogs")}
                   >
                     お知らせ
-                  </a>
+                  </Link>
                   <div className="pt-4">
                     <a
                       href="https://docs.google.com/forms/d/e/1FAIpQLSeNmuXo7-05iU_m5ge4pq_1pysVTqcis8JWOgrupso1foOZpw/viewform?usp=dialogo"

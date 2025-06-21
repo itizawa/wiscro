@@ -1,5 +1,6 @@
 import { BlogList } from "@/components/blog/BlogList";
 import { ProductCard } from "@/components/ProductCard";
+import ScrollHandler from "@/components/ScrollHandler";
 import { Button } from "@/components/ui/button";
 import { getAllBlogPosts } from "@/shared/lib/blog";
 import Image from "next/image";
@@ -14,6 +15,7 @@ export default function Home() {
         backgroundImage: `linear-gradient(45deg, rgb(139 208 254 / 30%), rgba(0, 123, 255, 0))`,
       }}
     >
+      <ScrollHandler />
       <section className="h-[224px] md:h-[500px] relative">
         <div className="relative max-w-6xl mx-auto">
           <div className="absolute top-8 left-8 p-8 bg-[rgba(255,255,255,0.6)] rounded-lg shadow-lg">
