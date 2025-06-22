@@ -49,13 +49,6 @@ export default function Header() {
 
           <div className="hidden md:flex items-center space-x-8">
             <a
-              href="/company-overview"
-              className="text-gray-700 hover:text-gray-900"
-              onClick={(e) => handleLinkClick(e, "company-overview")}
-            >
-              概要
-            </a>
-            <a
               href="/representative"
               className="text-gray-700 hover:text-gray-900"
               onClick={(e) => handleLinkClick(e, "representative")}
@@ -84,6 +77,13 @@ export default function Header() {
               お知らせ
             </Link>
             <a
+              href="/company-overview"
+              className="text-gray-700 hover:text-gray-900"
+              onClick={(e) => handleLinkClick(e, "company-overview")}
+            >
+              概要
+            </a>
+            <a
               href="https://docs.google.com/forms/d/e/1FAIpQLSeNmuXo7-05iU_m5ge4pq_1pysVTqcis8JWOgrupso1foOZpw/viewform?usp=dialogo"
               target="_blank"
               rel="noopener noreferrer"
@@ -103,13 +103,6 @@ export default function Header() {
               </SheetTrigger>
               <SheetContent side="right" className="pt-10">
                 <div className="flex flex-col space-y-4 mt-6 px-2">
-                  <a
-                    href="/company-overview"
-                    className="px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50"
-                    onClick={(e) => handleLinkClick(e, "company-overview")}
-                  >
-                    概要
-                  </a>
                   <a
                     href="/representative"
                     className="px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50"
@@ -138,6 +131,13 @@ export default function Header() {
                   >
                     お知らせ
                   </Link>
+                  <a
+                    href="/company-overview"
+                    className="px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50"
+                    onClick={(e) => handleLinkClick(e, "company-overview")}
+                  >
+                    概要
+                  </a>
                   <div className="pt-4">
                     <a
                       href="https://docs.google.com/forms/d/e/1FAIpQLSeNmuXo7-05iU_m5ge4pq_1pysVTqcis8JWOgrupso1foOZpw/viewform?usp=dialogo"
