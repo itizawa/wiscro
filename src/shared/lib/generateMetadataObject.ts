@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 
 const DEFAULT_TITLE = "wiscro";
 const DEFAULT_DESCRIPTION =
-  "集合知を信じ、インターネットを通じて多くの人が知識やアイデアを共有できる環境を整えることで世界をより良くするための会社です。";
+  "人が集まる会社づくり、始めませんか？深谷在住エンジニアだからできる、顔の見える採用支援";
 const DEFAULT_URL = "https://www.wiscro.app";
 const DEFAULT_IMAGE = "https://www.wiscro.app/ogp.png";
 
