@@ -18,15 +18,15 @@ export default function Home() {
       <ScrollHandler />
       <section className="h-[224px] md:h-[600px] relative">
         <div className="max-w-6xl mx-auto">
-          <div className="absolute bottom-8 left-8 p-8 bg-[rgba(255,255,255,0.8)] rounded-lg shadow-lg">
-            <span className="md:text-2xl font-bold text-[#2F4A7B]">
-              <span className="font-bold">wisdom(知恵) + crowd(群衆)</span>
-              <br />
-              <br />
-              インターネットを通じて
-              <br />
-              世界をより良くする
-            </span>
+          <div className="hidden md:block absolute bottom-8 left-8 p-6 md:p-8 bg-[rgba(255,255,255,0.8)] rounded-lg shadow-lg text-[#2F4A7B]">
+            <div className="flex flex-col space-y-4">
+              <span className="md:text-4xl font-bold">
+                人が集まる会社づくり、始めませんか？
+              </span>
+              <span className="md:text-2xl font-bold">
+                深谷在住エンジニアだからできる、顔の見える採用支援
+              </span>
+            </div>
           </div>
         </div>
         {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -36,50 +36,16 @@ export default function Home() {
           className="h-[224px] md:h-[600px] object-cover w-screen object-top"
         />
       </section>
-      <section
-        className="py-6 md:py-12 px-4 md:px-8 w-full max-w-6xl mx-auto"
-        id="company-overview"
-      >
-        <h2 className="text-2xl font-bold mb-6 pb-2 border-b">概要</h2>
-        <div className="overflow-x-auto">
-          <table className="w-full">
-            <tbody>
-              <tr className="border-b">
-                <th className="py-4 pr-4 text-left w-1/4 text-gray-600">
-                  団体名
-                </th>
-                <td className="py-4">wiscro（ウィズクロ）</td>
-              </tr>
-              <tr className="border-b">
-                <th className="py-4 pr-4 text-left w-1/4 text-gray-600">
-                  代表者
-                </th>
-                <td className="py-4">市澤 樹享</td>
-              </tr>
-              <tr className="border-b">
-                <th className="py-4 pr-4 text-left w-1/4 text-gray-600">
-                  設立
-                </th>
-                <td className="py-4">2023年5月18日</td>
-              </tr>
-              <tr className="border-b">
-                <th className="py-4 pr-4 text-left w-1/4 text-gray-600">
-                  所在地
-                </th>
-                <td className="py-4">埼玉県深谷市</td>
-              </tr>
-              <tr className="border-b">
-                <th className="py-4 pr-4 text-left w-1/4 text-gray-600">
-                  事業内容
-                </th>
-                <td className="py-4">
-                  企業向け業務ソフトウェア・Webサービス開発
-                </td>
-              </tr>
-            </tbody>
-          </table>
+      <div className="block md:hidden py-6 px-4 text-[#2F4A7B]">
+        <div className="flex flex-col space-y-4">
+          <span className="font-bold">
+            人が集まる会社づくり、始めませんか？
+          </span>
+          <span className="text-sm font-bold">
+            深谷在住エンジニアだからできる、顔の見える採用支援
+          </span>
         </div>
-      </section>
+      </div>
 
       {/* Representative Introduction */}
       <section
@@ -205,6 +171,51 @@ export default function Home() {
           技術情報や企業活動について発信しています。
         </p>
         <BlogList posts={recentPosts} />
+      </section>
+
+      <section
+        className="py-6 md:py-12 px-4 md:px-8 w-full max-w-6xl mx-auto"
+        id="company-overview"
+      >
+        <h2 className="text-2xl font-bold mb-6 pb-2 border-b">概要</h2>
+        <div className="overflow-x-auto">
+          <table className="w-full">
+            <tbody>
+              <tr className="border-b">
+                <th className="py-4 pr-4 text-left w-1/4 text-gray-600">
+                  団体名
+                </th>
+                <td className="py-4">wiscro（ウィズクロ）</td>
+              </tr>
+              <tr className="border-b">
+                <th className="py-4 pr-4 text-left w-1/4 text-gray-600">
+                  代表者
+                </th>
+                <td className="py-4">市澤 樹享</td>
+              </tr>
+              <tr className="border-b">
+                <th className="py-4 pr-4 text-left w-1/4 text-gray-600">
+                  設立
+                </th>
+                <td className="py-4">2023年5月18日</td>
+              </tr>
+              <tr className="border-b">
+                <th className="py-4 pr-4 text-left w-1/4 text-gray-600">
+                  所在地
+                </th>
+                <td className="py-4">埼玉県深谷市</td>
+              </tr>
+              <tr className="border-b">
+                <th className="py-4 pr-4 text-left w-1/4 text-gray-600">
+                  事業内容
+                </th>
+                <td className="py-4">
+                  企業向け業務ソフトウェア・Webサービス開発
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </section>
 
       {/* Contact Section */}
