@@ -16,9 +16,9 @@ export default function Home() {
       }}
     >
       <ScrollHandler />
-      <section className="h-[224px] md:h-[500px] relative">
-        <div className="relative max-w-6xl mx-auto">
-          <div className="absolute top-8 left-8 p-8 bg-[rgba(255,255,255,0.6)] rounded-lg shadow-lg">
+      <section className="h-[224px] md:h-[600px] relative">
+        <div className="max-w-6xl mx-auto">
+          <div className="absolute bottom-8 left-8 p-8 bg-[rgba(255,255,255,0.8)] rounded-lg shadow-lg">
             <span className="md:text-2xl font-bold text-[#2F4A7B]">
               <span className="font-bold">wisdom(知恵) + crowd(群衆)</span>
               <br />
@@ -33,7 +33,7 @@ export default function Home() {
         <img
           src="/eye-catch.png"
           alt="wiscro"
-          className="h-[224px] md:h-[500px] object-cover w-full"
+          className="h-[224px] md:h-[600px] object-cover w-screen object-top"
         />
       </section>
       <section
