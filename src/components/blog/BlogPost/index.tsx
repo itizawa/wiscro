@@ -22,7 +22,7 @@ export function BlogPost({ post }: BlogPostProps) {
         <div className="flex items-center justify-between text-sm text-gray-600 mb-4">
           <div className="flex items-center gap-4">
             <time>{formatDate(post.date)}</time>
-            <span>by {post.author}</span>
+            <span>{post.author}</span>
           </div>
         </div>
         {post.tags.length > 0 && (
