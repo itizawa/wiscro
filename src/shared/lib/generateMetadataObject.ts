@@ -26,7 +26,7 @@ export const generateMetadataObject = ({
       title,
       description,
       url,
-      siteName: "Thread Note",
+      siteName: "wiscro",
       locale: "ja_JP",
       type: "website",
       images,
