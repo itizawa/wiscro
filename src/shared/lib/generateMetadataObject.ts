@@ -3,8 +3,8 @@ import type { Metadata } from "next";
 const DEFAULT_TITLE = "wiscro";
 const DEFAULT_DESCRIPTION =
   "人が集まる会社づくり、始めませんか？深谷在住エンジニアだからできる、顔の見える採用支援";
-const DEFAULT_URL = "https://www.wiscro.app";
-const DEFAULT_IMAGE = "https://www.wiscro.app/ogp.png";
+const DEFAULT_URL = "https://wiscro.app";
+const DEFAULT_IMAGE = "https://wiscro.app/eye-catch.png";
 
 type Args = {
   title?: string;
