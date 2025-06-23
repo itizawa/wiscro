@@ -38,6 +38,6 @@ export const generateMetadataObject = ({
       site: "@",
       creator: "@",
     },
-    metadataBase: new URL("https://www.thread-note.com"),
+    metadataBase: new URL("https://wiscro.app"),
   };
 };
