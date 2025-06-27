@@ -24,7 +24,7 @@ export default function Home() {
                 人が集まる会社づくり、始めませんか？
               </span>
               <span className="md:text-2xl font-bold">
-                深谷在住エンジニアだからできる、顔の見える採用支援
+                深谷在住エンジニアだからできる「顔の見える」採用支援
               </span>
             </div>
           </div>
@@ -42,7 +42,7 @@ export default function Home() {
             人が集まる会社づくり、始めませんか？
           </span>
           <span className="text-sm font-bold">
-            深谷在住エンジニアだからできる、顔の見える採用支援
+            深谷在住エンジニアだからできる「顔の見える」採用支援
           </span>
         </div>
       </div>
