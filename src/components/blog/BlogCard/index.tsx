@@ -35,7 +35,7 @@ export function BlogCard({ post }: BlogCardProps) {
             </time>
             <span className="text-sm text-gray-600">{post.author}</span>
           </div>
-          <h3 className="font-bold text-lg mb-2 text-gray-900 transition-colors">
+          <h3 className="font-bold text-lg mb-2 text-gray-900 transition-colors line-clamp-2">
             {post.title}
           </h3>
           <p className="text-gray-600 text-sm mb-4 line-clamp-3">

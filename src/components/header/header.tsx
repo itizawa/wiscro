@@ -55,6 +55,13 @@ export default function Header() {
             >
               代表紹介
             </a>
+            <Link
+              href="/blog"
+              className="text-gray-700 hover:text-gray-900"
+              onClick={(e) => handleLinkClick(e, "blogs")}
+            >
+              コンテンツ
+            </Link>
             <a
               href="/products"
               className="text-gray-700 hover:text-gray-900"
@@ -69,13 +76,7 @@ export default function Header() {
             >
               開発実績
             </a>
-            <Link
-              href="/blog"
-              className="text-gray-700 hover:text-gray-900"
-              onClick={(e) => handleLinkClick(e, "blogs")}
-            >
-              お知らせ
-            </Link>
+
             <a
               href="/company-overview"
               className="text-gray-700 hover:text-gray-900"
@@ -110,6 +111,13 @@ export default function Header() {
                   >
                     代表紹介
                   </a>
+                  <Link
+                    href="/blog"
+                    className="px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50"
+                    onClick={(e) => handleLinkClick(e, "blogs")}
+                  >
+                    コンテンツ
+                  </Link>
                   <a
                     href="/products"
                     className="px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50"
@@ -124,13 +132,6 @@ export default function Header() {
                   >
                     開発実績
                   </a>
-                  <Link
-                    href="/blog"
-                    className="px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50"
-                    onClick={(e) => handleLinkClick(e, "blogs")}
-                  >
-                    お知らせ
-                  </Link>
                   <a
                     href="/company-overview"
                     className="px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50"
