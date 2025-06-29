@@ -164,7 +164,7 @@ export default function Home() {
             <div className="p-4">
               <h3 className="font-bold mb-1">複業マッチングプラットフォーム</h3>
               <p className="text-sm text-gray-600">
-                詳細設計から実装までのシステム開発全般を担当。
+                詳細設計から実装までのシステム開発を担当
               </p>
             </div>
           </div>
