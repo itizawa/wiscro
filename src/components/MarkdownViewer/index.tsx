@@ -16,7 +16,7 @@ export const MarkdownViewer: React.FC<{ body: string }> = ({ body }) => {
           </h2>
         ),
         h3: ({ children }) => (
-          <h3 className="text-xl font-semibold">{children}</h3>
+          <h3 className="text-xl font-semibold mt-8">{children}</h3>
         ),
         p: ({ children }) => <p className="text-gray-900">{children}</p>,
         ul: ({ children }) => (
