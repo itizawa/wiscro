@@ -4,9 +4,9 @@ import { generateMetadataObject } from "@/shared/lib/generateMetadataObject";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = generateMetadataObject({
-  title: "お知らせ | wiscro",
+  title: "コンテンツ一覧 | wiscro",
   description:
-    "wiscoroの企業お知らせ。技術情報や企業活動について発信しています。",
+    "wiscoroのコンテンツ一覧。技術情報や企業活動について発信しています。",
 });
 
 export default function BlogPage() {
@@ -21,7 +21,9 @@ export default function BlogPage() {
     >
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <header className="mb-12">
-          <h1 className="text-3xl font-bold text-gray-900 mb-4">お知らせ</h1>
+          <h1 className="text-3xl font-bold text-gray-900 mb-4">
+            コンテンツ一覧
+          </h1>
           <p className="text-gray-600">
             技術情報や企業活動について発信しています。
           </p>
