@@ -1,6 +1,5 @@
 "use client";
 
-import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Menu } from "lucide-react";
 import Link from "next/link";
@@ -84,14 +83,14 @@ export default function Header() {
             >
               概要
             </a>
-            <a
-              href="https://docs.google.com/forms/d/e/1FAIpQLSeNmuXo7-05iU_m5ge4pq_1pysVTqcis8JWOgrupso1foOZpw/viewform?usp=dialogo"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <Button className="bg-blue-700 hover:bg-blue-800 text-white font-bold">
-                お問い合わせ
-              </Button>
+            <a href="https://lin.ee/1L3YVfh">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="https://scdn.line-apps.com/n/line_add_friends/btn/ja.png"
+                alt="友だち追加"
+                className="h-8 w-32"
+                style={{ border: 0, width: "100%" }}
+              />
             </a>
           </div>
 
@@ -139,15 +138,18 @@ export default function Header() {
                   >
                     概要
                   </a>
-                  <div className="pt-4">
-                    <a
-                      href="https://docs.google.com/forms/d/e/1FAIpQLSeNmuXo7-05iU_m5ge4pq_1pysVTqcis8JWOgrupso1foOZpw/viewform?usp=dialogo"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      <Button className="w-full bg-blue-700 hover:bg-blue-800 text-white font-bold">
-                        お問い合わせ
-                      </Button>
+                  <div className="pt-4 flex flex-col items-center justify-center">
+                    <span className="text-gray-700 mb-2">
+                      公式アカウントを運用しています！
+                    </span>
+                    <a href="https://lin.ee/1L3YVfh">
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img
+                        src="https://scdn.line-apps.com/n/line_add_friends/btn/ja.png"
+                        alt="友だち追加"
+                        className="h-10 w-32"
+                        style={{ border: 0, width: "100%" }}
+                      />
                     </a>
                   </div>
                 </div>
