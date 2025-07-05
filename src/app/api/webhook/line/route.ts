@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { Client, middleware, MiddlewareConfig, WebhookEvent, MessageEvent, TextEventMessage } from '@line/bot-sdk';
+import { Client, MiddlewareConfig, WebhookEvent, MessageEvent, TextEventMessage, TemplateMessage } from '@line/bot-sdk';
 import { getAllBlogPosts } from '@/shared/lib/blog';
+import { BlogPost } from '@/shared/types/blog';
 
 const config: MiddlewareConfig = {
   channelAccessToken: process.env.LINE_CHANNEL_ACCESS_TOKEN as string,
@@ -9,14 +10,14 @@ const config: MiddlewareConfig = {
 
 const client = new Client(config);
 
-function createCarouselTemplate(posts: any[]) {
+function createCarouselTemplate(posts: BlogPost[]): TemplateMessage {
   const columns = posts.slice(0, 5).map(post => ({
     thumbnailImageUrl: post.thumbnail || 'https://www.wiscro.app/default-thumbnail.jpg',
     title: post.title.length > 40 ? post.title.substring(0, 37) + '...' : post.title,
     text: post.summary.length > 60 ? post.summary.substring(0, 57) + '...' : post.summary,
     actions: [
       {
-        type: 'uri',
+        type: 'uri' as const,
         label: '記事を読む',
         uri: `https://www.wiscro.app/blog/${post.slug}`
       }
@@ -30,7 +31,7 @@ function createCarouselTemplate(posts: any[]) {
     text: '他の記事もチェックしてみてください',
     actions: [
       {
-        type: 'uri',
+        type: 'uri' as const,
         label: '全記事を見る',
         uri: 'https://www.wiscro.app/blog'
       }
