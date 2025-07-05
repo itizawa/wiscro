@@ -3,12 +3,10 @@ import { Client, MiddlewareConfig, WebhookEvent, MessageEvent, TextEventMessage,
 import { getAllBlogPosts } from '@/shared/lib/blog';
 import { BlogPost } from '@/shared/types/blog';
 
-const config: MiddlewareConfig = {
+const client = new Client({
   channelAccessToken: process.env.LINE_CHANNEL_ACCESS_TOKEN as string,
   channelSecret: process.env.LINE_CHANNEL_SECRET as string,
-};
-
-const client = new Client(config);
+});
 
 function createCarouselTemplate(posts: BlogPost[]): TemplateMessage {
   const columns = posts.slice(0, 5).map(post => ({
