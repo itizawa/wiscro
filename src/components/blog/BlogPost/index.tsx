@@ -26,7 +26,7 @@ export function BlogPost({ post }: BlogPostProps) {
               alt={post.title}
               width={800}
               height={256}
-              className="w-full h-64 object-cover rounded-lg"
+              className="w-full h-64 object-cover md:object-contain rounded-lg"
             />
           </div>
         )}
