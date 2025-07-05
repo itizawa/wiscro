@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { Client, MiddlewareConfig, WebhookEvent, MessageEvent, TextEventMessage, TemplateMessage } from '@line/bot-sdk';
+import { Client, WebhookEvent, MessageEvent, TextEventMessage, TemplateMessage } from '@line/bot-sdk';
 import { getAllBlogPosts } from '@/shared/lib/blog';
 import { BlogPost } from '@/shared/types/blog';
 
