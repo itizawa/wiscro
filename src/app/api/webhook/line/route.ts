@@ -9,18 +9,25 @@ const client = new Client({
 });
 
 function createCarouselTemplate(posts: BlogPost[]): TemplateMessage {
-  const columns = posts.slice(0, 5).map(post => ({
-    thumbnailImageUrl: post.thumbnail || 'https://www.wiscro.app/default-thumbnail.jpg',
-    title: post.title.length > 40 ? post.title.substring(0, 37) + '...' : post.title,
-    text: post.summary.length > 60 ? post.summary.substring(0, 57) + '...' : post.summary,
-    actions: [
-      {
-        type: 'uri' as const,
-        label: '記事を読む',
-        uri: `https://www.wiscro.app/blog/${post.slug}`
-      }
-    ]
-  }));
+  const columns = posts.slice(0, 5).map(post => {
+    // thumbnailが相対パスの場合は絶対URLに変換
+    const thumbnailUrl = post.thumbnail?.startsWith('/') 
+      ? `https://www.wiscro.app${post.thumbnail}`
+      : post.thumbnail || 'https://www.wiscro.app/default-thumbnail.jpg';
+    
+    return {
+      thumbnailImageUrl: thumbnailUrl,
+      title: post.title.length > 40 ? post.title.substring(0, 37) + '...' : post.title,
+      text: post.summary.length > 60 ? post.summary.substring(0, 57) + '...' : post.summary,
+      actions: [
+        {
+          type: 'uri' as const,
+          label: '記事を読む',
+          uri: `https://www.wiscro.app/blog/${post.slug}`
+        }
+      ]
+    };
+  });
 
   // 「もっと見る」カードを追加
   columns.push({
