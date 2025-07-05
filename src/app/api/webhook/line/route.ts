@@ -60,21 +60,13 @@ export async function POST(request: NextRequest) {
         const message = messageEvent.message as TextEventMessage;
         const messageText = message.text?.trim();
 
-        if (messageText === '最新コンテンツ') {
+        if (messageText === '【最新コンテンツ】') {
           // 最新のブログ記事を取得
           const posts = getAllBlogPosts();
 
-          if (posts.length === 0) {
-            // 記事がない場合
-            await client.replyMessage(messageEvent.replyToken, {
-              type: 'text',
-              text: '申し訳ございません。現在表示可能な記事がありません。'
-            });
-          } else {
-            // カルーセルテンプレートで返信
-            const carouselMessage = createCarouselTemplate(posts);
-            await client.replyMessage(messageEvent.replyToken, carouselMessage);
-          }
+          // カルーセルテンプレートで返信
+          const carouselMessage = createCarouselTemplate(posts);
+          await client.replyMessage(messageEvent.replyToken, carouselMessage);
         }
       }
     }
