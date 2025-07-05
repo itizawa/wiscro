@@ -86,7 +86,7 @@ export function BlogPost({ post }: BlogPostProps) {
                   src="https://scdn.line-apps.com/n/line_add_friends/btn/ja.png"
                   alt="友だち追加"
                   className="h-10 w-32"
-                  style={{ border: 0, width: "100%" }}
+                  style={{ border: 0, width: "128px" }}
                 />
               </a>
             </div>

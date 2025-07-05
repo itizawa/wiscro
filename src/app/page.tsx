@@ -220,7 +220,7 @@ export default function Home() {
       {/* Contact Section */}
       <section className="py-6 md:py-12 px-4 md:px-8 max-w-6xl mx-auto text-center">
         <h2 className="text-2xl font-bold mb-6">お問い合わせ</h2>
-        <p className="mb-3">公式アカウントを運用しています！</p>
+        <p className="mb-1">公式アカウントを運用しています！</p>
         <p className="mb-8">
           ご相談・お見積もりなど、お気軽にお問い合わせください。
         </p>
@@ -231,7 +231,7 @@ export default function Home() {
               src="https://scdn.line-apps.com/n/line_add_friends/btn/ja.png"
               alt="友だち追加"
               className="h-10"
-              style={{ border: 0, width: "100%" }}
+              style={{ border: 0, width: "128px" }}
             />
           </a>
         </div>
