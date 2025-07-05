@@ -24,6 +24,7 @@ function createCarouselTemplate(posts: BlogPost[]): TemplateMessage {
 
   // 「もっと見る」カードを追加
   columns.push({
+    thumbnailImageUrl: 'https://www.wiscro.app/eye-catch.png',
     title: 'もっと見る',
     text: '他の記事もチェックしてみてください',
     actions: [
