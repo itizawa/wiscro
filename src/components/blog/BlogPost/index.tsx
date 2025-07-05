@@ -19,8 +19,19 @@ export function BlogPost({ post }: BlogPostProps) {
   return (
     <article className="max-w-4xl mx-auto space-y-8">
       <header>
-        <h1 className="text-3xl font-bold text-gray-900 mb-4">{post.title}</h1>
-        <div className="flex items-center justify-between text-sm text-gray-600 mb-4">
+        {post.thumbnail && (
+          <div className="mb-8">
+            <Image
+              src={post.thumbnail}
+              alt={post.title}
+              width={800}
+              height={256}
+              className="w-full h-64 object-cover rounded-lg"
+            />
+          </div>
+        )}
+        <h1 className="text-3xl font-bold text-gray-900 mb-2">{post.title}</h1>
+        <div className="flex items-center justify-between text-sm text-gray-600 mb-2">
           <div className="flex items-center gap-4">
             <time>{formatDate(post.date)}</time>
             <span>{post.author}</span>
@@ -38,16 +49,7 @@ export function BlogPost({ post }: BlogPostProps) {
             ))}
           </div>
         )}
-        {post.thumbnail && (
-          <div className="mb-8">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src={post.thumbnail}
-              alt={post.title}
-              className="w-full h-64 object-cover rounded-lg"
-            />
-          </div>
-        )}
+
       </header>
       <div className="prose space-y-4 break-words">
         <MarkdownViewer body={post.htmlContent} />
