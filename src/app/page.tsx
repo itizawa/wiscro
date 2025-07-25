@@ -174,8 +174,8 @@ export default function Home() {
         className="py-6 md:py-12 px-4 md:px-8 w-full max-w-6xl mx-auto"
         id="company-overview"
       >
+        <h2 className="text-2xl font-bold mb-4 pb-2 border-b">概要</h2>
         <div className="bg-white rounded-lg p-6">
-          <h2 className="text-2xl font-bold mb-6 pb-2 border-b">概要</h2>
           <div className="overflow-x-auto">
             <table className="w-full">
               <tbody>
