@@ -120,10 +120,6 @@ export default function Home() {
             title="福袋速報"
             summary="福袋の情報をまとめて紹介するサイト。LINE公式アカウントを通じて最新情報を配信しています。"
           />
-          <ProductCard
-            title="(開発中)AI賛否"
-            summary="AIが話題の記事を読み、Xのポストを自動生成してくれるサービス。"
-          />
         </div>
       </section>
 
