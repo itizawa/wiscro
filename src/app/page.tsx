@@ -1,6 +1,7 @@
 import { BlogList } from "@/components/blog/BlogList";
 import { ProductCard } from "@/components/ProductCard";
 import ScrollHandler from "@/components/ScrollHandler";
+import { Button } from "@/components/ui/button";
 import { getAllBlogPosts } from "@/shared/lib/blog";
 import Image from "next/image";
 import Link from "next/link";
@@ -216,19 +217,18 @@ export default function Home() {
       {/* Contact Section */}
       <section className="py-6 md:py-12 px-4 md:px-8 max-w-6xl mx-auto text-center">
         <h2 className="text-2xl font-bold mb-6">お問い合わせ</h2>
-        <p className="mb-1">公式アカウントを運用しています！</p>
         <p className="mb-8">
           ご相談・お見積もりなど、お気軽にお問い合わせください。
         </p>
         <div className="flex justify-center items-center gap-4">
-          <a href="https://lin.ee/1L3YVfh">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src="https://scdn.line-apps.com/n/line_add_friends/btn/ja.png"
-              alt="友だち追加"
-              className="h-10"
-              style={{ border: 0, width: "128px" }}
-            />
+          <a
+            href="https://docs.google.com/forms/d/e/1FAIpQLSeNmuXo7-05iU_m5ge4pq_1pysVTqcis8JWOgrupso1foOZpw/viewform?usp=dialogo"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <Button className="bg-blue-700 hover:bg-blue-800 text-white font-bold px-8 py-2 rounded">
+              お問い合わせ
+            </Button>
           </a>
         </div>
       </section>
