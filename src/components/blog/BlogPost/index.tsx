@@ -1,4 +1,5 @@
 import { MarkdownViewer } from "@/components/MarkdownViewer";
+import { Button } from "@/components/ui/button";
 import { BlogPost as BlogPostType } from "@/shared/types/blog";
 import Image from "next/image";
 
@@ -49,7 +50,6 @@ export function BlogPost({ post }: BlogPostProps) {
             ))}
           </div>
         )}
-
       </header>
       <div className="prose space-y-4 break-words">
         <MarkdownViewer body={post.htmlContent} />
@@ -80,14 +80,14 @@ export function BlogPost({ post }: BlogPostProps) {
               </p>
             </div>
             <div className="flex justify-center items-center gap-4">
-              <a href="https://lin.ee/1L3YVfh">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src="https://scdn.line-apps.com/n/line_add_friends/btn/ja.png"
-                  alt="友だち追加"
-                  className="h-10 w-32"
-                  style={{ border: 0, width: "128px" }}
-                />
+              <a
+                href="https://docs.google.com/forms/d/e/1FAIpQLSeNmuXo7-05iU_m5ge4pq_1pysVTqcis8JWOgrupso1foOZpw/viewform?usp=dialogo"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <Button className="bg-blue-700 hover:bg-blue-800 text-white font-bold px-8 py-2 rounded">
+                  お問い合わせ
+                </Button>
               </a>
             </div>
           </div>
