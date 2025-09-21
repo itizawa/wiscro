@@ -1,6 +1,7 @@
-import { BlogList } from "@/components/blog/BlogList";
 import { ProductCard } from "@/components/ProductCard";
 import ScrollHandler from "@/components/ScrollHandler";
+import { BlogList } from "@/components/blog/BlogList";
+import { ServiceCard } from "@/components/services/ServiceCard";
 import { Button } from "@/components/ui/button";
 import { getAllBlogPosts } from "@/shared/lib/blog";
 import Image from "next/image";
@@ -74,6 +75,65 @@ export default function Home() {
               専門性が求められる領域において強みを発揮しています。
             </p>
           </div>
+        </div>
+      </section>
+
+      {/* Services Section */}
+      <section
+        className="py-6 md:py-12 px-4 md:px-8 max-w-6xl mx-auto"
+        id="services"
+      >
+        <h2 className="text-2xl font-bold mb-4 pb-2 border-b">提供サービス</h2>
+        <p className="mb-6 text-gray-600">
+          お客様のビジネス課題に寄り添い、最適なソリューションを提供いたします。
+        </p>
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          <ServiceCard
+            title="ホームページ制作"
+            summary="業務効率化を実現する、オーダーメイドシステム開発"
+            description="お客様の現在の業務フローを詳細にヒアリングし、課題の本質を見極めながら最適なシステムソリューションを提案いたします。単なるツール提供ではなく、業務プロセス全体の最適化を視野に入れた伴走型の開発を行います。"
+            features={[
+              "業務フロー分析・課題抽出",
+              "システム要件定義",
+              "UI/UX設計",
+              "データベース設計・構築",
+              "セキュリティ対策の実装",
+              "既存システムとの連携",
+              "運用・保守体制の構築",
+              "操作研修・マニュアル作成",
+            ]}
+          />
+          <ServiceCard
+            title="ホームページ制作"
+            summary="お客様の想いを形にする、戦略的なウェブサイト制作"
+            description={
+              "事前の詳細ヒアリングを通じて、お客様のビジネス目標や課題を深く理解し、ターゲット顧客の行動分析を伴走しながら実施いたします。単なるウェブサイトではなく、集客や売上向上につながる戦略的なホームページを提供します。"
+            }
+            features={[
+              "競合分析・市場調査",
+              "ユーザーペルソナ設計",
+              "SEO対策を考慮した構成設計",
+              "レスポンシブデザイン（PC・スマートフォン対応）",
+              "CMS導入による更新しやすいサイト構築",
+              "アクセス解析の設定・運用サポート",
+              "公開後の保守・運用サポート",
+            ]}
+          />
+          <ServiceCard
+            title="DX支援"
+            summary="デジタル変革の第一歩を、専門家と一緒に踏み出す"
+            description="デジタルトランスフォーメーション（DX）への取り組みは、単なるシステム導入ではありません。組織全体の意識改革から具体的な施策実行まで、包括的な視点でお客様のDX推進を支援いたします。"
+            features={[
+              "DX現状診断・課題分析",
+              "デジタル戦略の策定",
+              "業務プロセスのデジタル化提案",
+              "クラウド移行支援",
+              "データ活用・分析基盤構築",
+              "社内ITリテラシー向上研修",
+              "DX推進体制の構築支援",
+              "ROI測定・効果検証",
+            ]}
+          />
         </div>
       </section>
 
