@@ -21,10 +21,10 @@ export default function Home() {
           <div className="hidden md:block absolute bottom-8 left-8 p-6 md:p-8 bg-[rgba(255,255,255,0.8)] rounded-lg shadow-lg text-[#2F4A7B]">
             <div className="flex flex-col space-y-4">
               <span className="md:text-4xl font-bold">
-                人が集まる会社づくり、始めませんか？
+                WEBの力で事業を前に進める
               </span>
               <span className="md:text-2xl font-bold">
-                深谷在住エンジニアだからできる「顔の見える」採用支援
+                顧客に寄り添う地域密着型のシステム屋さん
               </span>
             </div>
           </div>
@@ -38,11 +38,9 @@ export default function Home() {
       </section>
       <div className="block md:hidden py-6 px-4 text-[#2F4A7B]">
         <div className="flex flex-col space-y-4">
-          <span className="font-bold">
-            人が集まる会社づくり、始めませんか？
-          </span>
+          <span className="font-bold">WEBの力で事業を前に進める</span>
           <span className="text-sm font-bold">
-            深谷在住エンジニアだからできる「顔の見える」採用支援
+            顧客に寄り添う地域密着型のシステム屋さん
           </span>
         </div>
       </div>
