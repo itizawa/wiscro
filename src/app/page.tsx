@@ -45,7 +45,6 @@ export default function Home() {
           </span>
         </div>
       </div>
-
       {/* Representative Introduction */}
       <section
         className="py-6 md:py-12 px-4 md:px-8 max-w-6xl mx-auto"
@@ -77,7 +76,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-
       {/* Services Section */}
       <section
         className="py-6 md:py-12 px-4 md:px-8 max-w-6xl mx-auto"
@@ -90,53 +88,51 @@ export default function Home() {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           <ServiceCard
             title="ホームページ制作"
-            summary="業務効率化を実現する、オーダーメイドシステム開発"
-            description="お客様の現在の業務フローを詳細にヒアリングし、課題の本質を見極めながら最適なシステムソリューションを提案いたします。単なるツール提供ではなく、業務プロセス全体の最適化を視野に入れた伴走型の開発を行います。"
-            features={[
-              "業務フロー分析・課題抽出",
-              "システム要件定義",
-              "UI/UX設計",
-              "データベース設計・構築",
-              "セキュリティ対策の実装",
-              "既存システムとの連携",
-              "運用・保守体制の構築",
-              "操作研修・マニュアル作成",
-            ]}
-          />
-          <ServiceCard
-            title="ホームページ制作"
-            summary="お客様の想いを形にする、戦略的なウェブサイト制作"
+            summary="あなたの想いを形にする、お客様を呼び込むホームページ作り"
             description={
-              "事前の詳細ヒアリングを通じて、お客様のビジネス目標や課題を深く理解し、ターゲット顧客の行動分析を伴走しながら実施いたします。単なるウェブサイトではなく、集客や売上向上につながる戦略的なホームページを提供します。"
+              "まずはあなたのお仕事やサービスについてお話を聞かせてください。理想のお客様像や伝えたい魅力を一緒に考えながら、集客や売上アップにつながるホームページを作ります。"
             }
             features={[
-              "競合分析・市場調査",
-              "ユーザーペルソナ設計",
-              "SEO対策を考慮した構成設計",
-              "レスポンシブデザイン（PC・スマートフォン対応）",
-              "CMS導入による更新しやすいサイト構築",
-              "アクセス解析の設定・運用サポート",
-              "公開後の保守・運用サポート",
+              "同業他社の調査とマーケットの分析",
+              "ターゲットとなるお客様の設計",
+              "検索で見つけてもらいやすい構成づくり",
+              "パソコンでもスマホでも見やすいデザイン",
+              "ご自分で簡単に更新できる仕組み",
+              "アクセス数の分析サポート",
+              "公開後のメンテナンスとサポート",
             ]}
           />
           <ServiceCard
-            title="DX支援"
-            summary="デジタル変革の第一歩を、専門家と一緒に踏み出す"
-            description="デジタルトランスフォーメーション（DX）への取り組みは、単なるシステム導入ではありません。組織全体の意識改革から具体的な施策実行まで、包括的な視点でお客様のDX推進を支援いたします。"
+            title="業務システム開発"
+            summary="日々の業務をラクにする、オーダーメイドシステム作り"
+            description="大変な作業や時間のかかる部分を一緒に見つけて、あなたの会社にぴったりのシステムを作ります。ただのツールではなく、毎日の業務が楽になるようサポートします。"
             features={[
-              "DX現状診断・課題分析",
-              "デジタル戦略の策定",
-              "業務プロセスのデジタル化提案",
-              "クラウド移行支援",
-              "データ活用・分析基盤構築",
-              "社内ITリテラシー向上研修",
-              "DX推進体制の構築支援",
-              "ROI測定・効果検証",
+              "お仕事の流れを整理し、困りごとを見つけるお手伝い",
+              "必要なシステムを一緒に考える",
+              "使いやすい画面とデザインの作成",
+              "データを安全に管理する仕組み作り",
+              "お使いのシステムとの連携",
+              "完成後のサポート体制の整備",
+              "操作方法の研修とマニュアル作成",
+            ]}
+          />
+          <ServiceCard
+            title="IT活用支援"
+            summary="デジタルを味方につけて、お仕事をもっと効率的に"
+            description="「IT活用って何から始めたらいいの？」そんな疑問にお答えします。今のお仕事でデジタルツールを使うメリットや効果的な始め方を分かりやすくご説明し、一歩ずつサポートします。"
+            features={[
+              "今のお仕事でのIT活用状況を確認",
+              "デジタル化で何ができるか戦略づくり",
+              "アナログ作業をデジタルに変える提案",
+              "クラウドサービスの導入サポート",
+              "データを活用した分析の仕組みづくり",
+              "スタッフ向けのIT研修",
+              "IT活用を進める体制づくりのお手伝い",
+              "効果の測定と改善のサポート",
             ]}
           />
         </div>
       </section>
-
       {/* Blog Section */}
       <section
         className="py-6 md:py-12 px-4 md:px-8 max-w-6xl mx-auto  w-full"
@@ -156,7 +152,6 @@ export default function Home() {
         </p>
         <BlogList posts={recentPosts} />
       </section>
-
       {/* Services Section */}
       <section
         className="py-6 md:py-12 px-4 md:px-8 max-w-6xl mx-auto"
@@ -183,7 +178,6 @@ export default function Home() {
           />
         </div>
       </section>
-
       {/* Development Achievements */}
       <section
         className="py-6 md:py-12 px-4 md:px-8 max-w-6xl mx-auto"
@@ -226,7 +220,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-
       <section
         className="py-6 md:py-12 px-4 md:px-8 w-full max-w-6xl mx-auto"
         id="company-overview"
@@ -273,7 +266,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-
       {/* Contact Section */}
       <section className="py-6 md:py-12 px-4 md:px-8 max-w-6xl mx-auto text-center">
         <h2 className="text-2xl font-bold mb-6">お問い合わせ</h2>
