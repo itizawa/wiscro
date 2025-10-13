@@ -30,3 +30,23 @@ export async function getAllBlogPosts({ limit }: { limit?: number } = {}) {
   });
   return data.contents;
 }
+
+export async function getAllBlogIds(): Promise<string[]> {
+  const data = await client.get<{ contents: Pick<Blog, "id">[] }>({
+    endpoint: "blogs",
+    queries: { fields: "id", limit: 100 },
+  });
+  return data.contents.map((c) => c.id);
+}
+
+export async function getBlogById(id: string): Promise<Blog | null> {
+  try {
+    const data = await client.get<Blog>({
+      endpoint: "blogs",
+      contentId: id,
+    });
+    return data ?? null;
+  } catch (e) {
+    return null;
+  }
+}
