@@ -34,7 +34,7 @@ export interface Blog {
   title: string;
   summary: string;
   content: string;
-  eyecatch: Image;
+  eyecatch: Image | null;
   category: {
     id: string;
     createdAt: string;

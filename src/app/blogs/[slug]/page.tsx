@@ -39,7 +39,7 @@ export async function generateMetadata({
 
   return generateMetadataObject({
     title: `${post.title} | wiscro`,
-    images: [post.eyecatch.url],
+    images: post.eyecatch ? [post.eyecatch.url] : undefined,
     description: post.summary,
   });
 }
@@ -63,7 +63,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
         </div>
         <article className="max-w-4xl mx-auto space-y-8">
           <header className="mb-5">
-            {post.eyecatch.url && (
+            {post.eyecatch && (
               <div className="mb-8">
                 <Image
                   src={post.eyecatch.url}
