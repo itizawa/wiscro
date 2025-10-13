@@ -31,7 +31,7 @@ export function Timeline({ posts }: TimelineProps) {
               <div className="h-full bg-blue-100 w-[2px]" />
             )}
           </div>
-          <div className="flex flex-col gap-2 flex-1">
+          <div className="flex flex-col gap-2 flex-1 pb-6">
             <div className="flex items-center gap-3 text text-gray-600 pt-1">
               <time className="font-bold">{formatDate(post.publishedAt)}</time>
               <span className="text-xs px-2 py-0.5 rounded-full bg-blue-100 text-blue-800">
