@@ -32,7 +32,7 @@ export const generateMetadataObject = ({
       images,
     },
     twitter: {
-      card: "summary_large_image",
+      card: "summary",
       title,
       description,
       site: "@",
