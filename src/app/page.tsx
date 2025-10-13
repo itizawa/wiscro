@@ -119,7 +119,7 @@ export default async function Home() {
         </div>
       </section>
       {/* Development Achievements */}
-      <section
+      {/* <section
         className="py-6 md:py-12 px-4 md:px-8 max-w-6xl mx-auto"
         id="achievements"
       >
@@ -159,7 +159,7 @@ export default async function Home() {
             </div>
           </div>
         </div>
-      </section>
+      </section> */}
 
       <section
         className="py-6 md:py-12 px-4 md:px-8 w-full max-w-6xl mx-auto"

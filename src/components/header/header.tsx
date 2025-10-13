@@ -69,13 +69,13 @@ export default function Header() {
             >
               サービス一覧
             </a>
-            <a
+            {/* <a
               href="/achievements"
               className="text-gray-700 hover:text-gray-900"
               onClick={(e) => handleLinkClick(e, "achievements")}
             >
               開発実績
-            </a>
+            </a> */}
 
             <a
               href="/company-overview"
@@ -125,13 +125,13 @@ export default function Header() {
                   >
                     サービス一覧
                   </a>
-                  <a
+                  {/* <a
                     href="/achievements"
                     className="px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50"
                     onClick={(e) => handleLinkClick(e, "achievements")}
                   >
                     開発実績
-                  </a>
+                  </a> */}
                   <a
                     href="/company-overview"
                     className="px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50"
