@@ -38,6 +38,7 @@ export async function generateMetadata({
 
   return generateMetadataObject({
     title: `${post.title} | wiscro`,
+    images: [post.eyecatch.url],
     description: post.summary,
   });
 }
