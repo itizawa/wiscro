@@ -62,28 +62,19 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
           </Link>
         </div>
         <article className="max-w-4xl mx-auto space-y-8">
-          <header className="mb-5">
-            {post.eyecatch && (
-              <div className="mb-8">
-                <Image
-                  src={post.eyecatch.url}
-                  alt={post.title}
-                  width={800}
-                  height={256}
-                  className="w-full h-64 object-cover md:object-contain rounded-lg"
-                />
-              </div>
-            )}
-            <h1 className="text-3xl font-bold text-gray-900 mb-2">
-              {post.title}
-            </h1>
+          <header className="border-b border-gray-200 my-4 pb-5 text-center flex flex-col items-center gap-4">
+            <Image
+              src={post.category.icon.url}
+              alt={post.title}
+              width={80}
+              height={80}
+              className="w-20 h-20 mx-auto"
+            />
+            <h1 className="text-3xl font-bold text-gray-900">{post.title}</h1>
             <div className="flex items-center gap-4 text-sm text-gray-600">
               <div className="flex items-center gap-4">
                 <time>{formatDate(post.publishedAt)}</time>
               </div>
-              <span className="text-xs px-2 py-0.5 rounded-full bg-blue-100 text-blue-800">
-                {post.category.name}
-              </span>
             </div>
           </header>
           <MarkdownViewer body={htmlToMarkdown(post.content)} />
