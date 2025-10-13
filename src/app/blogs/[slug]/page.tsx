@@ -70,7 +70,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
               height={80}
               className="w-20 h-20 mx-auto"
             />
-            <h1 className="text-3xl font-bold text-gray-900">{post.title}</h1>
+            <h1 className="text-2xl font-bold text-gray-900">{post.title}</h1>
             <div className="flex items-center gap-4 text-sm text-gray-600">
               <div className="flex items-center gap-4">
                 <time>{formatDate(post.publishedAt)}</time>
