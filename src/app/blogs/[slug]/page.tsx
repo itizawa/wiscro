@@ -3,6 +3,7 @@ import { getAllBlogIds, getBlogById } from "@/shared/lib/blog_v2";
 import { generateMetadataObject } from "@/shared/lib/generateMetadataObject";
 import { htmlToMarkdown } from "@/shared/lib/markdown";
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
@@ -62,6 +63,17 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
         </div>
         <article className="max-w-4xl mx-auto space-y-8">
           <header className="mb-5">
+            {post.eyecatch.url && (
+              <div className="mb-8">
+                <Image
+                  src={post.eyecatch.url}
+                  alt={post.title}
+                  width={800}
+                  height={256}
+                  className="w-full h-64 object-cover md:object-contain rounded-lg"
+                />
+              </div>
+            )}
             <h1 className="text-3xl font-bold text-gray-900 mb-2">
               {post.title}
             </h1>
