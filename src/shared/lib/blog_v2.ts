@@ -26,6 +26,7 @@ export async function getAllBlogPosts({ limit }: { limit?: number } = {}) {
       fields:
         "id,title,summary,content,eyecatch,category,publishedAt,createdAt,updatedAt",
       limit: limit ?? 5, // 最新の5件を取得
+      orders: "-publishedAt",
     },
   });
   return data.contents;
