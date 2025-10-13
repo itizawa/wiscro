@@ -78,7 +78,7 @@ export default async function Home() {
       </section>
       {/* Services Section */}
       <section
-        className="py-6 md:py-12 px-4 md:px-8 max-w-6xl mx-auto"
+        className="py-6 md:py-12 px-4 md:px-8 max-w-6xl mx-auto w-full"
         id="blogs"
       >
         <div className="flex justify-between items-center mb-6 border-b">

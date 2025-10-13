@@ -24,7 +24,7 @@ export async function getAllBlogPosts({ limit }: { limit?: number } = {}) {
     queries: {
       // タイムライン表示に必要な最低限のフィールド
       fields:
-        "id,title,content,eyecatch,category,publishedAt,createdAt,updatedAt",
+        "id,title,summary,content,eyecatch,category,publishedAt,createdAt,updatedAt",
       limit: limit ?? 5, // 最新の5件を取得
     },
   });

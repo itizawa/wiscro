@@ -10,8 +10,7 @@ export const metadata: Metadata = generateMetadataObject({
 });
 
 export default async function BlogPage() {
-  const posts = await getAllBlogPosts();
-  console.log(posts);
+  const posts = await getAllBlogPosts({ limit: 100 });
 
   return (
     <main
