@@ -20,8 +20,8 @@ export default async function BlogPage() {
       }}
     >
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <header className="mb-12">
-          <h1 className="text-3xl font-bold text-gray-900 mb-4">更新情報</h1>
+        <header className="mb-4">
+          <h1 className="text-2xl font-bold text-gray-900 mb-4">更新情報</h1>
         </header>
 
         <Timeline posts={posts} />
