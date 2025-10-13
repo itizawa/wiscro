@@ -1,3 +1,4 @@
+import Image from "next/image";
 import ReactMarkdown from "react-markdown";
 import remarkBreaks from "remark-breaks";
 import remarkGfm from "remark-gfm";
@@ -67,9 +68,19 @@ export const MarkdownViewer: React.FC<{ body: string }> = ({ body }) => {
             {children}
           </a>
         ),
-        img: ({ src, alt }) => (
-          <img src={src} alt={alt} className="max-w-full h-auto" />
-        ),
+        img: ({ src, alt }: { src?: unknown; alt?: string }) => {
+          if (typeof src !== "string" || src.length === 0) return null;
+          return (
+            <Image
+              src={src}
+              alt={alt ?? ""}
+              width={1200}
+              height={675}
+              sizes="(max-width: 768px) 100vw, 768px"
+              className="h-auto max-w-full"
+            />
+          );
+        },
       }}
     >
       {body}

@@ -47,7 +47,7 @@ export async function getBlogById(id: string): Promise<Blog | null> {
       contentId: id,
     });
     return data ?? null;
-  } catch (e) {
+  } catch {
     return null;
   }
 }

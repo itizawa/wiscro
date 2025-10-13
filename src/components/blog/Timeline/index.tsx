@@ -1,4 +1,5 @@
 import { Blog } from "@/shared/types/blog";
+import Image from "next/image";
 import Link from "next/link";
 
 type TimelineProps = {
@@ -20,9 +21,9 @@ export function Timeline({ posts }: TimelineProps) {
       {posts.map((post, index) => (
         <li key={post.id} className="flex gap-4">
           <div className="flex flex-col items-center min-w-8">
-            <img
+            <Image
               src={post.category.icon.url}
-              alt={post.category.icon.url}
+              alt={post.category.name}
               width={32}
               height={32}
               className="w-8 h-8 object-cover"
