@@ -1,14 +1,14 @@
 import { ProductCard } from "@/components/ProductCard";
 import ScrollHandler from "@/components/ScrollHandler";
-import { BlogList } from "@/components/blog/BlogList";
-import { ServiceCard } from "@/components/services/ServiceCard";
+import Timeline from "@/components/blog/Timeline";
 import { Button } from "@/components/ui/button";
-import { getAllBlogPosts } from "@/shared/lib/blog";
+import { getAllBlogPosts as getAllBlogPostsV2 } from "@/shared/lib/blog_v2";
 import Image from "next/image";
 import Link from "next/link";
 
-export default function Home() {
-  const recentPosts = getAllBlogPosts().slice(0, 3);
+export default async function Home() {
+  const recentPostsV2 = await getAllBlogPostsV2();
+
   return (
     <main
       className="min-h-screen flex flex-col items-center "
@@ -79,78 +79,18 @@ export default function Home() {
       {/* Services Section */}
       <section
         className="py-6 md:py-12 px-4 md:px-8 max-w-6xl mx-auto"
-        id="services"
-      >
-        <h2 className="text-2xl font-bold mb-4 pb-2 border-b">提供サービス</h2>
-        <p className="mb-6 text-gray-600">
-          お客様のビジネス課題に寄り添い、最適なソリューションを提供いたします。
-        </p>
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-          <ServiceCard
-            title="ホームページ制作"
-            summary="あなたの想いを形にする、お客様を呼び込むホームページ作り"
-            description={
-              "まずはあなたのお仕事やサービスについてお話を聞かせてください。理想のお客様像や伝えたい魅力を一緒に考えながら、集客や売上アップにつながるホームページを作ります。"
-            }
-            features={[
-              "同業他社の調査とマーケットの分析",
-              "ターゲットとなるお客様の設計",
-              "検索で見つけてもらいやすい構成づくり",
-              "パソコンでもスマホでも見やすいデザイン",
-              "ご自分で簡単に更新できる仕組み",
-              "アクセス数の分析サポート",
-              "公開後のメンテナンスとサポート",
-            ]}
-          />
-          <ServiceCard
-            title="業務システム開発"
-            summary="日々の業務をラクにする、オーダーメイドシステム作り"
-            description="大変な作業や時間のかかる部分を一緒に見つけて、あなたの会社にぴったりのシステムを作ります。ただのツールではなく、毎日の業務が楽になるようサポートします。"
-            features={[
-              "お仕事の流れを整理し、困りごとを見つけるお手伝い",
-              "必要なシステムを一緒に考える",
-              "使いやすい画面とデザインの作成",
-              "データを安全に管理する仕組み作り",
-              "お使いのシステムとの連携",
-              "完成後のサポート体制の整備",
-              "操作方法の研修とマニュアル作成",
-            ]}
-          />
-          <ServiceCard
-            title="IT活用支援"
-            summary="デジタルを味方につけて、お仕事をもっと効率的に"
-            description="「IT活用って何から始めたらいいの？」そんな疑問にお答えします。今のお仕事でデジタルツールを使うメリットや効果的な始め方を分かりやすくご説明し、一歩ずつサポートします。"
-            features={[
-              "今のお仕事でのIT活用状況を確認",
-              "デジタル化で何ができるか戦略づくり",
-              "アナログ作業をデジタルに変える提案",
-              "クラウドサービスの導入サポート",
-              "データを活用した分析の仕組みづくり",
-              "スタッフ向けのIT研修",
-              "IT活用を進める体制づくりのお手伝い",
-              "効果の測定と改善のサポート",
-            ]}
-          />
-        </div>
-      </section>
-      {/* Blog Section */}
-      <section
-        className="py-6 md:py-12 px-4 md:px-8 max-w-6xl mx-auto  w-full"
         id="blogs"
       >
         <div className="flex justify-between items-center mb-6 border-b">
-          <h2 className="text-2xl font-bold pb-2 ">最新のコンテンツ</h2>
+          <h2 className="text-2xl font-bold pb-2 ">更新情報</h2>
           <Link
-            href="/blog"
+            href="/blogs"
             className="text-blue-700 hover:text-blue-800 font-medium"
           >
             すべて見る →
           </Link>
         </div>
-        <p className="mb-6 text-gray-600">
-          技術情報や企業活動について発信しています。
-        </p>
-        <BlogList posts={recentPosts} />
+        <Timeline posts={recentPostsV2} />
       </section>
       {/* Services Section */}
       <section
@@ -220,6 +160,7 @@ export default function Home() {
           </div>
         </div>
       </section>
+
       <section
         className="py-6 md:py-12 px-4 md:px-8 w-full max-w-6xl mx-auto"
         id="company-overview"
