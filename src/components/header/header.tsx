@@ -40,12 +40,15 @@ export default function Header() {
   return (
     <header className="bg-gray-50 shadow-sm sticky top-0 z-50">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between h-16">
-          <div className="flex items-center">
-            <Link href="/" className="flex-shrink-0 flex items-center">
-              <span className="font-bold text-xl">wiscro</span>
-            </Link>
-          </div>
+        <div className="flex justify-between h-16 items-center">
+          <Link href="/">
+            <img
+              src="/logo-with-letter.png"
+              alt="wiscro"
+              width={120}
+              height="36px"
+            />
+          </Link>
 
           <div className="hidden md:flex items-center space-x-8">
             <a
