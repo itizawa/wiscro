@@ -61,7 +61,7 @@ export function BlogPost({ post }: BlogPostProps) {
           <div className="w-32 h-32 rounded-full overflow-hidden mx-auto">
             <Image
               src="/icon.jpg"
-              alt="市澤 樹享"
+              alt="ウィズクロ"
               width={128}
               height={128}
               className="object-cover"

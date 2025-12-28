@@ -55,14 +55,14 @@ export default async function Home() {
           <div className="w-32 h-32 rounded-full overflow-hidden bg-gray-200 flex-shrink-0">
             <Image
               src="/icon.jpg"
-              alt="市澤 樹享"
+              alt="ウィズクロ"
               width={128}
               height={128}
               className="object-cover"
             />
           </div>
           <div>
-            <h3 className="text-xl font-bold mb-2">市澤 樹享</h3>
+            <h3 className="text-xl font-bold mb-2">ウィズクロ</h3>
             <p className="md:text-base">
               LINE公式アカウントを活用した採用管理システムを提供する急成長スタートアップにて、
               <br />
@@ -180,7 +180,7 @@ export default async function Home() {
                   <th className="py-4 pr-4 text-left w-1/4 text-gray-600">
                     代表者
                   </th>
-                  <td className="py-4">市澤 樹享</td>
+                  <td className="py-4">ウィズクロ</td>
                 </tr>
                 <tr className="border-b">
                   <th className="py-4 pr-4 text-left w-1/4 text-gray-600">

@@ -103,7 +103,7 @@ title: "記事タイトル"
 date: "2024-12-21"
 tags: ["技術", "Next.js", "TypeScript"]
 summary: "記事の概要文。一覧ページで表示される。"
-author: "市澤 樹享"
+author: "ウィズクロ"
 thumbnail: "/blog/images/thumbnail.jpg" # オプション
 published: true # 公開状態
 ---
@@ -122,7 +122,7 @@ npm install --save-dev @types/marked
 
 ## 担当者
 
-市澤 樹享
+ウィズクロ
 
 ---
 

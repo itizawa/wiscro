@@ -3,7 +3,7 @@ title: "ブログ始めました"
 date: "2025-06-22"
 tags: ["お知らせ"]
 summary: "深谷在住のソフトウェアエンジニアです。あなたの企業の業務課題を解決します。"
-author: "市澤 樹享"
+author: "ウィズクロ"
 thumbnail: "/eye-catch.png"
 published: true
 ---
