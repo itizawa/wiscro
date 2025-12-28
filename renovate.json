@@ -1,0 +1,56 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": [
+    "config:recommended"
+  ],
+  "timezone": "Asia/Tokyo",
+  "labels": ["dependencies"],
+  "assignees": ["itizawa"],
+  "schedule": ["before 10am on monday"],
+  "prConcurrentLimit": 5,
+  "prHourlyLimit": 2,
+  "packageRules": [
+    {
+      "description": "Next.js関連パッケージをグループ化",
+      "matchPackagePatterns": ["^next", "^eslint-config-next"],
+      "groupName": "Next.js"
+    },
+    {
+      "description": "React関連パッケージをグループ化",
+      "matchPackagePatterns": ["^react", "^@types/react"],
+      "groupName": "React"
+    },
+    {
+      "description": "Tailwind CSS関連パッケージをグループ化",
+      "matchPackagePatterns": ["^tailwind", "^@tailwindcss"],
+      "groupName": "Tailwind CSS"
+    },
+    {
+      "description": "Radix UI関連パッケージをグループ化",
+      "matchPackagePatterns": ["^@radix-ui"],
+      "groupName": "Radix UI"
+    },
+    {
+      "description": "型定義ファイルをグループ化",
+      "matchPackagePatterns": ["^@types/"],
+      "groupName": "type definitions",
+      "automerge": true
+    },
+    {
+      "description": "マイナーアップデートとパッチアップデートを自動マージ",
+      "matchUpdateTypes": ["minor", "patch"],
+      "automerge": true
+    },
+    {
+      "description": "メジャーアップデートは手動レビュー",
+      "matchUpdateTypes": ["major"],
+      "automerge": false,
+      "labels": ["major-update"]
+    }
+  ],
+  "vulnerabilityAlerts": {
+    "enabled": true,
+    "labels": ["security"],
+    "assignees": ["itizawa"]
+  }
+}
