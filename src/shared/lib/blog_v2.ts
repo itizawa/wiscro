@@ -1,0 +1,53 @@
+// libs/microcms.ts
+import { createClient } from "microcms-js-sdk";
+import { Blog } from "../types/blog";
+
+// 環境変数にMICROCMS_SERVICE_DOMAINが設定されていない場合はエラーを投げる
+if (!process.env.MICROCMS_SERVICE_DOMAIN) {
+  throw new Error("MICROCMS_SERVICE_DOMAIN is required");
+}
+
+// 環境変数にMICROCMS_API_KEYが設定されていない場合はエラーを投げる
+if (!process.env.MICROCMS_API_KEY) {
+  throw new Error("MICROCMS_API_KEY is required");
+}
+
+// Client SDKの初期化を行う
+export const client = createClient({
+  serviceDomain: process.env.MICROCMS_SERVICE_DOMAIN,
+  apiKey: process.env.MICROCMS_API_KEY,
+});
+
+export async function getAllBlogPosts({ limit }: { limit?: number } = {}) {
+  const data = await client.get<{ contents: Blog[] }>({
+    endpoint: "blogs",
+    queries: {
+      // タイムライン表示に必要な最低限のフィールド
+      fields:
+        "id,title,summary,content,eyecatch,category,publishedAt,createdAt,updatedAt",
+      limit: limit ?? 5, // 最新の5件を取得
+      orders: "-publishedAt",
+    },
+  });
+  return data.contents;
+}
+
+export async function getAllBlogIds(): Promise<string[]> {
+  const data = await client.get<{ contents: Pick<Blog, "id">[] }>({
+    endpoint: "blogs",
+    queries: { fields: "id", limit: 100 },
+  });
+  return data.contents.map((c) => c.id);
+}
+
+export async function getBlogById(id: string): Promise<Blog | null> {
+  try {
+    const data = await client.get<Blog>({
+      endpoint: "blogs",
+      contentId: id,
+    });
+    return data ?? null;
+  } catch {
+    return null;
+  }
+}

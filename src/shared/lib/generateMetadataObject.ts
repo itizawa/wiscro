@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 
 const DEFAULT_TITLE = "wiscro";
 const DEFAULT_DESCRIPTION =
-  "集合知を信じ、インターネットを通じて多くの人が知識やアイデアを共有できる環境を整えることで世界をより良くするための会社です。";
-const DEFAULT_URL = "https://www.wiscro.app";
-const DEFAULT_IMAGE = "https://www.wiscro.app/ogp.png";
+  "人が集まる会社づくり、始めませんか？深谷在住エンジニアだからできる「顔の見える」採用支援";
+const DEFAULT_URL = "https://wiscro.app";
+const DEFAULT_IMAGE = "https://wiscro.app/eye-catch.png";
 
 type Args = {
   title?: string;
@@ -26,18 +26,18 @@ export const generateMetadataObject = ({
       title,
       description,
       url,
-      siteName: "Thread Note",
+      siteName: "wiscro",
       locale: "ja_JP",
       type: "website",
       images,
     },
     twitter: {
-      card: "summary_large_image",
+      card: "summary",
       title,
       description,
       site: "@",
       creator: "@",
     },
-    metadataBase: new URL("https://www.thread-note.com"),
+    metadataBase: new URL("https://wiscro.app"),
   };
 };
