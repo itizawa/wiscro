@@ -6,16 +6,16 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ```bash
 # 開発サーバーの起動（Turbopack使用）
-yarn dev
+pnpm dev
 
 # 本番用ビルド
-yarn build
+pnpm build
 
 # 本番用サーバー起動
-yarn start
+pnpm start
 
 # Linting
-yarn lint
+pnpm lint
 ```
 
 ## プロジェクト構成
