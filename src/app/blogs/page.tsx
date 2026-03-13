@@ -1,6 +1,7 @@
 import Timeline from "@/components/blog/Timeline";
 import { getAllBlogPosts } from "@/shared/lib/blog_v2";
 import { generateMetadataObject } from "@/shared/lib/generateMetadataObject";
+import { Box, Typography } from "@mui/material";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = generateMetadataObject({
@@ -13,19 +14,29 @@ export default async function BlogPage() {
   const posts = await getAllBlogPosts({ limit: 100 });
 
   return (
-    <main
-      className="min-h-screen py-8"
-      style={{
-        backgroundImage: `linear-gradient(45deg, rgb(139 208 254 / 30%), rgba(0, 123, 255, 0))`,
+    <Box
+      component="main"
+      sx={{
+        minHeight: "100vh",
+        py: 4,
+        backgroundImage:
+          "linear-gradient(45deg, rgb(139 208 254 / 30%), rgba(0, 123, 255, 0))",
       }}
     >
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <header className="mb-4">
-          <h1 className="text-2xl font-bold text-gray-900 mb-4">更新情報</h1>
-        </header>
-
+      <Box
+        sx={{
+          maxWidth: "1152px",
+          mx: "auto",
+          px: { xs: 2, sm: 3, lg: 4 },
+        }}
+      >
+        <Box component="header" sx={{ mb: 2 }}>
+          <Typography variant="h5" fontWeight="bold" sx={{ color: "#111827", mb: 2 }}>
+            更新情報
+          </Typography>
+        </Box>
         <Timeline posts={posts} />
-      </div>
-    </main>
+      </Box>
+    </Box>
   );
 }

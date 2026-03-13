@@ -1,6 +1,7 @@
 import { BlogPost } from "@/shared/types/blog";
-import Link from "next/link";
+import { Box, Chip, Typography } from "@mui/material";
 import Image from "next/image";
+import Link from "next/link";
 
 interface BlogCardProps {
   post: BlogPost;
@@ -17,46 +18,88 @@ export function BlogCard({ post }: BlogCardProps) {
   };
 
   return (
-    <Link href={`/blog/${post.slug}`}>
-      <div className="border rounded-lg overflow-hidden bg-white hover:shadow-lg transition-shadow duration-200">
+    <Link href={`/blog/${post.slug}`} style={{ textDecoration: "none" }}>
+      <Box
+        sx={{
+          border: "1px solid #e5e7eb",
+          borderRadius: 2,
+          overflow: "hidden",
+          bgcolor: "white",
+          "&:hover": { boxShadow: 3 },
+          transition: "box-shadow 0.2s",
+        }}
+      >
         {post.thumbnail && (
-          <div className="h-48 bg-gray-100 relative">
+          <Box sx={{ height: 192, bgcolor: "#f3f4f6", position: "relative" }}>
             <Image
               src={post.thumbnail}
               alt={post.title}
               width={400}
               height={192}
-              className="w-full h-full object-cover"
+              style={{ width: "100%", height: "100%", objectFit: "cover" }}
             />
-          </div>
+          </Box>
         )}
-        <div className="p-4">
-          <h3 className="font-bold text-lg text-gray-900 transition-colors line-clamp-2">
+        <Box sx={{ p: 2 }}>
+          <Typography
+            variant="subtitle1"
+            fontWeight="bold"
+            sx={{
+              color: "#111827",
+              display: "-webkit-box",
+              WebkitLineClamp: 2,
+              WebkitBoxOrient: "vertical",
+              overflow: "hidden",
+            }}
+          >
             {post.title}
-          </h3>
-          <div className="flex items-center justify-between mb-2">
-            <time className="text-sm text-gray-500">
+          </Typography>
+          <Box
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "space-between",
+              mb: 1,
+            }}
+          >
+            <Typography variant="body2" sx={{ color: "#6b7280" }}>
               {formatDate(post.date)}
-            </time>
-            <span className="text-sm text-gray-600">{post.author}</span>
-          </div>
-          <p className="text-gray-600 text-sm mb-2 line-clamp-3">
+            </Typography>
+            <Typography variant="body2" sx={{ color: "#4b5563" }}>
+              {post.author}
+            </Typography>
+          </Box>
+          <Typography
+            variant="body2"
+            sx={{
+              color: "#4b5563",
+              mb: 1,
+              display: "-webkit-box",
+              WebkitLineClamp: 3,
+              WebkitBoxOrient: "vertical",
+              overflow: "hidden",
+            }}
+          >
             {post.summary}
-          </p>
+          </Typography>
           {post.tags.length > 0 && (
-            <div className="flex flex-wrap gap-2">
+            <Box sx={{ display: "flex", flexWrap: "wrap", gap: 1 }}>
               {post.tags.map((tag) => (
-                <span
+                <Chip
                   key={tag}
-                  className="px-2 py-1 bg-blue-100 text-blue-800 text-xs rounded-full"
-                >
-                  {tag}
-                </span>
+                  label={tag}
+                  size="small"
+                  sx={{
+                    bgcolor: "#dbeafe",
+                    color: "#1e40af",
+                    fontSize: "0.75rem",
+                  }}
+                />
               ))}
-            </div>
+            </Box>
           )}
-        </div>
-      </div>
+        </Box>
+      </Box>
     </Link>
   );
 }

@@ -1,4 +1,5 @@
 import { BlogPost } from "@/shared/types/blog";
+import { Box } from "@mui/material";
 import { BlogCard } from "../BlogCard";
 
 interface BlogListProps {
@@ -7,10 +8,20 @@ interface BlogListProps {
 
 export function BlogList({ posts }: BlogListProps) {
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+    <Box
+      sx={{
+        display: "grid",
+        gridTemplateColumns: {
+          xs: "1fr",
+          md: "repeat(2, 1fr)",
+          lg: "repeat(3, 1fr)",
+        },
+        gap: 3,
+      }}
+    >
       {posts.map((post) => (
         <BlogCard key={post.slug} post={post} />
       ))}
-    </div>
+    </Box>
   );
 }

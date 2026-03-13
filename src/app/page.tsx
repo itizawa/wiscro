@@ -1,8 +1,7 @@
-import { ProductCard } from "@/components/ProductCard";
 import ScrollHandler from "@/components/ScrollHandler";
 import Timeline from "@/components/blog/Timeline";
-import { Button } from "@/components/ui/button";
 import { getAllBlogPosts as getAllBlogPostsV2 } from "@/shared/lib/blog_v2";
+import { Box, Button, Container, Typography, Table, TableBody, TableRow, TableCell } from "@mui/material";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -10,216 +9,281 @@ export default async function Home() {
   const recentPostsV2 = await getAllBlogPostsV2();
 
   return (
-    <main
-      className="min-h-screen flex flex-col items-center "
-      style={{
-        backgroundImage: `linear-gradient(45deg, rgb(139 208 254 / 30%), rgba(0, 123, 255, 0))`,
+    <Box
+      component="main"
+      sx={{
+        minHeight: "100vh",
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        backgroundImage:
+          "linear-gradient(45deg, rgb(139 208 254 / 30%), rgba(0, 123, 255, 0))",
       }}
     >
       <ScrollHandler />
-      <section className="h-[224px] md:h-[600px] relative">
-        <div className="max-w-6xl mx-auto">
-          <div className="hidden md:block absolute bottom-8 left-8 p-6 md:p-8 bg-[rgba(255,255,255,0.8)] rounded-lg shadow-lg text-[#2F4A7B]">
-            <div className="flex flex-col space-y-4">
-              <span className="md:text-4xl font-bold">
+
+      {/* Hero Section */}
+      <Box
+        component="section"
+        sx={{ height: { xs: 224, md: 600 }, position: "relative", width: "100%" }}
+      >
+        <Container maxWidth="lg">
+          <Box
+            sx={{
+              display: { xs: "none", md: "block" },
+              position: "absolute",
+              bottom: 32,
+              left: 32,
+              p: { xs: 3, md: 4 },
+              bgcolor: "rgba(255,255,255,0.8)",
+              borderRadius: 2,
+              boxShadow: 3,
+              color: "#2F4A7B",
+            }}
+          >
+            <Box sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
+              <Typography
+                sx={{ fontSize: { md: "2.25rem" }, fontWeight: "bold" }}
+              >
                 WEBの力で事業を前に進める
-              </span>
-              <span className="md:text-2xl font-bold">
+              </Typography>
+              <Typography
+                sx={{ fontSize: { md: "1.5rem" }, fontWeight: "bold" }}
+              >
                 顧客に寄り添う地域密着型のシステム屋さん
-              </span>
-            </div>
-          </div>
-        </div>
+              </Typography>
+            </Box>
+          </Box>
+        </Container>
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src="/eye-catch.png"
           alt="wiscro"
-          className="h-[224px] md:h-[600px] object-cover w-screen object-top"
+          style={{
+            height: "100%",
+            objectFit: "cover",
+            width: "100vw",
+            objectPosition: "top",
+          }}
         />
-      </section>
-      <div className="block md:hidden py-6 px-4 text-[#2F4A7B]">
-        <div className="flex flex-col space-y-4">
-          <span className="font-bold">WEBの力で事業を前に進める</span>
-          <span className="text-sm font-bold">
-            顧客に寄り添う地域密着型のシステム屋さん
-          </span>
-        </div>
-      </div>
-      {/* Representative Introduction */}
-      <section
-        className="py-6 md:py-12 px-4 md:px-8 max-w-6xl mx-auto"
-        id="representative"
+      </Box>
+
+      {/* Mobile hero text */}
+      <Box
+        sx={{
+          display: { xs: "block", md: "none" },
+          py: 3,
+          px: 2,
+          color: "#2F4A7B",
+        }}
       >
-        <h2 className="text-2xl font-bold mb-6 pb-2 border-b">代表紹介</h2>
-        <div className="flex flex-col md:flex-row items-center md:items-start gap-6">
-          <div className="w-32 h-32 rounded-full overflow-hidden bg-gray-200 flex-shrink-0">
+        <Box sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
+          <Typography fontWeight="bold">WEBの力で事業を前に進める</Typography>
+          <Typography variant="body2" fontWeight="bold">
+            顧客に寄り添う地域密着型のシステム屋さん
+          </Typography>
+        </Box>
+      </Box>
+
+      {/* Representative Introduction */}
+      <Box
+        component="section"
+        id="representative"
+        sx={{
+          py: { xs: 3, md: 6 },
+          px: { xs: 2, md: 4 },
+          maxWidth: "1152px",
+          mx: "auto",
+          width: "100%",
+        }}
+      >
+        <Typography
+          variant="h5"
+          fontWeight="bold"
+          sx={{ mb: 3, pb: 1, borderBottom: "1px solid #e5e7eb" }}
+        >
+          代表紹介
+        </Typography>
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: { xs: "column", md: "row" },
+            alignItems: { xs: "center", md: "flex-start" },
+            gap: 3,
+          }}
+        >
+          <Box
+            sx={{
+              width: 128,
+              height: 128,
+              borderRadius: "50%",
+              overflow: "hidden",
+              bgcolor: "#e5e7eb",
+              flexShrink: 0,
+            }}
+          >
             <Image
               src="/icon.jpg"
               alt="ウィズクロ"
               width={128}
               height={128}
-              className="object-cover"
+              style={{ objectFit: "cover" }}
             />
-          </div>
-          <div>
-            <h3 className="text-xl font-bold mb-2">ウィズクロ</h3>
-            <p className="md:text-base">
+          </Box>
+          <Box>
+            <Typography variant="h6" fontWeight="bold" sx={{ mb: 1 }}>
+              ウィズクロ
+            </Typography>
+            <Typography variant="body1">
               特に0→1フェーズにおける技術選定、フロントエンドエコシステムの構築、パフォーマンス改善、SRE領域まで幅広く対応可能で、
               <br />
               専門性が求められる領域において強みを発揮しています。
-            </p>
-          </div>
-        </div>
-      </section>
-      {/* Services Section */}
-      <section
-        className="py-6 md:py-12 px-4 md:px-8 max-w-6xl mx-auto w-full"
+            </Typography>
+          </Box>
+        </Box>
+      </Box>
+
+      {/* Blog / Updates Section */}
+      <Box
+        component="section"
         id="blogs"
+        sx={{
+          py: { xs: 3, md: 6 },
+          px: { xs: 2, md: 4 },
+          maxWidth: "1152px",
+          mx: "auto",
+          width: "100%",
+        }}
       >
-        <div className="flex justify-between items-center mb-6 border-b">
-          <h2 className="text-2xl font-bold pb-2 ">更新情報</h2>
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+            mb: 3,
+            borderBottom: "1px solid #e5e7eb",
+          }}
+        >
+          <Typography variant="h5" fontWeight="bold" sx={{ pb: 1 }}>
+            更新情報
+          </Typography>
           <Link
             href="/blogs"
-            className="text-blue-700 hover:text-blue-800 font-medium"
+            style={{
+              color: "#1565c0",
+              fontWeight: 500,
+              textDecoration: "none",
+            }}
           >
             すべて見る →
           </Link>
-        </div>
+        </Box>
         <Timeline posts={recentPostsV2} />
-      </section>
-      {/* Services Section */}
-      <section
-        className="py-6 md:py-12 px-4 md:px-8 max-w-6xl mx-auto"
-        id="products"
-      >
-        <h2 className="text-2xl font-bold mb-4 pb-2 border-b">
-          プロダクト一覧
-        </h2>
-        <p className="mb-6 text-gray-600">
-          企画・開発・運用までを一貫して開発しています。
-        </p>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <ProductCard
-            icon={"/thread-note.png"}
-            url="https://www.thread-note.com"
-            title="Thread Note"
-            summary="Thread Note はスレッド形式で手軽に情報を残すことができるサービスです。"
-          />
-          <ProductCard
-            icon={"/lucky-bag.png"}
-            url="https://news.wiscro.app"
-            title="福袋速報"
-            summary="福袋の情報をまとめて紹介するサイト。LINE公式アカウントを通じて最新情報を配信しています。"
-          />
-        </div>
-      </section>
-      {/* Development Achievements */}
-      {/* <section
-        className="py-6 md:py-12 px-4 md:px-8 max-w-6xl mx-auto"
-        id="achievements"
-      >
-        <h2 className="text-2xl font-bold mb-4 pb-2 border-b">開発実績</h2>
-        <p className="mb-6 text-gray-600">これまでの開発実績を紹介します。</p>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <div className="border rounded-lg overflow-hidden bg-gray-50">
-            <div className="h-48 bg-emerald-100 relative">
-              <Image
-                src="/design.png"
-                alt="アート管理のSaaSプロダクト"
-                fill
-                className="object-contain"
-              />
-            </div>
-            <div className="p-4">
-              <h3 className="font-bold mb-1">アート管理のSaaSプロダクト</h3>
-              <p className="text-sm text-gray-600">
-                アート管理業者が販売活動を行うためのECサイトのデザイン改修のリードエンジニアを担当。
-              </p>
-            </div>
-          </div>
-          <div className="border rounded-lg overflow-hidden bg-gray-50">
-            <div className="h-48 bg-amber-100 relative">
-              <Image
-                src="/fc.png"
-                alt="複業マッチングプラットフォーム"
-                fill
-                className="object-contain"
-              />
-            </div>
-            <div className="p-4">
-              <h3 className="font-bold mb-1">複業マッチングプラットフォーム</h3>
-              <p className="text-sm text-gray-600">
-                詳細設計から実装までのシステム開発を担当
-              </p>
-            </div>
-          </div>
-        </div>
-      </section> */}
+      </Box>
 
-      <section
-        className="py-6 md:py-12 px-4 md:px-8 w-full max-w-6xl mx-auto"
+      {/* Company Overview */}
+      <Box
+        component="section"
         id="company-overview"
+        sx={{
+          py: { xs: 3, md: 6 },
+          px: { xs: 2, md: 4 },
+          maxWidth: "1152px",
+          mx: "auto",
+          width: "100%",
+        }}
       >
-        <h2 className="text-2xl font-bold mb-4 pb-2 border-b">概要</h2>
-        <div className="bg-white rounded-lg p-6">
-          <div className="overflow-x-auto">
-            <table className="w-full">
-              <tbody>
-                <tr className="border-b">
-                  <th className="py-4 pr-4 text-left w-1/4 text-gray-600">
-                    団体名
-                  </th>
-                  <td className="py-4">wiscro（ウィズクロ）</td>
-                </tr>
-                <tr className="border-b">
-                  <th className="py-4 pr-4 text-left w-1/4 text-gray-600">
-                    代表者
-                  </th>
-                  <td className="py-4">ウィズクロ</td>
-                </tr>
-                <tr className="border-b">
-                  <th className="py-4 pr-4 text-left w-1/4 text-gray-600">
-                    設立
-                  </th>
-                  <td className="py-4">2023年5月18日</td>
-                </tr>
-                <tr className="border-b">
-                  <th className="py-4 pr-4 text-left w-1/4 text-gray-600">
-                    所在地
-                  </th>
-                  <td className="py-4">埼玉県深谷市</td>
-                </tr>
-                <tr>
-                  <th className="py-4 pr-4 text-left w-1/4 text-gray-600">
-                    事業内容
-                  </th>
-                  <td className="py-4">
-                    企業向け業務ソフトウェア・Webサービス開発
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </section>
+        <Typography
+          variant="h5"
+          fontWeight="bold"
+          sx={{ mb: 2, pb: 1, borderBottom: "1px solid #e5e7eb" }}
+        >
+          概要
+        </Typography>
+        <Box sx={{ bgcolor: "white", borderRadius: 2, p: 3 }}>
+          <Box sx={{ overflowX: "auto" }}>
+            <Table>
+              <TableBody>
+                {[
+                  ["団体名", "wiscro（ウィズクロ）"],
+                  ["代表者", "ウィズクロ"],
+                  ["設立", "2023年5月18日"],
+                  ["所在地", "埼玉県深谷市"],
+                  ["事業内容", "企業向け業務ソフトウェア・Webサービス開発"],
+                ].map(([label, value], i, arr) => (
+                  <TableRow
+                    key={label}
+                    sx={{
+                      borderBottom:
+                        i < arr.length - 1 ? "1px solid #e5e7eb" : "none",
+                    }}
+                  >
+                    <TableCell
+                      component="th"
+                      scope="row"
+                      sx={{
+                        py: 2,
+                        pr: 2,
+                        textAlign: "left",
+                        width: "25%",
+                        color: "#4b5563",
+                        fontWeight: 400,
+                        borderBottom: "none",
+                      }}
+                    >
+                      {label}
+                    </TableCell>
+                    <TableCell sx={{ py: 2, borderBottom: "none" }}>
+                      {value}
+                    </TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
+          </Box>
+        </Box>
+      </Box>
+
       {/* Contact Section */}
-      <section className="py-6 md:py-12 px-4 md:px-8 max-w-6xl mx-auto text-center">
-        <h2 className="text-2xl font-bold mb-6">お問い合わせ</h2>
-        <p className="mb-8">
+      <Box
+        component="section"
+        sx={{
+          py: { xs: 3, md: 6 },
+          px: { xs: 2, md: 4 },
+          maxWidth: "1152px",
+          mx: "auto",
+          textAlign: "center",
+        }}
+      >
+        <Typography variant="h5" fontWeight="bold" sx={{ mb: 3 }}>
+          お問い合わせ
+        </Typography>
+        <Typography sx={{ mb: 4 }}>
           ご相談・お見積もりなど、お気軽にお問い合わせください。
-        </p>
-        <div className="flex justify-center items-center gap-4">
+        </Typography>
+        <Box sx={{ display: "flex", justifyContent: "center", gap: 2 }}>
           <a
             href="https://docs.google.com/forms/d/e/1FAIpQLSeNmuXo7-05iU_m5ge4pq_1pysVTqcis8JWOgrupso1foOZpw/viewform?usp=dialogo"
             target="_blank"
             rel="noopener noreferrer"
           >
-            <Button className="bg-blue-700 hover:bg-blue-800 text-white font-bold px-8 py-2 rounded">
+            <Button
+              variant="contained"
+              sx={{
+                bgcolor: "#1565c0",
+                "&:hover": { bgcolor: "#0d47a1" },
+                fontWeight: "bold",
+                px: 4,
+                py: 1,
+                borderRadius: 1,
+                textTransform: "none",
+              }}
+            >
               お問い合わせ
             </Button>
           </a>
-        </div>
-      </section>
-    </main>
+        </Box>
+      </Box>
+    </Box>
   );
 }
