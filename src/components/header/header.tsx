@@ -1,15 +1,15 @@
 "use client";
 
-import MenuIcon from "@mui/icons-material/Menu";
 import CloseIcon from "@mui/icons-material/Close";
+import MenuIcon from "@mui/icons-material/Menu";
 import {
   AppBar,
   Box,
   Button,
   Drawer,
   IconButton,
-  Toolbar,
   Link as MuiLink,
+  Toolbar,
 } from "@mui/material";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -25,7 +25,7 @@ export default function Header() {
 
   const handleLinkClick = (
     e: React.MouseEvent<HTMLAnchorElement>,
-    targetId: string
+    targetId: string,
   ) => {
     e.preventDefault();
     setDrawerOpen(false);
@@ -52,8 +52,12 @@ export default function Header() {
   return (
     <AppBar
       position="sticky"
-      elevation={1}
-      sx={{ bgcolor: "#f9fafb", color: "text.primary" }}
+      elevation={0}
+      sx={{
+        bgcolor: "#f9fafb",
+        color: "text.primary",
+        borderBottom: "1px solid #e5e7eb",
+      }}
     >
       <Toolbar
         sx={{
@@ -66,19 +70,24 @@ export default function Header() {
         }}
       >
         <Link href="/">
-          <img
-            src="/logo-with-letter.png"
-            alt="wiscro"
-            width={120}
-            height={36}
-          />
+          <img src="/logo-with-letter.png" alt="wiscro" width={120} />
         </Link>
 
         {/* Desktop nav */}
-        <Box sx={{ display: { xs: "none", md: "flex" }, alignItems: "center", gap: 4 }}>
+        <Box
+          sx={{
+            display: { xs: "none", md: "flex" },
+            alignItems: "center",
+            gap: 4,
+          }}
+        >
           {navLinks.map((link) =>
             link.href ? (
-              <Link key={link.id} href={link.href} style={{ textDecoration: "none" }}>
+              <Link
+                key={link.id}
+                href={link.href}
+                style={{ textDecoration: "none" }}
+              >
                 <MuiLink
                   component="span"
                   underline="none"
@@ -87,7 +96,9 @@ export default function Header() {
                     "&:hover": { color: "text.primary" },
                     cursor: "pointer",
                   }}
-                  onClick={(e: React.MouseEvent<HTMLAnchorElement>) => handleLinkClick(e, link.id)}
+                  onClick={(e: React.MouseEvent<HTMLAnchorElement>) =>
+                    handleLinkClick(e, link.id)
+                  }
                 >
                   {link.label}
                 </MuiLink>
@@ -102,11 +113,13 @@ export default function Header() {
                   "&:hover": { color: "text.primary" },
                   cursor: "pointer",
                 }}
-                onClick={(e: React.MouseEvent<HTMLAnchorElement>) => handleLinkClick(e, link.id)}
+                onClick={(e: React.MouseEvent<HTMLAnchorElement>) =>
+                  handleLinkClick(e, link.id)
+                }
               >
                 {link.label}
               </MuiLink>
-            )
+            ),
           )}
           <a href={CONTACT_URL} target="_blank" rel="noopener noreferrer">
             <Button
@@ -148,7 +161,15 @@ export default function Header() {
             <CloseIcon />
           </IconButton>
         </Box>
-        <Box sx={{ display: "flex", flexDirection: "column", gap: 1, mt: 2, px: 2 }}>
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            gap: 1,
+            mt: 2,
+            px: 2,
+          }}
+        >
           {navLinks.map((link) => (
             <MuiLink
               key={link.id}
@@ -163,7 +184,9 @@ export default function Header() {
                 color: "text.secondary",
                 "&:hover": { color: "text.primary", bgcolor: "#f9fafb" },
               }}
-              onClick={(e: React.MouseEvent<HTMLAnchorElement>) => handleLinkClick(e, link.id)}
+              onClick={(e: React.MouseEvent<HTMLAnchorElement>) =>
+                handleLinkClick(e, link.id)
+              }
             >
               {link.label}
             </MuiLink>
