@@ -46,6 +46,7 @@ export default function Header() {
   const navLinks = [
     { label: "代表紹介", id: "representative" },
     { label: "コンテンツ", id: "blogs", href: "/blog" },
+    { label: "つぶやき", id: "posts", href: "/posts" },
     { label: "概要", id: "company-overview" },
   ];
 
@@ -96,9 +97,6 @@ export default function Header() {
                     "&:hover": { color: "text.primary" },
                     cursor: "pointer",
                   }}
-                  onClick={(e: React.MouseEvent<HTMLAnchorElement>) =>
-                    handleLinkClick(e, link.id)
-                  }
                 >
                   {link.label}
                 </MuiLink>
@@ -170,27 +168,52 @@ export default function Header() {
             px: 2,
           }}
         >
-          {navLinks.map((link) => (
-            <MuiLink
-              key={link.id}
-              href={`/${link.id}`}
-              underline="none"
-              sx={{
-                px: 1.5,
-                py: 1,
-                borderRadius: 1,
-                fontSize: "1rem",
-                fontWeight: 500,
-                color: "text.secondary",
-                "&:hover": { color: "text.primary", bgcolor: "#f9fafb" },
-              }}
-              onClick={(e: React.MouseEvent<HTMLAnchorElement>) =>
-                handleLinkClick(e, link.id)
-              }
-            >
-              {link.label}
-            </MuiLink>
-          ))}
+          {navLinks.map((link) =>
+            link.href ? (
+              <Link
+                key={link.id}
+                href={link.href}
+                style={{ textDecoration: "none" }}
+                onClick={() => setDrawerOpen(false)}
+              >
+                <MuiLink
+                  component="span"
+                  underline="none"
+                  sx={{
+                    px: 1.5,
+                    py: 1,
+                    borderRadius: 1,
+                    fontSize: "1rem",
+                    fontWeight: 500,
+                    color: "text.secondary",
+                    "&:hover": { color: "text.primary", bgcolor: "#f9fafb" },
+                  }}
+                >
+                  {link.label}
+                </MuiLink>
+              </Link>
+            ) : (
+              <MuiLink
+                key={link.id}
+                href={`/${link.id}`}
+                underline="none"
+                sx={{
+                  px: 1.5,
+                  py: 1,
+                  borderRadius: 1,
+                  fontSize: "1rem",
+                  fontWeight: 500,
+                  color: "text.secondary",
+                  "&:hover": { color: "text.primary", bgcolor: "#f9fafb" },
+                }}
+                onClick={(e: React.MouseEvent<HTMLAnchorElement>) =>
+                  handleLinkClick(e, link.id)
+                }
+              >
+                {link.label}
+              </MuiLink>
+            ),
+          )}
           <Box sx={{ pt: 2, display: "flex", justifyContent: "center" }}>
             <a href={CONTACT_URL} target="_blank" rel="noopener noreferrer">
               <Button
