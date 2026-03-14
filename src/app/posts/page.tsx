@@ -36,7 +36,7 @@ export default async function PostsPage() {
         }}
       >
         <Typography variant="h6" sx={{ fontWeight: 700, lineHeight: 1.2 }}>
-          呟き一覧
+          ポスト
         </Typography>
       </Box>
 

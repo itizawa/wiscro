@@ -3,7 +3,6 @@ import Timeline from "@/components/blog/Timeline";
 import { getAllBlogPosts as getAllBlogPostsV2 } from "@/shared/lib/blog_v2";
 import { Box, Button, Container, Typography, Table, TableBody, TableRow, TableCell } from "@mui/material";
 import Image from "next/image";
-import Link from "next/link";
 
 export default async function Home() {
   const recentPostsV2 = await getAllBlogPostsV2();
@@ -155,29 +154,13 @@ export default async function Home() {
           width: "100%",
         }}
       >
-        <Box
-          sx={{
-            display: "flex",
-            justifyContent: "space-between",
-            alignItems: "center",
-            mb: 3,
-            borderBottom: "1px solid #e5e7eb",
-          }}
+        <Typography
+          variant="h5"
+          fontWeight="bold"
+          sx={{ mb: 3, pb: 1, borderBottom: "1px solid #e5e7eb" }}
         >
-          <Typography variant="h5" fontWeight="bold" sx={{ pb: 1 }}>
-            更新情報
-          </Typography>
-          <Link
-            href="/blogs"
-            style={{
-              color: "#1565c0",
-              fontWeight: 500,
-              textDecoration: "none",
-            }}
-          >
-            すべて見る →
-          </Link>
-        </Box>
+          更新情報
+        </Typography>
         <Timeline posts={recentPostsV2} />
       </Box>
 
