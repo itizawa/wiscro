@@ -9,7 +9,7 @@ export default function BackButton() {
 
   return (
     <IconButton
-      onClick={() => router.back()}
+      onClick={() => router.push("/posts")}
       size="small"
       sx={{ color: "text.primary" }}
     >
