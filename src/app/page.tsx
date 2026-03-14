@@ -4,6 +4,7 @@ import { getAllBlogPosts as getAllBlogPostsV2 } from "@/shared/lib/blog_v2";
 import {
   Box,
   Container,
+  Stack,
   Table,
   TableBody,
   TableCell,
@@ -113,7 +114,7 @@ export default async function Home() {
           fontWeight="bold"
           sx={{ mb: 3, pb: 1, borderBottom: "1px solid #e5e7eb" }}
         >
-          代表紹介
+          団体紹介
         </Typography>
         <Box
           sx={{
@@ -141,16 +142,19 @@ export default async function Home() {
               style={{ objectFit: "cover" }}
             />
           </Box>
-          <Box>
-            <Typography variant="h6" fontWeight="bold" sx={{ mb: 1 }}>
-              市澤 樹享
+          <Stack spacing={2}>
+            <Typography variant="h6" fontWeight="bold">
+              wiscro（ウィズクロ）
             </Typography>
-            <Typography variant="body1">
-              深谷市在住のソフトウェアエンジニアです。
-              <br />
-              妻と一緒に手芸販売を行っています。
-            </Typography>
-          </Box>
+            <Stack spacing={1}>
+              <Typography variant="body1">
+                深谷市を拠点に夫婦でコンテンツ制作・手芸販売を行なっています。
+              </Typography>
+              <Typography variant="body1">
+                専門はソフトウェア開発です。ホームページ作成やITにお困りの方はお気軽にご相談ください。
+              </Typography>
+            </Stack>
+          </Stack>
         </Box>
       </Box>
 

@@ -156,7 +156,7 @@ export default function PostFeed({
               variant="body1"
               sx={{ color: "text.secondary", whiteSpace: "pre-wrap" }}
             >
-              {`市澤の日々の気づきや考えを短いテキストで発信するページです。\nSNSで発信するまでもいかない個人的なことをここに投稿しています。`}
+              {`日々の気づきや考えを短いテキストで発信するページです。\nSNSで発信するまでもいかない個人的なことをここに投稿しています。`}
             </Typography>
           </DialogContent>
         </Dialog>
