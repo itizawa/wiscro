@@ -113,75 +113,90 @@ export default function PostFeed({
   };
 
   return (
-    <Box sx={{ height: "calc(100vh - 64px)", width: "100%" }}>
-      <Box
-        sx={{
-          px: 2,
-          py: 1.5,
-          borderBottom: "1px solid",
-          borderColor: "divider",
-        }}
-      >
-        <TextField
-          size="small"
-          fullWidth
-          placeholder="投稿を検索..."
-          value={searchInput}
-          onChange={(e) => setSearchInput(e.target.value)}
-          onKeyDown={(e) => {
-            if (e.key === "Enter") handleSearch();
-          }}
-          slotProps={{
-            input: {
-              startAdornment: (
-                <InputAdornment position="start">
-                  <SearchIcon sx={{ color: "text.secondary", fontSize: 20 }} />
-                </InputAdornment>
-              ),
-              endAdornment: searchInput ? (
-                <InputAdornment position="end">
-                  <IconButton size="small" onClick={handleClear}>
-                    <ClearIcon sx={{ fontSize: 18 }} />
-                  </IconButton>
-                </InputAdornment>
-              ) : null,
-            },
-          }}
-          sx={{
-            "& .MuiOutlinedInput-root": {
-              borderRadius: 5,
-              bgcolor: "action.hover",
-            },
-          }}
+    <Virtuoso
+      style={{ height: "calc(100vh - 64px)", width: "100%" }}
+      data={posts}
+      endReached={loadMore}
+      overscan={400}
+      itemContent={(_, post) => (
+        <PostItem
+          key={post.id}
+          post={post}
+          onHashtagClick={handleHashtagClick}
         />
-      </Box>
-      <Virtuoso
-        data={posts}
-        endReached={loadMore}
-        overscan={400}
-        itemContent={(_, post) => (
-          <PostItem
-            key={post.id}
-            post={post}
-            onHashtagClick={handleHashtagClick}
-          />
-        )}
-        components={{
-          Footer: () =>
-            isLoading ? (
-              <Box sx={{ display: "flex", justifyContent: "center", py: 3 }}>
-                <CircularProgress size={24} />
-              </Box>
-            ) : !hasMore && posts.length > 0 ? (
-              <Typography
-                variant="body2"
-                sx={{ textAlign: "center", py: 3, color: "text.secondary" }}
-              >
-                これ以上の投稿はありません
+      )}
+      components={{
+        Header: () => (
+          <>
+            <Box
+              sx={{
+                px: 2,
+                py: 2,
+                borderBottom: "1px solid",
+                borderColor: "divider",
+              }}
+            >
+              <Typography variant="h6" sx={{ fontWeight: 700, lineHeight: 1.2 }}>
+                wiscroのつぶやき
               </Typography>
-            ) : null,
-        }}
-      />
-    </Box>
+            </Box>
+            <Box
+              sx={{
+                px: 2,
+                py: 1.5,
+                borderBottom: "1px solid",
+                borderColor: "divider",
+              }}
+            >
+              <TextField
+                size="small"
+                fullWidth
+                placeholder="投稿を検索..."
+                value={searchInput}
+                onChange={(e) => setSearchInput(e.target.value)}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter") handleSearch();
+                }}
+                slotProps={{
+                  input: {
+                    startAdornment: (
+                      <InputAdornment position="start">
+                        <SearchIcon sx={{ color: "text.secondary", fontSize: 20 }} />
+                      </InputAdornment>
+                    ),
+                    endAdornment: searchInput ? (
+                      <InputAdornment position="end">
+                        <IconButton size="small" onClick={handleClear}>
+                          <ClearIcon sx={{ fontSize: 18 }} />
+                        </IconButton>
+                      </InputAdornment>
+                    ) : null,
+                  },
+                }}
+                sx={{
+                  "& .MuiOutlinedInput-root": {
+                    borderRadius: 5,
+                    bgcolor: "action.hover",
+                  },
+                }}
+              />
+            </Box>
+          </>
+        ),
+        Footer: () =>
+          isLoading ? (
+            <Box sx={{ display: "flex", justifyContent: "center", py: 3 }}>
+              <CircularProgress size={24} />
+            </Box>
+          ) : !hasMore && posts.length > 0 ? (
+            <Typography
+              variant="body2"
+              sx={{ textAlign: "center", py: 3, color: "text.secondary" }}
+            >
+              これ以上の投稿はありません
+            </Typography>
+          ) : null,
+      }}
+    />
   );
 }

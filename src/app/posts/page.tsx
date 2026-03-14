@@ -1,7 +1,7 @@
 import PostFeedLoader from "@/components/post/PostFeedLoader";
 import { generateMetadataObject } from "@/shared/lib/generateMetadataObject";
 import { getPosts } from "@/shared/lib/post";
-import { Box, Typography } from "@mui/material";
+import { Box } from "@mui/material";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = generateMetadataObject({
@@ -23,20 +23,6 @@ export default async function PostsPage() {
         minHeight: "calc(100vh - 64px)",
       }}
     >
-      {/* Profile header */}
-      <Box
-        sx={{
-          px: 2,
-          py: 2,
-          borderBottom: "1px solid",
-          borderColor: "divider",
-        }}
-      >
-        <Typography variant="h6" sx={{ fontWeight: 700, lineHeight: 1.2 }}>
-          wiscroのつぶやき
-        </Typography>
-      </Box>
-
       {/* Feed */}
       <PostFeedLoader initialData={initialData} />
     </Box>
