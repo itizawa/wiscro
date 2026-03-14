@@ -11,39 +11,15 @@ import {
   Toolbar,
 } from "@mui/material";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
 import { useState } from "react";
 
 export default function Header() {
   const [drawerOpen, setDrawerOpen] = useState(false);
-  const pathname = usePathname();
-  const isHomePage = pathname === "/";
-
-  const handleLinkClick = (
-    e: React.MouseEvent<HTMLAnchorElement>,
-    targetId: string,
-  ) => {
-    e.preventDefault();
-    setDrawerOpen(false);
-
-    if (!isHomePage) {
-      window.location.href = `/#${targetId}`;
-      return;
-    }
-
-    const targetElement = document.getElementById(targetId);
-    if (targetElement) {
-      const headerHeight = 64;
-      const elementPosition = targetElement.offsetTop - headerHeight;
-      window.scrollTo({ top: elementPosition, behavior: "smooth" });
-    }
-  };
 
   const navLinks = [
-    { label: "代表紹介", id: "representative" },
-    { label: "更新情報", id: "blogs" },
-    { label: "つぶやき", id: "posts", href: "/posts" },
-    { label: "概要", id: "company-overview" },
+    { label: "ホーム", href: "/" },
+    { label: "更新情報", href: "/blogs" },
+    { label: "つぶやき", href: "/posts" },
   ];
 
   return (
@@ -78,43 +54,20 @@ export default function Header() {
             gap: 4,
           }}
         >
-          {navLinks.map((link) =>
-            link.href ? (
-              <Link
-                key={link.id}
-                href={link.href}
-                style={{ textDecoration: "none" }}
-              >
-                <MuiLink
-                  component="span"
-                  underline="none"
-                  sx={{
-                    color: "text.secondary",
-                    "&:hover": { color: "text.primary" },
-                    cursor: "pointer",
-                  }}
-                >
-                  {link.label}
-                </MuiLink>
-              </Link>
-            ) : (
-              <MuiLink
-                key={link.id}
-                href={`/${link.id}`}
-                underline="none"
-                sx={{
-                  color: "text.secondary",
-                  "&:hover": { color: "text.primary" },
-                  cursor: "pointer",
-                }}
-                onClick={(e: React.MouseEvent<HTMLAnchorElement>) =>
-                  handleLinkClick(e, link.id)
-                }
-              >
-                {link.label}
-              </MuiLink>
-            ),
-          )}
+          {navLinks.map((link) => (
+            <MuiLink
+              key={link.href}
+              href={link.href}
+              underline="none"
+              sx={{
+                color: "text.secondary",
+                "&:hover": { color: "text.primary" },
+                cursor: "pointer",
+              }}
+            >
+              {link.label}
+            </MuiLink>
+          ))}
         </Box>
 
         {/* Mobile hamburger */}
@@ -151,52 +104,24 @@ export default function Header() {
             px: 2,
           }}
         >
-          {navLinks.map((link) =>
-            link.href ? (
-              <Link
-                key={link.id}
-                href={link.href}
-                style={{ textDecoration: "none" }}
-                onClick={() => setDrawerOpen(false)}
-              >
-                <MuiLink
-                  component="span"
-                  underline="none"
-                  sx={{
-                    px: 1.5,
-                    py: 1,
-                    borderRadius: 1,
-                    fontSize: "1rem",
-                    fontWeight: 500,
-                    color: "text.secondary",
-                    "&:hover": { color: "text.primary", bgcolor: "#f9fafb" },
-                  }}
-                >
-                  {link.label}
-                </MuiLink>
-              </Link>
-            ) : (
-              <MuiLink
-                key={link.id}
-                href={`/${link.id}`}
-                underline="none"
-                sx={{
-                  px: 1.5,
-                  py: 1,
-                  borderRadius: 1,
-                  fontSize: "1rem",
-                  fontWeight: 500,
-                  color: "text.secondary",
-                  "&:hover": { color: "text.primary", bgcolor: "#f9fafb" },
-                }}
-                onClick={(e: React.MouseEvent<HTMLAnchorElement>) =>
-                  handleLinkClick(e, link.id)
-                }
-              >
-                {link.label}
-              </MuiLink>
-            ),
-          )}
+          {navLinks.map((link) => (
+            <MuiLink
+              key={link.href}
+              href={link.href}
+              underline="none"
+              sx={{
+                px: 1.5,
+                py: 1,
+                borderRadius: 1,
+                fontSize: "1rem",
+                fontWeight: 500,
+                color: "text.secondary",
+                "&:hover": { color: "text.primary", bgcolor: "#f9fafb" },
+              }}
+            >
+              {link.label}
+            </MuiLink>
+          ))}
         </Box>
       </Drawer>
     </AppBar>
