@@ -5,6 +5,7 @@ import {
   getBlogPostWithHtmlBySlug,
 } from "@/shared/lib/blog";
 import { generateMetadataObject } from "@/shared/lib/generateMetadataObject";
+import { Box } from "@mui/material";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -47,18 +48,24 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
   }
 
   return (
-    <main className="min-h-screen py-8">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="mb-6">
+    <Box component="main" sx={{ minHeight: "100vh", py: 4 }}>
+      <Box sx={{ maxWidth: "1152px", mx: "auto", px: { xs: 2, sm: 3, lg: 4 } }}>
+        <Box sx={{ mb: 3 }}>
           <Link
             href="/blog"
-            className="inline-flex items-center text-blue-700 hover:text-blue-800 font-medium"
+            style={{
+              display: "inline-flex",
+              alignItems: "center",
+              color: "#1565c0",
+              fontWeight: 500,
+              textDecoration: "none",
+            }}
           >
             ← 一覧に戻る
           </Link>
-        </div>
+        </Box>
         <BlogPost post={post} />
-      </div>
-    </main>
+      </Box>
+    </Box>
   );
 }

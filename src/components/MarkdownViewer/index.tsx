@@ -1,3 +1,4 @@
+import { Typography } from "@mui/material";
 import Image from "next/image";
 import ReactMarkdown from "react-markdown";
 import remarkBreaks from "remark-breaks";
@@ -9,61 +10,145 @@ export const MarkdownViewer: React.FC<{ body: string }> = ({ body }) => {
       remarkPlugins={[remarkGfm, remarkBreaks]}
       components={{
         h1: ({ children }) => (
-          <h1 className="text-3xl font-bold border-b pb-2">{children}</h1>
+          <Typography
+            variant="h4"
+            fontWeight="bold"
+            sx={{ borderBottom: "1px solid #e5e7eb", pb: 1 }}
+          >
+            {children}
+          </Typography>
         ),
         h2: ({ children }) => (
-          <h2 className="text-2xl font-semibold border-b pb-1 mt-12">
+          <Typography
+            variant="h5"
+            fontWeight={600}
+            sx={{ borderBottom: "1px solid #e5e7eb", pb: 0.5, mt: 6 }}
+          >
             {children}
-          </h2>
+          </Typography>
         ),
         h3: ({ children }) => (
-          <h3 className="text-xl font-semibold mt-8">{children}</h3>
+          <Typography variant="h6" fontWeight={600} sx={{ mt: 4 }}>
+            {children}
+          </Typography>
         ),
-        p: ({ children }) => <p className="text-gray-900">{children}</p>,
+        p: ({ children }) => (
+          <Typography sx={{ color: "#111827" }}>{children}</Typography>
+        ),
         ul: ({ children }) => (
-          <ul className="list-disc ml-5 space-y-1">{children}</ul>
+          <ul
+            style={{
+              listStyleType: "disc",
+              marginLeft: 20,
+              display: "flex",
+              flexDirection: "column",
+              gap: 4,
+            }}
+          >
+            {children}
+          </ul>
         ),
         ol: ({ children }) => (
-          <ol className="list-decimal ml-5 space-y-1">{children}</ol>
+          <ol
+            style={{
+              listStyleType: "decimal",
+              marginLeft: 20,
+              display: "flex",
+              flexDirection: "column",
+              gap: 4,
+            }}
+          >
+            {children}
+          </ol>
         ),
-        li: ({ children }) => <li className="text-gray-900">{children}</li>,
+        li: ({ children }) => (
+          <li style={{ color: "#111827" }}>{children}</li>
+        ),
         blockquote: ({ children }) => (
-          <blockquote className="border-l-4 border-gray-400 pl-4 italic text-gray-600">
+          <blockquote
+            style={{
+              borderLeft: "4px solid #9ca3af",
+              paddingLeft: 16,
+              fontStyle: "italic",
+              color: "#4b5563",
+            }}
+          >
             {children}
           </blockquote>
         ),
         pre: ({ children }) => (
-          <pre className="bg-gray-900 text-white p-3 rounded-md text-sm overflow-x-auto">
+          <pre
+            style={{
+              backgroundColor: "#111827",
+              color: "white",
+              padding: 12,
+              borderRadius: 6,
+              fontSize: "0.875rem",
+              overflowX: "auto",
+            }}
+          >
             {children}
           </pre>
         ),
         code: ({ children }) => (
-          <code className="px-1 py-0.5 rounded text-sm">{children}</code>
+          <code
+            style={{
+              paddingLeft: 4,
+              paddingRight: 4,
+              paddingTop: 2,
+              paddingBottom: 2,
+              borderRadius: 4,
+              fontSize: "0.875rem",
+            }}
+          >
+            {children}
+          </code>
         ),
         table: ({ children }) => (
-          <table className="table-auto border-collapse border border-gray-300">
+          <table
+            style={{
+              borderCollapse: "collapse",
+              border: "1px solid #d1d5db",
+            }}
+          >
             {children}
           </table>
         ),
         thead: ({ children }) => (
-          <thead className="bg-gray-200">{children}</thead>
+          <thead style={{ backgroundColor: "#e5e7eb" }}>{children}</thead>
         ),
         tbody: ({ children }) => <tbody>{children}</tbody>,
-        tr: ({ children }) => <tr className="border-b">{children}</tr>,
+        tr: ({ children }) => (
+          <tr style={{ borderBottom: "1px solid #e5e7eb" }}>{children}</tr>
+        ),
         th: ({ children }) => (
-          <th className="border border-gray-300 px-4 py-2 text-left font-semibold">
+          <th
+            style={{
+              border: "1px solid #d1d5db",
+              padding: "8px 16px",
+              textAlign: "left",
+              fontWeight: 600,
+            }}
+          >
             {children}
           </th>
         ),
         td: ({ children }) => (
-          <td className="border border-gray-300 px-4 py-2">{children}</td>
+          <td
+            style={{
+              border: "1px solid #d1d5db",
+              padding: "8px 16px",
+            }}
+          >
+            {children}
+          </td>
         ),
         a: ({ children, href }) => (
           <a
             href={href}
             target="_blank"
             rel="noreferrer"
-            className="text-blue-500 underline"
+            style={{ color: "#3b82f6", textDecoration: "underline" }}
           >
             {children}
           </a>
@@ -77,7 +162,7 @@ export const MarkdownViewer: React.FC<{ body: string }> = ({ body }) => {
               width={1200}
               height={675}
               sizes="(max-width: 768px) 100vw, 768px"
-              className="h-auto max-w-full"
+              style={{ height: "auto", maxWidth: "100%" }}
             />
           );
         },
