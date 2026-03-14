@@ -8,6 +8,7 @@ import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import ExpandedImage from "./ExpandedImage";
 import OgpCard from "./OgpCard";
+import ShareButtons from "./ShareButtons";
 
 const PROFILE_NAME = "wiscro";
 const PROFILE_IMAGE = "/icon.jpg";
@@ -221,6 +222,8 @@ export default function PostItem({
               ))}
             </Box>
           )}
+
+          <ShareButtons postId={post.id} />
         </Box>
       </Box>
     </>
