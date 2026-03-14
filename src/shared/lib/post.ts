@@ -44,12 +44,16 @@ export async function getPostById(id: string): Promise<Post | null> {
 }
 
 export async function getPostLabels(): Promise<PostLabel[]> {
-  const data = await client.get<{ contents: PostLabel[] }>({
-    endpoint: "post-labels",
-    queries: {
-      fields: "id,name,color",
-      limit: 100,
-    },
-  });
-  return data.contents;
+  try {
+    const data = await client.get<{ contents: PostLabel[] }>({
+      endpoint: "post-labels",
+      queries: {
+        fields: "id,name,color",
+        limit: 100,
+      },
+    });
+    return data.contents;
+  } catch {
+    return [];
+  }
 }

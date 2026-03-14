@@ -2,7 +2,7 @@
 
 import dynamic from "next/dynamic";
 import { Box, CircularProgress } from "@mui/material";
-import { Post } from "@/shared/types/post";
+import { Post, PostLabel } from "@/shared/types/post";
 
 const PostFeed = dynamic(() => import("./PostFeed"), {
   ssr: false,
@@ -22,8 +22,10 @@ interface PostListResponse {
 
 export default function PostFeedLoader({
   initialData,
+  labels,
 }: {
   initialData: PostListResponse;
+  labels: PostLabel[];
 }) {
-  return <PostFeed initialData={initialData} />;
+  return <PostFeed initialData={initialData} labels={labels} />;
 }

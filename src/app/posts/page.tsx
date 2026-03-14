@@ -1,6 +1,6 @@
 import PostFeedLoader from "@/components/post/PostFeedLoader";
 import { generateMetadataObject } from "@/shared/lib/generateMetadataObject";
-import { getPosts } from "@/shared/lib/post";
+import { getPostLabels, getPosts } from "@/shared/lib/post";
 import { Box, Typography } from "@mui/material";
 import type { Metadata } from "next";
 
@@ -10,7 +10,10 @@ export const metadata: Metadata = generateMetadataObject({
 });
 
 export default async function PostsPage() {
-  const initialData = await getPosts({ offset: 0, limit: 20 });
+  const [initialData, labels] = await Promise.all([
+    getPosts({ offset: 0, limit: 20 }),
+    getPostLabels(),
+  ]);
 
   return (
     <Box
@@ -38,7 +41,7 @@ export default async function PostsPage() {
       </Box>
 
       {/* Feed */}
-      <PostFeedLoader initialData={initialData} />
+      <PostFeedLoader initialData={initialData} labels={labels} />
     </Box>
   );
 }
