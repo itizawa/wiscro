@@ -1,7 +1,7 @@
 import ScrollHandler from "@/components/ScrollHandler";
 import Timeline from "@/components/blog/Timeline";
 import { getAllBlogPosts as getAllBlogPostsV2 } from "@/shared/lib/blog_v2";
-import { Box, Button, Container, Typography, Table, TableBody, TableRow, TableCell } from "@mui/material";
+import { Box, Container, Typography, Table, TableBody, TableRow, TableCell } from "@mui/material";
 import Image from "next/image";
 
 export default async function Home() {
@@ -224,47 +224,6 @@ export default async function Home() {
               </TableBody>
             </Table>
           </Box>
-        </Box>
-      </Box>
-
-      {/* Contact Section */}
-      <Box
-        component="section"
-        sx={{
-          py: { xs: 3, md: 6 },
-          px: { xs: 2, md: 4 },
-          maxWidth: "1152px",
-          mx: "auto",
-          textAlign: "center",
-        }}
-      >
-        <Typography variant="h5" fontWeight="bold" sx={{ mb: 3 }}>
-          お問い合わせ
-        </Typography>
-        <Typography sx={{ mb: 4 }}>
-          ご相談・お見積もりなど、お気軽にお問い合わせください。
-        </Typography>
-        <Box sx={{ display: "flex", justifyContent: "center", gap: 2 }}>
-          <a
-            href="https://docs.google.com/forms/d/e/1FAIpQLSeNmuXo7-05iU_m5ge4pq_1pysVTqcis8JWOgrupso1foOZpw/viewform?usp=dialogo"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Button
-              variant="contained"
-              sx={{
-                bgcolor: "#1565c0",
-                "&:hover": { bgcolor: "#0d47a1" },
-                fontWeight: "bold",
-                px: 4,
-                py: 1,
-                borderRadius: 1,
-                textTransform: "none",
-              }}
-            >
-              お問い合わせ
-            </Button>
-          </a>
         </Box>
       </Box>
     </Box>
