@@ -45,7 +45,7 @@ export default function Header() {
 
   const navLinks = [
     { label: "代表紹介", id: "representative" },
-    { label: "コンテンツ", id: "blogs", href: "/blog" },
+    { label: "更新情報", id: "blogs" },
     { label: "つぶやき", id: "posts", href: "/posts" },
     { label: "概要", id: "company-overview" },
   ];
