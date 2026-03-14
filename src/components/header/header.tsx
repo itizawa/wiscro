@@ -5,7 +5,6 @@ import MenuIcon from "@mui/icons-material/Menu";
 import {
   AppBar,
   Box,
-  Button,
   Drawer,
   IconButton,
   Link as MuiLink,
@@ -14,9 +13,6 @@ import {
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
-
-const CONTACT_URL =
-  "https://docs.google.com/forms/d/e/1FAIpQLSeNmuXo7-05iU_m5ge4pq_1pysVTqcis8JWOgrupso1foOZpw/viewform?usp=dialogo";
 
 export default function Header() {
   const [drawerOpen, setDrawerOpen] = useState(false);
@@ -119,19 +115,6 @@ export default function Header() {
               </MuiLink>
             ),
           )}
-          <a href={CONTACT_URL} target="_blank" rel="noopener noreferrer">
-            <Button
-              variant="contained"
-              sx={{
-                bgcolor: "#1565c0",
-                "&:hover": { bgcolor: "#0d47a1" },
-                fontWeight: "bold",
-                textTransform: "none",
-              }}
-            >
-              お問い合わせ
-            </Button>
-          </a>
         </Box>
 
         {/* Mobile hamburger */}
@@ -214,22 +197,6 @@ export default function Header() {
               </MuiLink>
             ),
           )}
-          <Box sx={{ pt: 2, display: "flex", justifyContent: "center" }}>
-            <a href={CONTACT_URL} target="_blank" rel="noopener noreferrer">
-              <Button
-                variant="contained"
-                sx={{
-                  bgcolor: "#1565c0",
-                  "&:hover": { bgcolor: "#0d47a1" },
-                  fontWeight: "bold",
-                  px: 4,
-                  textTransform: "none",
-                }}
-              >
-                お問い合わせ
-              </Button>
-            </a>
-          </Box>
         </Box>
       </Drawer>
     </AppBar>

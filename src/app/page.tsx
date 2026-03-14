@@ -1,7 +1,15 @@
 import ScrollHandler from "@/components/ScrollHandler";
 import Timeline from "@/components/blog/Timeline";
 import { getAllBlogPosts as getAllBlogPostsV2 } from "@/shared/lib/blog_v2";
-import { Box, Container, Typography, Table, TableBody, TableRow, TableCell } from "@mui/material";
+import {
+  Box,
+  Container,
+  Table,
+  TableBody,
+  TableCell,
+  TableRow,
+  Typography,
+} from "@mui/material";
 import Image from "next/image";
 
 export default async function Home() {
@@ -24,7 +32,11 @@ export default async function Home() {
       {/* Hero Section */}
       <Box
         component="section"
-        sx={{ height: { xs: 224, md: 600 }, position: "relative", width: "100%" }}
+        sx={{
+          height: { xs: 224, md: 600 },
+          position: "relative",
+          width: "100%",
+        }}
       >
         <Container maxWidth="lg">
           <Box
@@ -131,12 +143,12 @@ export default async function Home() {
           </Box>
           <Box>
             <Typography variant="h6" fontWeight="bold" sx={{ mb: 1 }}>
-              ウィズクロ
+              市澤 樹享
             </Typography>
             <Typography variant="body1">
-              特に0→1フェーズにおける技術選定、フロントエンドエコシステムの構築、パフォーマンス改善、SRE領域まで幅広く対応可能で、
+              深谷市在住のソフトウェアエンジニアです。
               <br />
-              専門性が求められる領域において強みを発揮しています。
+              妻と一緒に手芸販売を行っています。
             </Typography>
           </Box>
         </Box>
@@ -189,10 +201,10 @@ export default async function Home() {
               <TableBody>
                 {[
                   ["団体名", "wiscro（ウィズクロ）"],
-                  ["代表者", "ウィズクロ"],
+                  ["代表者", "市澤 樹享"],
                   ["設立", "2023年5月18日"],
                   ["所在地", "埼玉県深谷市"],
-                  ["事業内容", "企業向け業務ソフトウェア・Webサービス開発"],
+                  ["事業内容", "コンテンツ制作・手芸販売"],
                 ].map(([label, value], i, arr) => (
                   <TableRow
                     key={label}

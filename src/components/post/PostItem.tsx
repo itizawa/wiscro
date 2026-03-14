@@ -7,6 +7,7 @@ import { ja } from "date-fns/locale";
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import ExpandedImage from "./ExpandedImage";
+import OgpCard from "./OgpCard";
 
 const PROFILE_NAME = "wiscro";
 const PROFILE_IMAGE = "/icon.jpg";
@@ -17,6 +18,36 @@ function formatDate(dateString: string): string {
     return formatDistanceToNow(date, { addSuffix: true, locale: ja });
   }
   return format(date, "yyyy年M月d日", { locale: ja });
+}
+
+/**
+ * HTML文字列をスタンドアロンリンク（OGP展開対象）とそれ以外のHTMLセグメントに分割する
+ * <p>タグ内に<a>タグのみがある場合をスタンドアロンリンクとして検出する
+ */
+function splitHtmlByStandaloneLinks(
+  html: string,
+): Array<{ type: "html"; content: string } | { type: "ogp"; url: string }> {
+  const pattern =
+    /<p>\s*<a\s[^>]*href="(https?:\/\/[^"]+)"[^>]*>[^<]*<\/a>\s*<\/p>/g;
+  const segments: Array<
+    { type: "html"; content: string } | { type: "ogp"; url: string }
+  > = [];
+  let lastIndex = 0;
+
+  let match;
+  while ((match = pattern.exec(html)) !== null) {
+    if (match.index > lastIndex) {
+      segments.push({ type: "html", content: html.slice(lastIndex, match.index) });
+    }
+    segments.push({ type: "ogp", url: match[1] });
+    lastIndex = match.index + match[0].length;
+  }
+
+  if (lastIndex < html.length) {
+    segments.push({ type: "html", content: html.slice(lastIndex) });
+  }
+
+  return segments;
 }
 
 /**
@@ -49,7 +80,7 @@ export default function PostItem({
   } | null>(null);
   const bodyRef = useRef<HTMLDivElement>(null);
 
-  const processedBody = processHashtags(post.body);
+  const segments = splitHtmlByStandaloneLinks(post.body);
 
   useEffect(() => {
     const el = bodyRef.current;
@@ -144,8 +175,20 @@ export default function PostItem({
                 mt: 1.5,
               },
             }}
-            dangerouslySetInnerHTML={{ __html: processedBody }}
-          />
+          >
+            {segments.map((segment, i) =>
+              segment.type === "ogp" ? (
+                <OgpCard key={i} url={segment.url} />
+              ) : (
+                <div
+                  key={i}
+                  dangerouslySetInnerHTML={{
+                    __html: processHashtags(segment.content),
+                  }}
+                />
+              ),
+            )}
+          </Box>
 
           {post.images.length > 0 && (
             <Box
