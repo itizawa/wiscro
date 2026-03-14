@@ -12,7 +12,7 @@ import {
 import SearchIcon from "@mui/icons-material/Search";
 import ClearIcon from "@mui/icons-material/Clear";
 import { useSearchParams } from "next/navigation";
-import { useCallback, useDeferredValue, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { Virtuoso } from "react-virtuoso";
 import PostItem from "./PostItem";
 
@@ -40,16 +40,24 @@ export default function PostFeed({
   const [isLoading, setIsLoading] = useState(false);
   const offsetRef = useRef(initialData.contents.length);
   const [searchInput, setSearchInput] = useState(q);
-  const deferredQuery = useDeferredValue(searchInput);
+  const [debouncedQuery, setDebouncedQuery] = useState(q);
 
   // qが外部から変わったときにinputを同期
   useEffect(() => {
     setSearchInput(q);
   }, [q]);
 
-  // deferredQueryが変わったらデータをリセットして再取得
+  // debounce: 入力が止まって300ms後にクエリを確定
   useEffect(() => {
-    const trimmed = deferredQuery.trim();
+    const timer = setTimeout(() => {
+      setDebouncedQuery(searchInput);
+    }, 300);
+    return () => clearTimeout(timer);
+  }, [searchInput]);
+
+  // debouncedQueryが変わったらデータをリセットして再取得
+  useEffect(() => {
+    const trimmed = debouncedQuery.trim();
     const fetchFiltered = async () => {
       setIsLoading(true);
       try {
@@ -67,13 +75,13 @@ export default function PostFeed({
     };
 
     fetchFiltered();
-  }, [deferredQuery]);
+  }, [debouncedQuery]);
 
   const loadMore = useCallback(async () => {
     if (isLoading || !hasMore) return;
     setIsLoading(true);
 
-    const trimmed = deferredQuery.trim();
+    const trimmed = debouncedQuery.trim();
     try {
       const baseUrl = `/api/posts?offset=${offsetRef.current}&limit=${LIMIT}`;
       const url = trimmed
@@ -91,7 +99,7 @@ export default function PostFeed({
     } finally {
       setIsLoading(false);
     }
-  }, [isLoading, hasMore, deferredQuery]);
+  }, [isLoading, hasMore, debouncedQuery]);
 
   const handleClear = () => {
     setSearchInput("");
