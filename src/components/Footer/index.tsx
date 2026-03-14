@@ -1,6 +1,14 @@
-import { Box, Typography } from "@mui/material";
+"use client";
 
-export const Footer = () => (
+import { Box, Typography } from "@mui/material";
+import { usePathname } from "next/navigation";
+
+export const Footer = () => {
+  const pathname = usePathname();
+
+  if (pathname.startsWith("/posts")) return null;
+
+  return (
   <Box
     component="footer"
     sx={{ bgcolor: "#1f2937", color: "white", py: 3 }}
@@ -14,4 +22,5 @@ export const Footer = () => (
       </Typography>
     </Box>
   </Box>
-);
+  );
+};

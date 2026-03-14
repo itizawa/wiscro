@@ -54,7 +54,7 @@ export default async function PostDetailPage({ params }: Props) {
       >
         <BackButton />
         <Typography variant="h6" sx={{ fontWeight: 700, lineHeight: 1.2 }}>
-          投稿
+          つぶやき一覧に戻る
         </Typography>
       </Box>
 
