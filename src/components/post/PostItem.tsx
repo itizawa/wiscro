@@ -21,32 +21,36 @@ function formatDate(dateString: string): string {
 }
 
 /**
- * HTML文字列をスタンドアロンリンク（OGP展開対象）とそれ以外のHTMLセグメントに分割する
- * <p>タグ内に<a>タグのみがある場合をスタンドアロンリンクとして検出する
+ * テキストをスタンドアロンリンク（OGP展開対象）とそれ以外のテキストセグメントに分割する
+ * 行全体がURLのみの場合をスタンドアロンリンクとして検出する
  */
-function splitHtmlByStandaloneLinks(
-  html: string,
-): Array<{ type: "html"; content: string } | { type: "ogp"; url: string }> {
-  const pattern =
-    /<p>\s*<a\s[^>]*href="(https?:\/\/[^"]+)"[^>]*>[^<]*<\/a>\s*<\/p>/g;
+function splitTextByStandaloneLinks(
+  text: string,
+): Array<{ type: "text"; content: string } | { type: "ogp"; url: string }> {
+  const lines = text.split("\n");
   const segments: Array<
-    { type: "html"; content: string } | { type: "ogp"; url: string }
+    { type: "text"; content: string } | { type: "ogp"; url: string }
   > = [];
-  let lastIndex = 0;
+  let currentText: string[] = [];
 
-  let match;
-  while ((match = pattern.exec(html)) !== null) {
-    if (match.index > lastIndex) {
-      segments.push({ type: "html", content: html.slice(lastIndex, match.index) });
+  const flushText = () => {
+    if (currentText.length > 0) {
+      segments.push({ type: "text", content: currentText.join("\n") });
+      currentText = [];
     }
-    segments.push({ type: "ogp", url: match[1] });
-    lastIndex = match.index + match[0].length;
+  };
+
+  for (const line of lines) {
+    const trimmed = line.trim();
+    if (/^https?:\/\/[^\s]+$/.test(trimmed)) {
+      flushText();
+      segments.push({ type: "ogp", url: trimmed });
+    } else {
+      currentText.push(line);
+    }
   }
 
-  if (lastIndex < html.length) {
-    segments.push({ type: "html", content: html.slice(lastIndex) });
-  }
-
+  flushText();
   return segments;
 }
 
@@ -80,7 +84,7 @@ export default function PostItem({
   } | null>(null);
   const bodyRef = useRef<HTMLDivElement>(null);
 
-  const segments = splitHtmlByStandaloneLinks(post.body);
+  const segments = splitTextByStandaloneLinks(post.body);
 
   useEffect(() => {
     const el = bodyRef.current;
@@ -126,7 +130,15 @@ export default function PostItem({
           alt={PROFILE_NAME}
           sx={{ width: 40, height: 40, mt: 0.5 }}
         />
-        <Box sx={{ flex: 1, minWidth: 0 }}>
+        <Box
+          sx={{
+            flex: 1,
+            minWidth: 0,
+            rowGap: 1,
+            display: "flex",
+            flexDirection: "column",
+          }}
+        >
           <Box
             sx={{
               display: "flex",
@@ -141,7 +153,6 @@ export default function PostItem({
           <Box
             ref={bodyRef}
             sx={{
-              mt: 0.5,
               color: "text.primary",
               wordBreak: "break-word",
               lineHeight: 1.5,
@@ -150,37 +161,17 @@ export default function PostItem({
               "& .hashtag:hover": {
                 textDecoration: "underline",
               },
-              "& img": {
-                mt: 1.5,
-                borderRadius: 2,
-                border: "1px solid",
-                borderColor: "divider",
-                maxWidth: "100%",
-                height: "auto",
-                maxHeight: 400,
-                objectFit: "cover",
-                display: "block",
-              },
-              "& iframe": {
-                mt: 1.5,
-                borderRadius: 2,
-                border: "1px solid",
-                borderColor: "divider",
-                maxWidth: "100%",
-                width: "100%",
-                aspectRatio: "16 / 9",
-                display: "block",
-              },
-              "& .iframely-embed": {
-                mt: 1.5,
-              },
+              rowGap: 0.5,
+              display: "flex",
+              flexDirection: "column",
+              whiteSpace: "pre-wrap",
             }}
           >
             {segments.map((segment, i) =>
               segment.type === "ogp" ? (
                 <OgpCard key={i} url={segment.url} />
               ) : (
-                <div
+                <span
                   key={i}
                   dangerouslySetInnerHTML={{
                     __html: processHashtags(segment.content),
