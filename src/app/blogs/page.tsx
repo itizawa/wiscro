@@ -31,8 +31,12 @@ export default async function BlogPage() {
         }}
       >
         <Box component="header" sx={{ mb: 2 }}>
-          <Typography variant="h5" fontWeight="bold" sx={{ color: "#111827", mb: 2 }}>
-            更新情報
+          <Typography
+            variant="h5"
+            fontWeight="bold"
+            sx={{ color: "#111827", mb: 2 }}
+          >
+            お知らせ
           </Typography>
         </Box>
         <Timeline posts={posts} />

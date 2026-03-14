@@ -18,7 +18,7 @@ export default function Header() {
 
   const navLinks = [
     { label: "ホーム", href: "/" },
-    { label: "更新情報", href: "/blogs" },
+    { label: "お知らせ", href: "/blogs" },
     { label: "つぶやき", href: "/posts" },
   ];
 

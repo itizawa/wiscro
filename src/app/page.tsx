@@ -171,7 +171,7 @@ export default async function Home() {
           fontWeight="bold"
           sx={{ mb: 3, pb: 1, borderBottom: "1px solid #e5e7eb" }}
         >
-          更新情報
+          お知らせ
         </Typography>
         <Timeline posts={recentPostsV2} />
       </Box>
