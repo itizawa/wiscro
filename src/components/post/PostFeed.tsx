@@ -1,16 +1,21 @@
 "use client";
 
 import { Post } from "@/shared/types/post";
+import ClearIcon from "@mui/icons-material/Clear";
+import CloseIcon from "@mui/icons-material/Close";
+import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
+import SearchIcon from "@mui/icons-material/Search";
 import {
   Box,
   CircularProgress,
+  Dialog,
+  DialogContent,
+  DialogTitle,
   IconButton,
   InputAdornment,
   TextField,
   Typography,
 } from "@mui/material";
-import SearchIcon from "@mui/icons-material/Search";
-import ClearIcon from "@mui/icons-material/Clear";
 import { useSearchParams } from "next/navigation";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { Virtuoso } from "react-virtuoso";
@@ -41,6 +46,7 @@ export default function PostFeed({
   const offsetRef = useRef(initialData.contents.length);
   const [searchInput, setSearchInput] = useState(q);
   const [debouncedQuery, setDebouncedQuery] = useState(q);
+  const [infoOpen, setInfoOpen] = useState(false);
 
   // qが外部から変わったときにinputを同期
   useEffect(() => {
@@ -110,7 +116,7 @@ export default function PostFeed({
   };
 
   return (
-    <Box sx={{ height: "calc(100vh - 64px)", display: "flex", flexDirection: "column" }}>
+    <Box sx={{ display: "flex", flexDirection: "column" }}>
       <Box
         sx={{
           px: 2,
@@ -119,9 +125,41 @@ export default function PostFeed({
           borderColor: "divider",
         }}
       >
-        <Typography variant="h6" sx={{ fontWeight: 700, lineHeight: 1.2 }}>
-          wiscroのつぶやき
-        </Typography>
+        <Box sx={{ display: "flex", alignItems: "center", gap: 0.5 }}>
+          <Typography variant="h6" sx={{ fontWeight: 700, lineHeight: 1.2 }}>
+            wiscroのつぶやき
+          </Typography>
+          <IconButton size="small" onClick={() => setInfoOpen(true)}>
+            <InfoOutlinedIcon sx={{ fontSize: 20, color: "text.secondary" }} />
+          </IconButton>
+        </Box>
+        <Dialog
+          open={infoOpen}
+          onClose={() => setInfoOpen(false)}
+          maxWidth="sm"
+          fullWidth
+        >
+          <DialogTitle
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "space-between",
+            }}
+          >
+            wiscroのつぶやきとは？
+            <IconButton size="small" onClick={() => setInfoOpen(false)}>
+              <CloseIcon sx={{ fontSize: 20 }} />
+            </IconButton>
+          </DialogTitle>
+          <DialogContent>
+            <Typography
+              variant="body1"
+              sx={{ color: "text.secondary", whiteSpace: "pre-wrap" }}
+            >
+              {`市澤の日々の気づきや考えを短いテキストで発信するページです。\nSNSで発信するまでもいかない個人的なことをここに投稿しています。`}
+            </Typography>
+          </DialogContent>
+        </Dialog>
       </Box>
       <Box
         sx={{
@@ -162,7 +200,7 @@ export default function PostFeed({
         />
       </Box>
       <Virtuoso
-        style={{ flex: 1 }}
+        useWindowScroll
         data={posts}
         endReached={loadMore}
         overscan={400}

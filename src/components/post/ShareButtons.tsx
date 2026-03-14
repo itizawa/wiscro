@@ -41,36 +41,36 @@ export default function ShareButtons({ postId }: { postId: string }) {
         gap: 1,
       }}
     >
-      <Tooltip title="Xでシェア">
+      <Tooltip title="Xでシェア" arrow>
         <IconButton size="small" onClick={shareToTwitter}>
           <Image
             src="/sns/x.png"
             width={16}
             height={16}
             alt="X"
-            style={{ display: "block" }}
+            style={{ display: "block", cursor: "pointer" }}
           />
         </IconButton>
       </Tooltip>
-      <Tooltip title="LINEでシェア">
+      <Tooltip title="LINEでシェア" arrow>
         <IconButton size="small" onClick={shareToLine}>
           <Image
             src="/sns/line.png"
             width={20}
             height={20}
             alt="LINE"
-            style={{ display: "block" }}
+            style={{ display: "block", cursor: "pointer" }}
           />
         </IconButton>
       </Tooltip>
-      <Tooltip title="はてなブックマークでシェア">
+      <Tooltip title="はてなブックマークでシェア" arrow>
         <IconButton size="small" onClick={shareToHatena}>
           <Image
             src="/sns/hatena.png"
             width={20}
             height={20}
             alt="はてなブックマーク"
-            style={{ display: "block" }}
+            style={{ display: "block", cursor: "pointer" }}
           />
         </IconButton>
       </Tooltip>
