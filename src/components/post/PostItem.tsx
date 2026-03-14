@@ -1,42 +1,84 @@
 "use client";
 
 import { Post } from "@/shared/types/post";
-import { Avatar, Box, Chip, Typography } from "@mui/material";
+import { Avatar, Box, Typography } from "@mui/material";
+import { differenceInDays, format, formatDistanceToNow } from "date-fns";
+import { ja } from "date-fns/locale";
 import Image from "next/image";
-import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { useEffect, useRef, useState } from "react";
+import ExpandedImage from "./ExpandedImage";
 
 const PROFILE_NAME = "wiscro";
 const PROFILE_IMAGE = "/icon.jpg";
 
 function formatDate(dateString: string): string {
   const date = new Date(dateString);
-  const now = new Date();
-  const diffMs = now.getTime() - date.getTime();
-  const diffMin = Math.floor(diffMs / 60000);
-  const diffHour = Math.floor(diffMs / 3600000);
-  const diffDay = Math.floor(diffMs / 86400000);
-
-  if (diffMin < 1) return "たった今";
-  if (diffMin < 60) return `${diffMin}分前`;
-  if (diffHour < 24) return `${diffHour}時間前`;
-  if (diffDay < 7) return `${diffDay}日前`;
-
-  return date.toLocaleDateString("ja-JP", {
-    year: "numeric",
-    month: "short",
-    day: "numeric",
-  });
+  if (differenceInDays(new Date(), date) < 7) {
+    return formatDistanceToNow(date, { addSuffix: true, locale: ja });
+  }
+  return format(date, "yyyy年M月d日", { locale: ja });
 }
 
-export default function PostItem({ post }: { post: Post }) {
-  const router = useRouter();
+/**
+ * HTML文字列中のハッシュタグ (#タグ) をクリック可能なspanに変換する
+ * HTMLタグ内の属性やURLは変換しない
+ */
+function processHashtags(html: string): string {
+  // HTMLタグの外にあるテキスト部分のみを対象にする
+  // URLの中やHTMLの属性内のハッシュは無視する
+  return html.replace(
+    /(<[^>]*>)|(?<!\w)(#[a-zA-Z\u3000-\u9FFF\u4E00-\u9FFF\uF900-\uFAFF\u3041-\u3096\u30A1-\u30FA\u30FC\uFF66-\uFF9Fぁ-んァ-ヶー一-龠a-zA-Z0-9_]+)/g,
+    (match, tag) => {
+      if (tag) return tag; // HTMLタグはそのまま返す
+      const tagName = match.slice(1); // # を除いたタグ名
+      return `<span class="hashtag" data-tag="${tagName}" style="color: #1976d2; cursor: pointer;">${match}</span>`;
+    },
+  );
+}
+
+export default function PostItem({
+  post,
+  onHashtagClick,
+}: {
+  post: Post;
+  onHashtagClick?: (tag: string) => void;
+}) {
+  const [expandedImage, setExpandedImage] = useState<{
+    src: string;
+    alt: string;
+  } | null>(null);
+  const bodyRef = useRef<HTMLDivElement>(null);
+
+  const processedBody = processHashtags(post.body);
+
+  useEffect(() => {
+    const el = bodyRef.current;
+    if (!el || !onHashtagClick) return;
+
+    const handleClick = (e: MouseEvent) => {
+      const target = e.target as HTMLElement;
+      if (target.classList.contains("hashtag")) {
+        e.preventDefault();
+        e.stopPropagation();
+        const tag = target.dataset.tag;
+        if (tag) onHashtagClick(tag);
+      }
+    };
+
+    el.addEventListener("click", handleClick);
+    return () => el.removeEventListener("click", handleClick);
+  }, [onHashtagClick]);
 
   return (
-    <Link
-      href={`/posts/${post.id}`}
-      style={{ textDecoration: "none", color: "inherit" }}
-    >
+    <>
+      {expandedImage && (
+        <ExpandedImage
+          src={expandedImage.src}
+          alt={expandedImage.alt}
+          expand={true}
+          onClick={() => setExpandedImage(null)}
+        />
+      )}
       <Box
         sx={{
           display: "flex",
@@ -45,11 +87,7 @@ export default function PostItem({ post }: { post: Post }) {
           py: 1.5,
           borderBottom: "1px solid",
           borderColor: "divider",
-          "&:hover": {
-            bgcolor: "action.hover",
-          },
           transition: "background-color 0.15s",
-          cursor: "pointer",
         }}
       >
         <Avatar
@@ -68,30 +106,9 @@ export default function PostItem({ post }: { post: Post }) {
             <Typography variant="body2" sx={{ color: "text.secondary" }}>
               {formatDate(post.publishedAt || post.createdAt)}
             </Typography>
-            {post.label && (
-              <Chip
-                label={post.label.name}
-                size="small"
-                onClick={(e) => {
-                  e.preventDefault();
-                  router.push(`/posts?labelId=${post.label!.id}`);
-                }}
-                sx={{
-                  bgcolor: `#${post.label.color}20`,
-                  color: `#${post.label.color}`,
-                  fontWeight: 600,
-                  fontSize: "0.75rem",
-                  height: 24,
-                  cursor: "pointer",
-                  "&:hover": {
-                    bgcolor: `#${post.label.color}40`,
-                  },
-                }}
-              />
-            )}
           </Box>
-
           <Box
+            ref={bodyRef}
             sx={{
               mt: 0.5,
               color: "text.primary",
@@ -99,6 +116,9 @@ export default function PostItem({ post }: { post: Post }) {
               lineHeight: 1.5,
               fontSize: "0.875rem",
               "& p": { m: 0 },
+              "& .hashtag:hover": {
+                textDecoration: "underline",
+              },
               "& img": {
                 mt: 1.5,
                 borderRadius: 2,
@@ -124,7 +144,7 @@ export default function PostItem({ post }: { post: Post }) {
                 mt: 1.5,
               },
             }}
-            dangerouslySetInnerHTML={{ __html: post.body }}
+            dangerouslySetInnerHTML={{ __html: processedBody }}
           />
 
           {post.images.length > 0 && (
@@ -148,12 +168,20 @@ export default function PostItem({ post }: { post: Post }) {
                   alt={`投稿画像 ${i + 1}`}
                   width={img.width}
                   height={img.height}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    setExpandedImage({
+                      src: img.url,
+                      alt: `投稿画像 ${i + 1}`,
+                    });
+                  }}
                   style={{
                     width: "100%",
                     height: "auto",
                     maxHeight: post.images.length === 1 ? 400 : 200,
                     objectFit: "cover",
                     display: "block",
+                    cursor: "zoom-in",
                   }}
                 />
               ))}
@@ -161,6 +189,6 @@ export default function PostItem({ post }: { post: Post }) {
           )}
         </Box>
       </Box>
-    </Link>
+    </>
   );
 }

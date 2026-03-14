@@ -4,12 +4,6 @@ type Image = {
   width: number;
 };
 
-export interface PostLabel {
-  id: string;
-  name: string;
-  color: string;
-}
-
 export interface Post {
   id: string;
   createdAt: string;
@@ -17,5 +11,4 @@ export interface Post {
   publishedAt: string;
   body: string;
   images: Image[];
-  label: PostLabel | null;
 }

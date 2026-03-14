@@ -1,5 +1,5 @@
 import { client } from "./blog_v2";
-import { Post, PostLabel } from "../types/post";
+import { Post } from "../types/post";
 
 export interface PostListResponse {
   contents: Post[];
@@ -11,21 +11,20 @@ export interface PostListResponse {
 export async function getPosts({
   offset = 0,
   limit = 20,
-  labelId,
+  q,
 }: {
   offset?: number;
   limit?: number;
-  labelId?: string;
+  q?: string;
 } = {}): Promise<PostListResponse> {
-  const filters = labelId ? `label[equals]${labelId}` : undefined;
   const data = await client.get<PostListResponse>({
     endpoint: "posts",
     queries: {
-      fields: "id,body,images,label,publishedAt,createdAt,updatedAt",
+      fields: "id,body,images,publishedAt,createdAt,updatedAt",
       limit,
       offset,
       orders: "-publishedAt",
-      ...(filters && { filters }),
+      ...(q && { q }),
     },
   });
   return data;
@@ -40,20 +39,5 @@ export async function getPostById(id: string): Promise<Post | null> {
     return data ?? null;
   } catch {
     return null;
-  }
-}
-
-export async function getPostLabels(): Promise<PostLabel[]> {
-  try {
-    const data = await client.get<{ contents: PostLabel[] }>({
-      endpoint: "post-labels",
-      queries: {
-        fields: "id,name,color",
-        limit: 100,
-      },
-    });
-    return data.contents;
-  } catch {
-    return [];
   }
 }

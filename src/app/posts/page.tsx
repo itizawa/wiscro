@@ -1,6 +1,6 @@
 import PostFeedLoader from "@/components/post/PostFeedLoader";
 import { generateMetadataObject } from "@/shared/lib/generateMetadataObject";
-import { getPostLabels, getPosts } from "@/shared/lib/post";
+import { getPosts } from "@/shared/lib/post";
 import { Box, Typography } from "@mui/material";
 import type { Metadata } from "next";
 
@@ -10,10 +10,7 @@ export const metadata: Metadata = generateMetadataObject({
 });
 
 export default async function PostsPage() {
-  const [initialData, labels] = await Promise.all([
-    getPosts({ offset: 0, limit: 20 }),
-    getPostLabels(),
-  ]);
+  const initialData = await getPosts({ offset: 0, limit: 20 });
 
   return (
     <Box
@@ -36,12 +33,12 @@ export default async function PostsPage() {
         }}
       >
         <Typography variant="h6" sx={{ fontWeight: 700, lineHeight: 1.2 }}>
-          ポスト
+          wiscroのつぶやき
         </Typography>
       </Box>
 
       {/* Feed */}
-      <PostFeedLoader initialData={initialData} labels={labels} />
+      <PostFeedLoader initialData={initialData} />
     </Box>
   );
 }
