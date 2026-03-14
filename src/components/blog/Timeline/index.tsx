@@ -1,4 +1,5 @@
 import { Blog } from "@/shared/types/blog";
+import { Box, Typography } from "@mui/material";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -17,39 +18,86 @@ const formatDate = (iso: string) => {
 
 export function Timeline({ posts }: TimelineProps) {
   return (
-    <ol className="relative">
+    <Box component="ol" sx={{ position: "relative", listStyle: "none", p: 0, m: 0 }}>
       {posts.map((post, index) => (
-        <li key={post.id} className="flex gap-4">
-          <div className="flex flex-col items-center min-w-8">
+        <Box component="li" key={post.id} sx={{ display: "flex", gap: 2 }}>
+          <Box
+            sx={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              minWidth: 32,
+            }}
+          >
             <Image
               src={post.category.icon.url}
               alt={post.category.name}
               width={32}
               height={32}
-              className="w-8 h-8 object-cover"
+              style={{ width: 32, height: 32, objectFit: "cover" }}
             />
             {index < posts.length - 1 && (
-              <div className="h-full bg-blue-100 w-[2px]" />
+              <Box
+                sx={{
+                  flexGrow: 1,
+                  width: 2,
+                  bgcolor: "#dbeafe",
+                }}
+              />
             )}
-          </div>
-          <div className="flex flex-col gap-2 flex-1 pb-6">
-            <div className="flex items-center gap-3 text text-gray-600 pt-1">
-              <time className="font-bold">{formatDate(post.publishedAt)}</time>
-            </div>
-            <Link href={`/blogs/${post.id}`}>
-              <div className="border rounded-lg overflow-hidden bg-white hover:shadow-lg transition-shadow duration-200 p-4 flex flex-col gap-2">
-                <h3 className="font-bold text-lg text-gray-900 transition-colors line-clamp-2">
+          </Box>
+          <Box sx={{ display: "flex", flexDirection: "column", gap: 1, flex: 1, pb: 3 }}>
+            <Box sx={{ display: "flex", alignItems: "center", gap: 1.5, color: "#4b5563", pt: 0.5 }}>
+              <Typography component="time" fontWeight="bold" variant="body2">
+                {formatDate(post.publishedAt)}
+              </Typography>
+            </Box>
+            <Link href={`/blogs/${post.id}`} style={{ textDecoration: "none" }}>
+              <Box
+                sx={{
+                  border: "1px solid #e5e7eb",
+                  borderRadius: 2,
+                  overflow: "hidden",
+                  bgcolor: "white",
+                  p: 2,
+                  display: "flex",
+                  flexDirection: "column",
+                  gap: 1,
+                  "&:hover": { boxShadow: 3 },
+                  transition: "box-shadow 0.2s",
+                }}
+              >
+                <Typography
+                  variant="subtitle1"
+                  fontWeight="bold"
+                  sx={{
+                    color: "#111827",
+                    display: "-webkit-box",
+                    WebkitLineClamp: 2,
+                    WebkitBoxOrient: "vertical",
+                    overflow: "hidden",
+                  }}
+                >
                   {post.title}
-                </h3>
-                <p className="text-sm text-gray-600 line-clamp-2">
+                </Typography>
+                <Typography
+                  variant="body2"
+                  sx={{
+                    color: "#4b5563",
+                    display: "-webkit-box",
+                    WebkitLineClamp: 2,
+                    WebkitBoxOrient: "vertical",
+                    overflow: "hidden",
+                  }}
+                >
                   {post.summary}
-                </p>
-              </div>
+                </Typography>
+              </Box>
             </Link>
-          </div>
-        </li>
+          </Box>
+        </Box>
       ))}
-    </ol>
+    </Box>
   );
 }
 

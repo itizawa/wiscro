@@ -1,164 +1,237 @@
 "use client";
 
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
-import { Menu } from "lucide-react";
+import CloseIcon from "@mui/icons-material/Close";
+import MenuIcon from "@mui/icons-material/Menu";
+import {
+  AppBar,
+  Box,
+  Button,
+  Drawer,
+  IconButton,
+  Link as MuiLink,
+  Toolbar,
+} from "@mui/material";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
-import { Button } from "../ui/button";
+
+const CONTACT_URL =
+  "https://docs.google.com/forms/d/e/1FAIpQLSeNmuXo7-05iU_m5ge4pq_1pysVTqcis8JWOgrupso1foOZpw/viewform?usp=dialogo";
 
 export default function Header() {
-  const [isSheetOpen, setIsSheetOpen] = useState(false);
+  const [drawerOpen, setDrawerOpen] = useState(false);
   const pathname = usePathname();
   const isHomePage = pathname === "/";
 
   const handleLinkClick = (
     e: React.MouseEvent<HTMLAnchorElement>,
-    targetId: string
+    targetId: string,
   ) => {
     e.preventDefault();
-    setIsSheetOpen(false);
+    setDrawerOpen(false);
 
     if (!isHomePage) {
-      // トップページ以外の場合、ハッシュ付きでトップページに遷移
       window.location.href = `/#${targetId}`;
       return;
     }
 
-    // トップページの場合、直接スクロール
     const targetElement = document.getElementById(targetId);
     if (targetElement) {
       const headerHeight = 64;
       const elementPosition = targetElement.offsetTop - headerHeight;
-
-      window.scrollTo({
-        top: elementPosition,
-        behavior: "smooth",
-      });
+      window.scrollTo({ top: elementPosition, behavior: "smooth" });
     }
   };
+
+  const navLinks = [
+    { label: "代表紹介", id: "representative" },
+    { label: "コンテンツ", id: "blogs", href: "/blog" },
+    { label: "つぶやき", id: "posts", href: "/posts" },
+    { label: "概要", id: "company-overview" },
+  ];
+
   return (
-    <header className="bg-gray-50 shadow-sm sticky top-0 z-50">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between h-16 items-center">
-          <Link href="/">
-            <img
-              src="/logo-with-letter.png"
-              alt="wiscro"
-              width={120}
-              height="36px"
-            />
-          </Link>
+    <AppBar
+      position="sticky"
+      elevation={0}
+      sx={{
+        bgcolor: "#f9fafb",
+        color: "text.primary",
+        borderBottom: "1px solid #e5e7eb",
+      }}
+    >
+      <Toolbar
+        sx={{
+          maxWidth: "1152px",
+          width: "100%",
+          mx: "auto",
+          px: { xs: 2, sm: 3, lg: 4 },
+          height: 64,
+          justifyContent: "space-between",
+        }}
+      >
+        <Link href="/">
+          <img src="/logo-with-letter.png" alt="wiscro" width={120} />
+        </Link>
 
-          <div className="hidden md:flex items-center space-x-8">
-            <a
-              href="/representative"
-              className="text-gray-700 hover:text-gray-900"
-              onClick={(e) => handleLinkClick(e, "representative")}
+        {/* Desktop nav */}
+        <Box
+          sx={{
+            display: { xs: "none", md: "flex" },
+            alignItems: "center",
+            gap: 4,
+          }}
+        >
+          {navLinks.map((link) =>
+            link.href ? (
+              <Link
+                key={link.id}
+                href={link.href}
+                style={{ textDecoration: "none" }}
+              >
+                <MuiLink
+                  component="span"
+                  underline="none"
+                  sx={{
+                    color: "text.secondary",
+                    "&:hover": { color: "text.primary" },
+                    cursor: "pointer",
+                  }}
+                >
+                  {link.label}
+                </MuiLink>
+              </Link>
+            ) : (
+              <MuiLink
+                key={link.id}
+                href={`/${link.id}`}
+                underline="none"
+                sx={{
+                  color: "text.secondary",
+                  "&:hover": { color: "text.primary" },
+                  cursor: "pointer",
+                }}
+                onClick={(e: React.MouseEvent<HTMLAnchorElement>) =>
+                  handleLinkClick(e, link.id)
+                }
+              >
+                {link.label}
+              </MuiLink>
+            ),
+          )}
+          <a href={CONTACT_URL} target="_blank" rel="noopener noreferrer">
+            <Button
+              variant="contained"
+              sx={{
+                bgcolor: "#1565c0",
+                "&:hover": { bgcolor: "#0d47a1" },
+                fontWeight: "bold",
+                textTransform: "none",
+              }}
             >
-              代表紹介
-            </a>
-            <Link
-              href="/blog"
-              className="text-gray-700 hover:text-gray-900"
-              onClick={(e) => handleLinkClick(e, "blogs")}
-            >
-              コンテンツ
-            </Link>
-            <a
-              href="/products"
-              className="text-gray-700 hover:text-gray-900"
-              onClick={(e) => handleLinkClick(e, "products")}
-            >
-              サービス一覧
-            </a>
-            {/* <a
-              href="/achievements"
-              className="text-gray-700 hover:text-gray-900"
-              onClick={(e) => handleLinkClick(e, "achievements")}
-            >
-              開発実績
-            </a> */}
+              お問い合わせ
+            </Button>
+          </a>
+        </Box>
 
-            <a
-              href="/company-overview"
-              className="text-gray-700 hover:text-gray-900"
-              onClick={(e) => handleLinkClick(e, "company-overview")}
-            >
-              概要
-            </a>
-            <a
-              href="https://docs.google.com/forms/d/e/1FAIpQLSeNmuXo7-05iU_m5ge4pq_1pysVTqcis8JWOgrupso1foOZpw/viewform?usp=dialogo"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <Button className="bg-blue-700 hover:bg-blue-800 text-white font-bold">
+        {/* Mobile hamburger */}
+        <Box sx={{ display: { xs: "flex", md: "none" } }}>
+          <IconButton
+            onClick={() => setDrawerOpen(true)}
+            sx={{ color: "text.secondary" }}
+          >
+            <MenuIcon />
+          </IconButton>
+        </Box>
+      </Toolbar>
+
+      {/* Mobile drawer */}
+      <Drawer
+        anchor="right"
+        open={drawerOpen}
+        onClose={() => setDrawerOpen(false)}
+        PaperProps={{
+          sx: { width: "80%", maxWidth: 384, pt: 2 },
+        }}
+      >
+        <Box sx={{ display: "flex", justifyContent: "flex-end", px: 2 }}>
+          <IconButton onClick={() => setDrawerOpen(false)}>
+            <CloseIcon />
+          </IconButton>
+        </Box>
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            gap: 1,
+            mt: 2,
+            px: 2,
+          }}
+        >
+          {navLinks.map((link) =>
+            link.href ? (
+              <Link
+                key={link.id}
+                href={link.href}
+                style={{ textDecoration: "none" }}
+                onClick={() => setDrawerOpen(false)}
+              >
+                <MuiLink
+                  component="span"
+                  underline="none"
+                  sx={{
+                    px: 1.5,
+                    py: 1,
+                    borderRadius: 1,
+                    fontSize: "1rem",
+                    fontWeight: 500,
+                    color: "text.secondary",
+                    "&:hover": { color: "text.primary", bgcolor: "#f9fafb" },
+                  }}
+                >
+                  {link.label}
+                </MuiLink>
+              </Link>
+            ) : (
+              <MuiLink
+                key={link.id}
+                href={`/${link.id}`}
+                underline="none"
+                sx={{
+                  px: 1.5,
+                  py: 1,
+                  borderRadius: 1,
+                  fontSize: "1rem",
+                  fontWeight: 500,
+                  color: "text.secondary",
+                  "&:hover": { color: "text.primary", bgcolor: "#f9fafb" },
+                }}
+                onClick={(e: React.MouseEvent<HTMLAnchorElement>) =>
+                  handleLinkClick(e, link.id)
+                }
+              >
+                {link.label}
+              </MuiLink>
+            ),
+          )}
+          <Box sx={{ pt: 2, display: "flex", justifyContent: "center" }}>
+            <a href={CONTACT_URL} target="_blank" rel="noopener noreferrer">
+              <Button
+                variant="contained"
+                sx={{
+                  bgcolor: "#1565c0",
+                  "&:hover": { bgcolor: "#0d47a1" },
+                  fontWeight: "bold",
+                  px: 4,
+                  textTransform: "none",
+                }}
+              >
                 お問い合わせ
               </Button>
             </a>
-          </div>
-
-          <div className="md:hidden flex items-center">
-            <Sheet open={isSheetOpen} onOpenChange={setIsSheetOpen}>
-              <SheetTrigger asChild>
-                <button className="inline-flex items-center justify-center p-2 rounded-md text-gray-700 hover:text-gray-900 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-500">
-                  <Menu className="h-6 w-6" />
-                </button>
-              </SheetTrigger>
-              <SheetContent side="right" className="pt-10">
-                <div className="flex flex-col space-y-4 mt-6 px-2">
-                  <a
-                    href="/representative"
-                    className="px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50"
-                    onClick={(e) => handleLinkClick(e, "representative")}
-                  >
-                    代表紹介
-                  </a>
-                  <Link
-                    href="/blog"
-                    className="px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50"
-                    onClick={(e) => handleLinkClick(e, "blogs")}
-                  >
-                    コンテンツ
-                  </Link>
-                  <a
-                    href="/products"
-                    className="px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50"
-                    onClick={(e) => handleLinkClick(e, "products")}
-                  >
-                    サービス一覧
-                  </a>
-                  {/* <a
-                    href="/achievements"
-                    className="px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50"
-                    onClick={(e) => handleLinkClick(e, "achievements")}
-                  >
-                    開発実績
-                  </a> */}
-                  <a
-                    href="/company-overview"
-                    className="px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50"
-                    onClick={(e) => handleLinkClick(e, "company-overview")}
-                  >
-                    概要
-                  </a>
-                  <div className="pt-4 flex flex-col items-center justify-center">
-                    <a
-                      href="https://docs.google.com/forms/d/e/1FAIpQLSeNmuXo7-05iU_m5ge4pq_1pysVTqcis8JWOgrupso1foOZpw/viewform?usp=dialogo"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      <Button className="bg-blue-700 hover:bg-blue-800 text-white font-bold px-8 py-2 rounded">
-                        お問い合わせ
-                      </Button>
-                    </a>
-                  </div>
-                </div>
-              </SheetContent>
-            </Sheet>
-          </div>
-        </div>
-      </div>
-    </header>
+          </Box>
+        </Box>
+      </Drawer>
+    </AppBar>
   );
 }

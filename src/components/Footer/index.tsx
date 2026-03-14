@@ -1,10 +1,17 @@
+import { Box, Typography } from "@mui/material";
+
 export const Footer = () => (
-  <footer className="bg-gray-800 text-white py-6">
-    <div className="container mx-auto text-center space-y-8">
-      <div className="container mx-auto text-center space-y-2">
-        <h2 className="text-2xl font-bold">wiscro</h2>
-      </div>
-      <p className="text-sm">&copy; 2025 wiscro. All rights reserved.</p>
-    </div>
-  </footer>
+  <Box
+    component="footer"
+    sx={{ bgcolor: "#1f2937", color: "white", py: 3 }}
+  >
+    <Box sx={{ textAlign: "center" }}>
+      <Typography variant="h5" fontWeight="bold" sx={{ mb: 2 }}>
+        wiscro
+      </Typography>
+      <Typography variant="body2">
+        &copy; 2025 wiscro. All rights reserved.
+      </Typography>
+    </Box>
+  </Box>
 );
