@@ -2,37 +2,42 @@
 
 import { Post } from "@/shared/types/post";
 import { Avatar, Box, Chip, Typography } from "@mui/material";
+import { formatDistanceToNow, format, differenceInDays } from "date-fns";
+import { ja } from "date-fns/locale";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { useState } from "react";
+import ExpandedImage from "./ExpandedImage";
 
 const PROFILE_NAME = "wiscro";
 const PROFILE_IMAGE = "/icon.jpg";
 
 function formatDate(dateString: string): string {
   const date = new Date(dateString);
-  const now = new Date();
-  const diffMs = now.getTime() - date.getTime();
-  const diffMin = Math.floor(diffMs / 60000);
-  const diffHour = Math.floor(diffMs / 3600000);
-  const diffDay = Math.floor(diffMs / 86400000);
-
-  if (diffMin < 1) return "たった今";
-  if (diffMin < 60) return `${diffMin}分前`;
-  if (diffHour < 24) return `${diffHour}時間前`;
-  if (diffDay < 7) return `${diffDay}日前`;
-
-  return date.toLocaleDateString("ja-JP", {
-    year: "numeric",
-    month: "short",
-    day: "numeric",
-  });
+  if (differenceInDays(new Date(), date) < 7) {
+    return formatDistanceToNow(date, { addSuffix: true, locale: ja });
+  }
+  return format(date, "yyyy年M月d日", { locale: ja });
 }
 
 export default function PostItem({ post }: { post: Post }) {
   const router = useRouter();
+  const [expandedImage, setExpandedImage] = useState<{
+    src: string;
+    alt: string;
+  } | null>(null);
 
   return (
+    <>
+      {expandedImage && (
+        <ExpandedImage
+          src={expandedImage.src}
+          alt={expandedImage.alt}
+          expand={true}
+          onClick={() => setExpandedImage(null)}
+        />
+      )}
     <Link
       href={`/posts/${post.id}`}
       style={{ textDecoration: "none", color: "inherit" }}
@@ -148,12 +153,20 @@ export default function PostItem({ post }: { post: Post }) {
                   alt={`投稿画像 ${i + 1}`}
                   width={img.width}
                   height={img.height}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    setExpandedImage({
+                      src: img.url,
+                      alt: `投稿画像 ${i + 1}`,
+                    });
+                  }}
                   style={{
                     width: "100%",
                     height: "auto",
                     maxHeight: post.images.length === 1 ? 400 : 200,
                     objectFit: "cover",
                     display: "block",
+                    cursor: "zoom-in",
                   }}
                 />
               ))}
@@ -162,5 +175,6 @@ export default function PostItem({ post }: { post: Post }) {
         </Box>
       </Box>
     </Link>
+    </>
   );
 }
