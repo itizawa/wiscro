@@ -1,8 +1,8 @@
 "use client";
 
-import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
-import FavoriteIcon from "@mui/icons-material/Favorite";
-import { IconButton, Tooltip } from "@mui/material";
+import ThumbUpAltIcon from "@mui/icons-material/ThumbUpAlt";
+import ThumbUpOffAltIcon from "@mui/icons-material/ThumbUpOffAlt";
+import { Button } from "@mui/material";
 import { useEffect, useState } from "react";
 
 const STORAGE_KEY = "liked_post_ids";
@@ -41,16 +41,26 @@ export default function LikeButton({ postId }: { postId: string }) {
   };
 
   return (
-    <Tooltip title={liked ? "いいね済み" : "いいね"} arrow>
-      <IconButton size="small" onClick={toggleLike}>
-        {liked ? (
-          <FavoriteIcon sx={{ width: 18, height: 18, color: "#e91e63" }} />
+    <Button
+      size="small"
+      startIcon={
+        liked ? (
+          <ThumbUpAltIcon sx={{ width: 18, height: 18 }} />
         ) : (
-          <FavoriteBorderIcon
-            sx={{ width: 18, height: 18, color: "text.secondary" }}
-          />
-        )}
-      </IconButton>
-    </Tooltip>
+          <ThumbUpOffAltIcon sx={{ width: 18, height: 18 }} />
+        )
+      }
+      onClick={toggleLike}
+      sx={{
+        color: liked ? "#e8932a" : "text.secondary",
+        textTransform: "none",
+        fontSize: "0.8rem",
+        minWidth: 0,
+        px: 1,
+        fontWeight: 700,
+      }}
+    >
+      いいね
+    </Button>
   );
 }

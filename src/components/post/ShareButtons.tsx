@@ -1,28 +1,12 @@
 "use client";
 
 import { Share } from "@mui/icons-material";
-import { Box, IconButton, Tooltip } from "@mui/material";
-import Image from "next/image";
+import { Button } from "@mui/material";
 
 const SITE_URL = "https://www.wiscro.app";
 
 export default function ShareButtons({ postId }: { postId: string }) {
   const postUrl = `${SITE_URL}/posts/${postId}`;
-
-  const shareToTwitter = () => {
-    const url = `https://twitter.com/intent/tweet?url=${encodeURIComponent(postUrl)}`;
-    window.open(url, "_blank", "noopener,noreferrer");
-  };
-
-  const shareToLine = () => {
-    const url = `https://social-plugins.line.me/lineit/share?url=${encodeURIComponent(postUrl)}`;
-    window.open(url, "_blank", "noopener,noreferrer");
-  };
-
-  const shareToHatena = () => {
-    const url = `https://b.hatena.ne.jp/add?mode=confirm&url=${encodeURIComponent(postUrl)}`;
-    window.open(url, "_blank", "noopener,noreferrer");
-  };
 
   const handleShare = () => {
     navigator
@@ -34,51 +18,20 @@ export default function ShareButtons({ postId }: { postId: string }) {
   };
 
   return (
-    <Box
+    <Button
+      size="small"
+      startIcon={<Share sx={{ width: 18, height: 18 }} />}
+      onClick={handleShare}
       sx={{
-        display: "flex",
-        alignItems: "center",
-        gap: 1,
+        color: "text.secondary",
+        textTransform: "none",
+        fontSize: "0.8rem",
+        minWidth: 0,
+        px: 1,
+        fontWeight: 700,
       }}
     >
-      <Tooltip title="Xでシェア" arrow>
-        <IconButton size="small" onClick={shareToTwitter}>
-          <Image
-            src="/sns/x.png"
-            width={16}
-            height={16}
-            alt="X"
-            style={{ display: "block", cursor: "pointer" }}
-          />
-        </IconButton>
-      </Tooltip>
-      <Tooltip title="LINEでシェア" arrow>
-        <IconButton size="small" onClick={shareToLine}>
-          <Image
-            src="/sns/line.png"
-            width={20}
-            height={20}
-            alt="LINE"
-            style={{ display: "block", cursor: "pointer" }}
-          />
-        </IconButton>
-      </Tooltip>
-      <Tooltip title="はてなブックマークでシェア" arrow>
-        <IconButton size="small" onClick={shareToHatena}>
-          <Image
-            src="/sns/hatena.png"
-            width={20}
-            height={20}
-            alt="はてなブックマーク"
-            style={{ display: "block", cursor: "pointer" }}
-          />
-        </IconButton>
-      </Tooltip>
-      <Tooltip title="その他でシェア" arrow>
-        <IconButton size="small" onClick={handleShare}>
-          <Share sx={{ width: 20, height: 20 }} />
-        </IconButton>
-      </Tooltip>
-    </Box>
+      シェア
+    </Button>
   );
 }
