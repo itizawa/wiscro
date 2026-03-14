@@ -7,6 +7,7 @@ import { ja } from "date-fns/locale";
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import ExpandedImage from "./ExpandedImage";
+import LikeButton from "./LikeButton";
 import OgpCard from "./OgpCard";
 import ShareButtons from "./ShareButtons";
 
@@ -223,7 +224,10 @@ export default function PostItem({
             </Box>
           )}
 
-          <ShareButtons postId={post.id} />
+          <Box sx={{ display: "flex", alignItems: "center", gap: 0.5 }}>
+            <LikeButton postId={post.id} />
+            <ShareButtons postId={post.id} />
+          </Box>
         </Box>
       </Box>
     </>

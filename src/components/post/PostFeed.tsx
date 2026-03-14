@@ -146,7 +146,7 @@ export default function PostFeed({
               justifyContent: "space-between",
             }}
           >
-            wiscroのつぶやきとは？
+            市澤のつぶやきとは？
             <IconButton size="small" onClick={() => setInfoOpen(false)}>
               <CloseIcon sx={{ fontSize: 20 }} />
             </IconButton>
@@ -156,7 +156,7 @@ export default function PostFeed({
               variant="body1"
               sx={{ color: "text.secondary", whiteSpace: "pre-wrap" }}
             >
-              {`日々の気づきや考えを短いテキストで発信するページです。\nSNSで発信するまでもいかない個人的なことをここに投稿しています。`}
+              {`wiscro代表市澤の日々の気づきや考えを短いテキストで発信するページです。\nSNSで発信するまでもいかない個人的なことをここに投稿しています。`}
             </Typography>
           </DialogContent>
         </Dialog>
