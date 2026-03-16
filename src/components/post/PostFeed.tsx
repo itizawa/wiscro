@@ -47,6 +47,7 @@ export default function PostFeed({
   const [searchInput, setSearchInput] = useState(q);
   const [debouncedQuery, setDebouncedQuery] = useState(q);
   const [infoOpen, setInfoOpen] = useState(false);
+  const isInitialMount = useRef(true);
 
   // qが外部から変わったときにinputを同期
   useEffect(() => {
@@ -63,6 +64,12 @@ export default function PostFeed({
 
   // debouncedQueryが変わったらデータをリセットして再取得
   useEffect(() => {
+    // 初回マウント時はSSRのinitialDataを使うのでスキップ
+    if (isInitialMount.current) {
+      isInitialMount.current = false;
+      return;
+    }
+
     const trimmed = debouncedQuery.trim();
     const fetchFiltered = async () => {
       setIsLoading(true);

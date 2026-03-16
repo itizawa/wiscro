@@ -11,5 +11,9 @@ export async function GET(request: NextRequest) {
 
   const data = await getPosts({ offset, limit, q });
 
-  return NextResponse.json(data);
+  return NextResponse.json(data, {
+    headers: {
+      "Cache-Control": "public, s-maxage=600, stale-while-revalidate=60",
+    },
+  });
 }
