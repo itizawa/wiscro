@@ -4,6 +4,8 @@ import { getPosts } from "@/shared/lib/post";
 import { Box } from "@mui/material";
 import type { Metadata } from "next";
 
+export const revalidate = 600; // 10分ごとにキャッシュを更新
+
 export const metadata: Metadata = generateMetadataObject({
   title: "つぶやき | wiscro",
   description: "wiscroのつぶやき",

@@ -1,6 +1,8 @@
 import { getPosts } from "@/shared/lib/post";
 import { NextRequest, NextResponse } from "next/server";
 
+export const revalidate = 600; // 10分ごとにキャッシュを更新
+
 export async function GET(request: NextRequest) {
   const searchParams = request.nextUrl.searchParams;
   const offset = parseInt(searchParams.get("offset") ?? "0", 10);
