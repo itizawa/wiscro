@@ -1,7 +1,16 @@
 import ScrollHandler from "@/components/ScrollHandler";
 import Timeline from "@/components/blog/Timeline";
 import { getAllBlogPosts as getAllBlogPostsV2 } from "@/shared/lib/blog_v2";
-import { Box, Container, Typography, Table, TableBody, TableRow, TableCell } from "@mui/material";
+import {
+  Box,
+  Container,
+  Stack,
+  Table,
+  TableBody,
+  TableCell,
+  TableRow,
+  Typography,
+} from "@mui/material";
 import Image from "next/image";
 
 export default async function Home() {
@@ -24,7 +33,11 @@ export default async function Home() {
       {/* Hero Section */}
       <Box
         component="section"
-        sx={{ height: { xs: 224, md: 600 }, position: "relative", width: "100%" }}
+        sx={{
+          height: { xs: 224, md: 600 },
+          position: "relative",
+          width: "100%",
+        }}
       >
         <Container maxWidth="lg">
           <Box
@@ -101,7 +114,7 @@ export default async function Home() {
           fontWeight="bold"
           sx={{ mb: 3, pb: 1, borderBottom: "1px solid #e5e7eb" }}
         >
-          代表紹介
+          団体紹介
         </Typography>
         <Box
           sx={{
@@ -129,16 +142,19 @@ export default async function Home() {
               style={{ objectFit: "cover" }}
             />
           </Box>
-          <Box>
-            <Typography variant="h6" fontWeight="bold" sx={{ mb: 1 }}>
-              ウィズクロ
+          <Stack spacing={2}>
+            <Typography variant="h6" fontWeight="bold">
+              wiscro（ウィズクロ）
             </Typography>
-            <Typography variant="body1">
-              特に0→1フェーズにおける技術選定、フロントエンドエコシステムの構築、パフォーマンス改善、SRE領域まで幅広く対応可能で、
-              <br />
-              専門性が求められる領域において強みを発揮しています。
-            </Typography>
-          </Box>
+            <Stack spacing={1}>
+              <Typography variant="body1">
+                深谷市を拠点に夫婦でコンテンツ制作・手芸販売を行なっています。
+              </Typography>
+              <Typography variant="body1">
+                専門はソフトウェア開発です。ホームページ作成やITにお困りの方はお気軽にご相談ください。
+              </Typography>
+            </Stack>
+          </Stack>
         </Box>
       </Box>
 
@@ -159,7 +175,7 @@ export default async function Home() {
           fontWeight="bold"
           sx={{ mb: 3, pb: 1, borderBottom: "1px solid #e5e7eb" }}
         >
-          更新情報
+          お知らせ
         </Typography>
         <Timeline posts={recentPostsV2} />
       </Box>
@@ -189,10 +205,10 @@ export default async function Home() {
               <TableBody>
                 {[
                   ["団体名", "wiscro（ウィズクロ）"],
-                  ["代表者", "ウィズクロ"],
+                  ["代表者", "市澤 樹享"],
                   ["設立", "2023年5月18日"],
                   ["所在地", "埼玉県深谷市"],
-                  ["事業内容", "企業向け業務ソフトウェア・Webサービス開発"],
+                  ["事業内容", "コンテンツ制作・手芸販売"],
                 ].map(([label, value], i, arr) => (
                   <TableRow
                     key={label}

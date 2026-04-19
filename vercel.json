@@ -1,0 +1,8 @@
+{
+  "crons": [
+    {
+      "path": "/api/cron/refresh-timeline",
+      "schedule": "0 0 * * *"
+    }
+  ]
+}

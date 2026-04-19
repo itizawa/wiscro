@@ -1,6 +1,7 @@
 import { Box, Typography } from "@mui/material";
 
-export const Footer = () => (
+export const Footer = () => {
+  return (
   <Box
     component="footer"
     sx={{ bgcolor: "#1f2937", color: "white", py: 3 }}
@@ -14,4 +15,5 @@ export const Footer = () => (
       </Typography>
     </Box>
   </Box>
-);
+  );
+};
