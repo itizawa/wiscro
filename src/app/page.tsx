@@ -1,6 +1,8 @@
 import ScrollHandler from "@/components/ScrollHandler";
 import Timeline from "@/components/blog/Timeline";
+import RssTimelineList from "@/components/timeline/RssTimelineList";
 import { getAllBlogPosts as getAllBlogPostsV2 } from "@/shared/lib/blog_v2";
+import { selectTimeline } from "@/shared/lib/timelineRepository";
 import {
   Box,
   Container,
@@ -12,9 +14,15 @@ import {
   Typography,
 } from "@mui/material";
 import Image from "next/image";
+import Link from "next/link";
+
+export const dynamic = "force-dynamic";
 
 export default async function Home() {
-  const recentPostsV2 = await getAllBlogPostsV2();
+  const [recentPostsV2, recentTimelineItems] = await Promise.all([
+    getAllBlogPostsV2(),
+    selectTimeline(3),
+  ]);
 
   return (
     <Box
@@ -178,6 +186,51 @@ export default async function Home() {
           お知らせ
         </Typography>
         <Timeline posts={recentPostsV2} />
+      </Box>
+
+      {/* Timeline Section (Latest 3) */}
+      <Box
+        component="section"
+        id="timeline"
+        sx={{
+          py: { xs: 3, md: 6 },
+          px: { xs: 2, md: 4 },
+          maxWidth: "1152px",
+          mx: "auto",
+          width: "100%",
+        }}
+      >
+        <Box
+          sx={{
+            display: "flex",
+            alignItems: "baseline",
+            justifyContent: "space-between",
+            mb: 3,
+            pb: 1,
+            borderBottom: "1px solid #e5e7eb",
+            gap: 2,
+          }}
+        >
+          <Typography variant="h5" fontWeight="bold">
+            更新情報
+          </Typography>
+          <Link
+            href="/timeline"
+            style={{
+              color: "#2F4A7B",
+              fontSize: "0.875rem",
+              fontWeight: "bold",
+              textDecoration: "none",
+              whiteSpace: "nowrap",
+            }}
+          >
+            もっと見る →
+          </Link>
+        </Box>
+        <RssTimelineList
+          items={recentTimelineItems}
+          emptyMessage="最新の更新情報はまだありません。"
+        />
       </Box>
 
       {/* Company Overview */}
